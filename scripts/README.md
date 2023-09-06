@@ -16,6 +16,7 @@
 * mkbackup
 * dideofy
 * jcal2panel
+  I always use `jcal` program (it's a Jalali calendar), this script uses `jdate` (similar to `date` command) and outputs Jalali and Gregorian date in a compact format which i usually use in my desktop panels.
 * mkhosts
 * conck
 * ldict
