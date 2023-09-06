@@ -8,12 +8,15 @@
 
   ** WARNING ** this script works through changing your `$PATH` variabe by adding `$PYENV_ROOT/shims` to it's begining, so this could lead to vulnerability is someone has write access to `$PYENV_ROOT/shims`.
 
-* conck
 * cowsay
+  `cowsay` is a minimal `sh` replacement script for real `cowsay` program!
+  you can either run `cowsay "some string here"` or pip to it `xxx | cowsay`
+
+* mkbackup
 * dideofy
 * jcal2panel
-* ldict
-* mkbackup
 * mkhosts
+* conck
+* ldict
 * chdns
   in this simple script, you can define some dns servers by names like `ns1, ns2, ...` then by running `chdns -ns1`, chdns will write corresponding `nameserver ns1` to your `/etc/resolve.conf` file.
