@@ -9,9 +9,8 @@
   ** WARNING ** this script works through changing your `$PATH` variabe by adding `$PYENV_ROOT/shims` to it's begining, so this could lead to vulnerability is someone has write access to `$PYENV_ROOT/shims`.
 
 * cowsay  
-  `cowsay` is a minimal `sh` replacement script for real `cowsay` program!
-
-  you can either run `cowsay "some string here"` or pip to it `xxx | cowsay`
+  `cowsay` is a minimal `sh` replacement script for real `cowsay` program, 
+  you can either run `cowsay "some string here"` or pipe to it `xxx | cowsay`
 
 * mkbackup  
 * dideofy  
