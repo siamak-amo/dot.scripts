@@ -17,9 +17,11 @@
 * dideofy
 * jcal2panel
   I always use `jcal` program (it's a Jalali calendar), this script uses `jdate` (similar to `date` command) and outputs Jalali and Gregorian date in a compact format which i usually use in my desktop panels.
+
 * mkhosts
 * conck
 * ldict
   simply is a wrapper around `dict` command to use `less -S` instead of messing with your terminal.
+
 * chdns
   in this simple script, you can define some dns servers by names like `ns1, ns2, ...` then by running `chdns -ns1`, chdns will write corresponding `nameserver ns1` to your `/etc/resolve.conf` file.
