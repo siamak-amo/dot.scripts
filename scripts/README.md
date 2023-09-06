@@ -10,7 +10,7 @@
 
 * cowsay  
   `cowsay` is a minimal `sh` replacement script for real `cowsay` program, 
-  you can either run `cowsay "some string here"` or pipe to it `xxx | cowsay`
+  you can either run `cowsay "some string here"` or pipe to it `xxx | cowsay`.
 
 * mkbackup  
 * dideofy  
