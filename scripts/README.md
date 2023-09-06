@@ -20,5 +20,6 @@
 * mkhosts
 * conck
 * ldict
+  simply is a wrapper around `dict` command to use `less -S` instead of messing with your terminal.
 * chdns
   in this simple script, you can define some dns servers by names like `ns1, ns2, ...` then by running `chdns -ns1`, chdns will write corresponding `nameserver ns1` to your `/etc/resolve.conf` file.
