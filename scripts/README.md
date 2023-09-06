@@ -6,7 +6,7 @@
   and also your `pip ` packages will get install in `$PYENV_ROOT/versions/3.xxx` directory.
   you can deactivate `pyenv` by running `source chpy -d`.
 
-  ** WARNING ** this script works through changing your `$PATH` variabe by adding `$PYENV_ROOT/shims` to it's begining, so this could leads to vulnerability is someone has write access to `$PYENV_ROOT/shims`.
+  ** WARNING ** this script works through changing your `$PATH` variabe by adding `$PYENV_ROOT/shims` to it's begining, so this could lead to vulnerability is someone has write access to `$PYENV_ROOT/shims`.
 
 * conck
 * cowsay
