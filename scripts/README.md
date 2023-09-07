@@ -13,6 +13,12 @@
   you can either run `cowsay "some string here"` or pipe to it `xxx | cowsay`.
 
 * mkbackup  
+  make backup, is my backup script, you can dry run it (just echo what it's going to do) by `mkbackup -n`.
+  
+  you can exclude files and directories by editing `EXCLUDES` variable, and also break your backup parts by declaring them in `PARTS` variable, for instance, if you set `PARTS="/home /var"` you will get 3 backup files `ROOT-xxx.tar,  HOME-xxx.tar,  VAR-xxx.tar`.
+  
+  also by setting `TFLAGS=cpfz`, the output will be in gzip compressed format.
+
 * dideofy  
 * jcal2panel  
   I always use the `jcal` program (it's a Jalali calendar), this script uses the `jdate` (similar to the `date` command) and outputs Jalali and Gregorian date in a compact format which I usually use in my desktop panels.
