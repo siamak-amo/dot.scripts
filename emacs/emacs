@@ -159,7 +159,7 @@
   :hook ((go-mode . lsp-deferred)
          (go-mode . company-mode))
   :bind (:map go-mode-map
-              ("<f6>" . gofmt)
+              ("<f5>" . gofmt)
               ("C-c 6" . gofmt))
   :config
   (require 'lsp-go)
