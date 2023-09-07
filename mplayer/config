@@ -1,0 +1,17 @@
+#------------------------------------------------
+# copy this file to ~/.mplayer/config
+#------------------------------------------------
+sub-paths=sub,.sub # add other dirs to search for subtitle
+autosub=1
+#
+[ltr]
+[default]
+fontconfig=yes
+font="Amiri"
+flip-hebrew=yes
+fribidi-charset=UTF-8
+subfont-encoding=unicode
+unicode=yes
+utf8=yes
+subfont-text-scale=2.5
+[/ltr] 
