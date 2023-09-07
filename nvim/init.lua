@@ -1,3 +1,9 @@
+--
+--  copy this file to ~/.config/nvim/init.lua
+--  
+--  many parts of this file (maby the most) have been copied from other
+--  personal configs and repos, which I barely remember to mention.
+--        
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
