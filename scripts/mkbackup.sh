@@ -41,8 +41,8 @@ usage(){
 mkbackup [OPTIONS args] [FLAGS]
 
 FLAGS:
-    -n                  just prints what going to do (dry run).
-    -h, --help          prints help.
+    -n                  dry run
+    -h, --help          prints help
     -p, --prefix        specify backup path
 
 
