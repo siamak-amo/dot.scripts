@@ -9,3 +9,21 @@
   download your favorite emacs themes to `~/.emacs.d/[repo_name]` and then make links to their `xxx.el` files in the `~/.emacs.d/themes` directory
 * run emacs and wait package manager installs all packages
   
+
+### Shortcuts
+This configuration uses evil-mode (vi shortcuts for emacs), so most vi shortcuts are available.
+
+1. navigation  
+   - `CTRL-PageUp` and `CTRL_PageDown` to switch to the next and previous buffers
+   - `CTRL-Home` and `CTRL-End` to switch between tabs
+   - `SPC-bb` for listing up buffers to choose
+   - `SPC-bk` to kill the current buffer
+   - `SPC-bn` and `SPC-bp` for switch to the next and previous buffers
+   - `SPC-br` and `SPC-g` for reloading the current buffer (Dired buffer)
+2. compilation  
+   - `<F6>` for running the emacs `compile` command
+   - in python-mode `C-c C-c` for sending python file to the interpreter which runs by default shortcut `C-c C-p`
+   - in go-mode `C-c 6` and `<f5>` for running gofmt (formats your code)
+4. others  
+   - `<f9>` for checking the spell (under the cursor one)
+   - `<f8>` for enabling flyspell-mode (spell checking)
