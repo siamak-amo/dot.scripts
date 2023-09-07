@@ -32,3 +32,8 @@
 
 * chdns  
   in this simple script, you can define some DNS servers by names like `ns1, ns2, ...` then by running `chdns -ns1`, chdns will write corresponding `nameserver ns1` to your `/etc/resolve.conf` file.
+
+* oggify  
+  oggify is a simple script to change file extensions, I named oggify when it was so simple to only change file extensions to `.ogg`
+  
+  I use it like `for f in $(ls *.mp3); do  ffmpeg -i $f $(echo $f | oggify);  done` to convert all mp3 files to ogg format.
