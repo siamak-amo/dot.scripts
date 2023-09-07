@@ -27,7 +27,6 @@
 * jcal2panel  
   I always use the `jcal` program (it's a Jalali calendar), this script uses the `jdate` (similar to the `date` command) and outputs Jalali and Gregorian date in a compact format which I usually use in my desktop panels.
 
-* conck  
 * ldict  
   simply is a wrapper around the `dict` command to use `less -S` instead of messing with your terminal.
 
