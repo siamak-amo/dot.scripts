@@ -20,6 +20,10 @@
   also by setting `TFLAGS=cpfz`, the output will be in gzip compressed format.
 
 * dideofy  
+  dideo.ir is YouTube cache website (that makes it possible to watch 'some' YouTube videos from Iran without using VPN), I use this script to convert YouTube links (either direct links or links from Google search) to compatible dideo.ir links.
+  
+  also by adding `-d1` or `-d2` (d1 for lower quality, d2 for 720p quality), you will get a direct download link, which I usually use like `mpv $(dideofy [LINK] -d2)`.
+  
 * jcal2panel  
   I always use the `jcal` program (it's a Jalali calendar), this script uses the `jdate` (similar to the `date` command) and outputs Jalali and Gregorian date in a compact format which I usually use in my desktop panels.
 
