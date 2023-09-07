@@ -78,7 +78,8 @@
    "bn" '(next-buffer :wk "Next buffer")
    "bp" '(previous-buffer :wk "Previous buffer")
    "br" '(revert-buffer :wk "Reload buffer")
-   "b/" 'lgrep)
+   "b/" 'lgrep
+   "g"  'revert-buffer)
 
 
 ;;; markdown support
