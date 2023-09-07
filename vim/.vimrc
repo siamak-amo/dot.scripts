@@ -1,0 +1,94 @@
+let g:pymode_python = 'python3'
+
+" <Fn> shortcuts
+map <F3> :b 3  <CR>
+map <F2> :b 2  <CR>
+map <F1> :b 1  <CR>
+
+
+" CTRL+? shortcuts
+map <C-Z> :bn! <CR>
+map <C-X> :bp! <CR>
+map <C-L> :ls  <CR>
+
+
+" configuration for vim-pandoc and vim-rmarkdown
+let g:pandoc#modules#disabled = ["folding", "spell"]
+let g:pandoc#syntax#conceal#use = 0
+
+
+" Use fontawesome icons as signs
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = 'm'
+let g:gitgutter_sign_removed = 'e'
+let g:gitgutter_sign_removed_first_line = '^'
+let g:gitgutter_sign_modified_removed = '<'
+let g:gitgutter_highlight_lines = 1
+
+
+set nocompatible              " required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'nvie/vim-flake8'
+Plugin 'sheerun/vim-polyglot'
+" snippets
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
+
+" add all your plugins here (note older versions of Vundle
+" used Bundle instead of Plugin)
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+syntax enable
+set updatetime=100
+set background=dark
+set number
+set modifiable
+set ts=4
+let python_highlight_all=1
+
+" autocmd vimenter * ++nested colorscheme gruvbox
+colorscheme default
+
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
+
+
+set complete-=t
+set complete-=i
+
+
+" Trigger configuration.
+" You need to change this to something other than <tab> 
+" if you use one of the following:
+" - https://github.com/Valloric/YouCompleteMe
+" - https://github.com/nvim-lua/completion-nvim
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-a>"
+let g:UltiSnipsJumpBackwardTrigger="<c-s>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+"
+" auto compile .tex files on save
+autocmd BufWritePost *.tex !xelatex <afile>
+"
+" use Esc key to exit from terminal mode
+tnoremap <Esc> <C-\><C-n>
