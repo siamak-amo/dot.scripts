@@ -42,5 +42,5 @@
   this script downloads and reformats gathered v2ray vpn configs by this repo [https://github.com/yebekhe/ConfigCollector] to formats like text, json, and html.
 
 
-there are other tiny simple programs not documented here (mostly because of their simplicity and limited usage)
+there are other tiny simple scripts not documented here (mostly because of their simplicity and limited usage)
 like `ghassets`, `calTopPanel`, `conck`, `setresol`
