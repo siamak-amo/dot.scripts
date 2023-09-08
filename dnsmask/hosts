@@ -1,0 +1,26 @@
+#----------------------------------------------------------
+# this file is a part of my /etc/hosts file
+# *append* not commented lines to your /etc/hosts file
+#----------------------------------------------------------
+
+# shecan.ir DNS
+# shecan is based on `tls sni proxy`
+185.51.200.2    ns1.shecan.ir shecan1
+178.22.122.100  ns2.shecan.ir shecan2
+
+# I dont use this section anymore (see dnsmasq.conf)
+#
+# 50.7.87.84 chat.openai.com openai.com www.chat.openai.com auth0.openai.com
+# 69.197.146.182 download.docker.com www.download.docker.com
+# 50.7.85.218 resumegenius.com www.resumegenius.com
+# 50.7.87.84 zety.com www.zety.com
+# 50.7.85.222 instructables.com www.instructables.com
+# 50.7.87.86 xkcd.com www.xkcd.com
+# 50.7.85.219 c.xkcd.com www.c.xkcd.com
+# 142.54.189.107 webcache.googleusercontent.com www.webcache.googleusercontent.com
+# 204.12.224.147 melpa.org www.melpa.org
+# 50.7.87.85 golang.org www.golang.org
+# 50.7.85.220 pypi.org www.pypi.org
+# 50.7.85.222 files.pythonhosted.org www.files.pythonhosted.org
+# 50.7.85.220 developer.android.com www.developer.android.com
+# 204.12.192.221 dl.google.com www.dl.google.com
