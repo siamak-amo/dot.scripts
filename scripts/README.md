@@ -41,6 +41,9 @@
 * vconfig  
   this script downloads and reformats gathered v2ray vpn configs by this repo [https://github.com/yebekhe/ConfigCollector] to formats like text, json, and html.
 
+* vs2conf  
+  this script gives you v2ray configuration file, based on URLs like vmess://xxx.
+  vmess, vless, ss, and trojan protocols are supported.
 
 there are other tiny simple scripts not documented here (mostly because of their simplicity and limited usage)
 like `ghassets`, `calTopPanel`, `conck`, `setresol`
