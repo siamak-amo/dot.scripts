@@ -309,36 +309,31 @@ parse_ss(){
 
 parse(){
     CONF_proto=${URL%%:*}
+    set_default_confs
+    
     case $CONF_proto in
         "vless")
-            set_default_confs
             parse_vless
             parse_template
-            unset_confs
             ;;
         "vmess")
-            set_default_confs
             parse_vmess
             parse_template
-            unset_confs
             ;;
         "trojan")
-            set_default_confs
             parse_trojan
             parse_template
-            unset_confs
             ;;
         "ss")
             CONF_proto="shadowsocks"
-            set_default_confs
             parse_ss
             parse_template
-            unset_confs
             ;;
         *)
             printf "vs2conf: invalid protocol -- '%s'\n" ${URL%%:*} >&2
             ;;
     esac
+    unset_confs
 }
 
 
