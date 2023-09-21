@@ -131,7 +131,7 @@ EOF2
         "security": "$CONF_sec",
         "tcpSettings": {
           "header": {
-            "type": "none"
+            "type": "$CONF_headerType"
           }
         }
       },
@@ -194,6 +194,7 @@ set_default_confs(){
     CONF_method="chacha20-poly1305"
     CONF_net="ws"
     CONF_fp="chrome"
+    CONF_headerType="none"
 }
 
 # normalize _key and _value
@@ -247,7 +248,7 @@ normalize_kv(){
         "path"|"spx")
             _key="path"
             ;;
-        "port"|"scheme"|"fragment"|"serviceName"|"mode"|"flow")
+        "port"|"scheme"|"fragment"|"serviceName"|"mode"|"flow"|"headerType")
             ;;
         *)
             # _key won't affect the final result
