@@ -224,7 +224,7 @@ normalize_kv(){
             _key="net"
             ;;
         "type")
-            [ -n $_val -a $_val != "none" ] && _key="net"
+            [ -n "$_val" -a "$_val" != "none" ] && _key="net"
             ;;
         "fp"|"fingerprint")
             _key="fp"
