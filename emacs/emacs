@@ -131,7 +131,9 @@
   (company-keymap--unbind-quick-access company-active-map)
   (company-tng-configure-default)
   (setq company-idle-delay 0.1
-        company-minimum-prefix-length 1))
+        company-minimum-prefix-length 1
+        lsp-completion-show-detail nil
+        lsp-completion-show-kind nil))
 
 
 ;; LSP support
