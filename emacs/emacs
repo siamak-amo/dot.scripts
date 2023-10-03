@@ -131,9 +131,7 @@
   (company-keymap--unbind-quick-access company-active-map)
   (company-tng-configure-default)
   (setq company-idle-delay 0.1
-        company-minimum-prefix-length 1
-        lsp-completion-show-detail nil
-        lsp-completion-show-kind nil))
+        company-minimum-prefix-length 1))
 
 
 ;; LSP support
@@ -145,6 +143,8 @@
   :config
   (lsp-enable-which-key-integration t)
   (define-key lsp-mode-map (kbd "C-c l") lsp-command-map))
+(setq lsp-completion-show-detail nil
+      lsp-completion-show-kind nil)
 
 ;;; python
 (setq python-shell-interpreter "python3")
