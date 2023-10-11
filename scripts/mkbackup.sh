@@ -60,7 +60,7 @@ set -e
 
 # check flags
 # use -n flag to just-print (dry run)
-[[ $1 = "-n" || $2 = "-n" || $3 = "-n" ]] && _tar="echo tar" || _tar="sudo tar"
+[[ $1 = "-n" || $2 = "-n" || $3 = "-n" ]] && TAR="echo tar" || TAR="sudo tar"
 # use -p flag to specify backup files path
 [[ $1 = "-p" || $1 = "--prefix" ]] && _prefix="$(echo $2|sed 's/\/$//g')/"
 # use -h flag to print help
@@ -84,7 +84,7 @@ mk_names(){
 
 
 echo " * Backup ROOT:"
-$_tar -$TFLAGS $_prefix''ROOT$_d.$_ext $TOPTS $_excludes / \
+$TAR -$TFLAGS $_prefix''ROOT$_d.$_ext $TOPTS $_excludes / \
   && echo -e "done.\n"
 
 
@@ -93,6 +93,6 @@ do
   mk_names
   echo " * Backup $_bname:"
   [[ $CD = 1 ]] && part="-C $part ."
-  $_tar -$TFLAGS $_fname $TOPTS $_pexcludes $part \
+  $TAR -$TFLAGS $_fname $TOPTS $_pexcludes $part \
     && echo -e "done.\n"
 done
