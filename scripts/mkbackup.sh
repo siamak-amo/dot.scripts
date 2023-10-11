@@ -60,7 +60,7 @@ set -e
 
 # check flags
 # use -n flag to just-print (dry run)
-[[ $1 = "-n" || $2 = "-n" || $3 = "-n" ]] && _tar="echo tar" || _tar="tar"
+[[ $1 = "-n" || $2 = "-n" || $3 = "-n" ]] && _tar="echo tar" || _tar="sudo tar"
 # use -p flag to specify backup files path
 [[ $1 = "-p" || $1 = "--prefix" ]] && _prefix="$(echo $2|sed 's/\/$//g')/"
 # use -h flag to print help
