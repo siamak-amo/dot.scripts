@@ -34,18 +34,19 @@
 
 ;;; evil mode (vi mode)
 (use-package evil
-	     :init
-	     (setq evil-want-integration t)
-	     (setq evil-want-keybinding nil)
-	     (setq evil-vsplit-window-right t)
-	     (setq evil-split-window-bellow t)
-	     (evil-mode))
+  :init
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  (setq evil-vsplit-window-right t)
+  (setq evil-split-window-bellow t)
+  (evil-mode))
+
 (use-package evil-collection
-	     :after evil
-	     :config
-	     (setq evil-collection-mode-list '(dashboard dired ibuffer))
-	     (evil-collection-init)
-         (evil-set-undo-system 'undo-tree))
+  :after evil
+  :config
+  (setq evil-collection-mode-list '(dashboard dired ibuffer))
+  (evil-collection-init)
+  (evil-set-undo-system 'undo-tree))
 
 ;;; drag-stuff package
 (use-package drag-stuff
