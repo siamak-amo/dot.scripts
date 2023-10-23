@@ -229,6 +229,11 @@
 (set-face-attribute 'font-lock-keyword-face nil
 		    :slant 'italic)
 (setq column-number-mode t)
+;; use // for comment in c-mode
+(defun set-c-comments ()
+  (setq comment-start "// "
+        comment-end ""))
+(add-hook 'c-mode-hook 'set-c-comments)
 ;;; end of my basic configs
 
 
