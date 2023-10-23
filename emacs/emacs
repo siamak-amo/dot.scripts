@@ -47,6 +47,12 @@
 	     (evil-collection-init)
          (evil-set-undo-system 'undo-tree))
 
+;;; drag-stuff package
+(use-package drag-stuff
+  :ensure t
+  :config
+  (global-set-key (kbd "<C-up>") 'drag-stuff-up)
+  (global-set-key (kbd "<C-down>") 'drag-stuff-down))
 
 ;;; undo redo package
 (use-package undo-tree
