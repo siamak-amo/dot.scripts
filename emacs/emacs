@@ -34,6 +34,9 @@
 
 ;;; evil mode (vi mode)
 (use-package evil
+  :config
+  (define-key evil-normal-state-map (kbd "M-.") 'find-tag)
+  (define-key evil-normal-state-map (kbd "M-,") 'xref-pop-marker-stack)
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
