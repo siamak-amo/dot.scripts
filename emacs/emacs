@@ -244,6 +244,7 @@
   (setq comment-start "// "
         comment-end ""))
 (add-hook 'c-mode-hook 'set-c-comments)
+(when window-system (set-fontset-font "fontset-default" '(#x600 . #x6ff) "arimo")
 ;;; end of my basic configs
 
 
