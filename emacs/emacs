@@ -155,6 +155,11 @@
   (define-key lsp-mode-map (kbd "C-c l") lsp-command-map))
 (setq lsp-completion-show-detail nil
       lsp-completion-show-kind nil)
+(use-package flycheck
+  :ensure t)
+(use-package lsp-ui
+  :ensure t
+  :after lsp-mode)
 
 ;;; python
 (setq python-shell-interpreter "python3")
