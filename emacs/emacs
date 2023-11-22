@@ -159,7 +159,10 @@
   :ensure t)
 (use-package lsp-ui
   :ensure t
-  :after lsp-mode)
+  :after lsp-mode
+  :config
+  (lsp-ui-doc-show-with-cursor nil)
+  (lsp-ui-doc-show-with-mouse nil))
 
 ;;; python
 (setq python-shell-interpreter "python3")
