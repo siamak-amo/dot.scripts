@@ -253,6 +253,9 @@
         comment-end ""))
 (add-hook 'c-mode-hook 'set-c-comments)
 (when window-system (set-fontset-font "fontset-default" '(#x600 . #x6ff) "arimo"))
+;; zoom
+(global-set-key [C-mouse-4] 'text-scale-increase)
+(global-set-key [C-mouse-5] 'text-scale-decrease)
 ;;; end of my basic configs
 
 
