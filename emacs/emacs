@@ -270,6 +270,7 @@
 (global-set-key [C-mouse-5] 'text-scale-decrease)
 ;; disable line number
 (add-hook 'pdf-view-mode-hook #'(lambda () (interactive) (display-line-numbers-mode -1)))
+(add-hook 'image-mode-hook #'(lambda () (interactive) (display-line-numbers-mode -1)))
 ;;; end of my basic configs
 
 
