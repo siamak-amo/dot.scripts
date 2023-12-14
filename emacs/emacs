@@ -304,8 +304,8 @@
 (global-set-key (kbd "C-<end>") #'tab-bar-switch-to-next-tab)
 ;(global-set-key (kbd "C-.")      #'switch-to-next-buffer)
 ;(global-set-key (kbd "C-,")     #'switch-to-prev-buffer)
-(global-set-key (kbd "C->") #'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") #'mc/mark-previous-like-this)
+;(global-set-key (kbd "C->") #'mc/mark-next-like-this)
+;(global-set-key (kbd "C-<") #'mc/mark-previous-like-this)
 
 
 
