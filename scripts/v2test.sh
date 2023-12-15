@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # to test v2ray configurations
 # Usage:
@@ -13,20 +13,33 @@
 test_links_stdin(){
     while IFS=$'\n' read -r v2_link; do
         sleep 1
-        if [ -n $1 ]; then echo "keep"; fi;
+        if [[ 1 == $_keep_config_file ]]; then
+            echo "keep";
+        fi;
         echo "got $v2_link"
     done
 }
 
-if [ -z "$1" ]; then
+# $1 is the file path
+test_config_file(){
+    if [[ 1 == $_print_path ]]; then
+        echo $1
+    fi
+}
+
+if [[ -z "$1" ]]; then
     test_links_stdin
 else
     case "$1" in
         "-c")
-            test_config_file "$2"
+            _print_path=1
+            for _path in "${@:2}"; do
+                test_config_file $_path
+            done
             ;;
         "-co")
-            test_links_stdin 1
+            _keep_config_file=1
+            test_links_stdin
             ;;
     esac
 fi
