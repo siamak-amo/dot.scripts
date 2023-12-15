@@ -273,6 +273,16 @@
 (add-hook 'pdf-view-mode-hook #'(lambda () (interactive) (display-line-numbers-mode -1)))
 (add-hook 'image-dired-display-image-mode-hook (lambda () (display-line-numbers-mode -1)))
 (add-hook 'image-mode-hook #'(lambda () (interactive) (display-line-numbers-mode -1)))
+;; search in dictionary
+(defun search_dict ()
+  "Search for the word under the cursor in the dictionary."
+  (interactive)
+  (let ((word (thing-at-point 'word)))
+    (if word
+        (let ((custom-word (read-string
+                            (format "Search (default %s): " word) nil nil word)))
+          (dictionary-search custom-word))
+      (dictionary))))
 ;;; end of my basic configs
 
 
