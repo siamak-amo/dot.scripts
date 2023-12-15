@@ -1,13 +1,23 @@
 #!/bin/bash
 #
-# to test v2ray configurations
-# Usage:
-#   v2test -c config.json
+# v2test
+# test v2ray configuration files and links
+#
+# USAGE:
+#   v2test -c *.json  or
 #   echo LINK | v2test [OPTIONS]
-# 
-# Options:
-#   -co       : keep generated config files anyway
-#   -rc       : don't keep config files anyway
+#
+# OPTIONS:
+#   -co        keep generated config files anyway
+#   -rc        delete generated config files anyway
+#
+# we assumed that your configuration files 
+# will set an HTTP proxy on localhost:10809,
+# so either use vs2conf script or edit your
+# files or edit HT_PROXY variable below.
+#
+# DEPENDENCIES:
+#  vs2conf script (in this repo), curl, v2ray-ng
 #
 _V2="v2ray-ng"
 V2=$(which $_V2)
@@ -21,7 +31,7 @@ TEMP_FILENAME="$(date +"%s%M%h%d%m%Y").json"
 test_api(){
     _ip=$(timeout $TOUT $CURL $TEST_API --proxy $HT_PROXY)
 
-    [[ -z $(echo $_ip | grep "[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*") ]] \
+    [[ -z $(echo $_ip | grep "[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*" -o) ]] \
         && _RES="Not Working." || _RES="OK."
 }
 
@@ -44,9 +54,11 @@ test_links_stdin(){
             else
                 echo "$_RES" >&2
             fi
-            if [[ 1 == $_keep_config_file || "OK." == "$_RES" ]]; then
-                [[ 1 == $_rm_config_file ]] \
-                    && rm -f $CCPATH || unset CCPATH
+            
+            if [[ 1 != $_rm_config_file ]] && \
+                   [[ 1 == $_keep_config_file || "OK." == "$_RES" ]]
+            then
+                unset CCPATH
             else
                 rm -f $CCPATH
             fi
