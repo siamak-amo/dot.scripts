@@ -22,6 +22,7 @@
 _V2="v2ray-ng"
 V2=$(which $_V2)
 CURL="$(which curl) -s"
+MKCONF=$(which vs2conf)
 
 TOUT="5s"
 TEST_API="https://api.ipify.org"
@@ -45,7 +46,7 @@ mk_ccpath(){
 test_links_stdin(){
     while IFS=$'\n' read -r _ln; do
         mk_ccpath "$_ln"
-        echo "$_ln" | vs2conf > $CCPATH
+        echo "$_ln" | $MKCONF > $CCPATH
         if [[ -n "$(cat $CCPATH)" ]]; then
             test_config_file "$CCPATH"
 
