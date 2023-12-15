@@ -45,5 +45,12 @@
   this script gives you v2ray configuration file, based on URLs like vmess://xxx.
   vmess, vless, ss, and trojan protocols are supported.
 
+* v2test  
+  I use this script to make tested v2ray config files and also to test existing config files:
+  ```{bash}
+  vconfig | v2test        # to only make tested config files
+  v2test /path/to/*.json  # to test
+  ```
+
 there are other tiny simple scripts not documented here (mostly because of their simplicity and limited usage)
 like `ghassets`, `calTopPanel`, `conck`, `setresol`
