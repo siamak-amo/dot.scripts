@@ -4,8 +4,10 @@
 # test v2ray configuration files and links
 #
 # USAGE:
-#   v2test -c *.json  or
-#   echo LINK | v2test [OPTIONS]
+#   - to test a json config file:
+#     v2test -c *.json
+#   - to generate tested config file from links
+#     echo LINK | v2test [OPTIONS]
 #
 # OPTIONS:
 #   -co        keep generated config files anyway
