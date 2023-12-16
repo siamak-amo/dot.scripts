@@ -8,10 +8,13 @@
 #     v2test -c *.json
 #   - to generate tested config file from links
 #     echo LINK | v2test [OPTIONS]
+#   - to test a running v2ray
+#     v2test -t
 #
 # OPTIONS:
 #   -co        keep generated config files anyway
 #   -rc        delete generated config files anyway
+#   -t         to only test the API
 #
 # we assumed that your configuration files 
 # will set an HTTP proxy on localhost:10809,
@@ -113,6 +116,10 @@ else
         "-rc")
             _rm_config_file=1
             test_links_stdin
+            ;;
+        "-t")
+            test_api
+            echo "Status: $_RES"
             ;;
     esac
 fi
