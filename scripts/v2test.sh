@@ -22,7 +22,9 @@
 # files or edit HT_PROXY variable below.
 #
 # DEPENDENCIES:
-#  vs2conf script (in this repo), curl, v2ray-ng
+#  vs2conf script (in this repo)
+#  curl
+#  v2ray-ng (alternatively you can use v2ray by editing _V2 variable)
 #
 _V2="v2ray-ng"
 V2=$(which $_V2)
@@ -32,7 +34,6 @@ MKCONF=$(which vs2conf)
 TOUT="5s"
 TEST_API="https://api.ipify.org"
 HT_PROXY="127.0.0.1:10809"
-TEMP_FILENAME="$(date +"%s%M%h%d%m%Y").json"
 
 test_api(){
     _ip=$(timeout $TOUT $CURL $TEST_API --proxy $HT_PROXY)
