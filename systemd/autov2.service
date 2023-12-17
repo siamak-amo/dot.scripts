@@ -1,0 +1,13 @@
+[Unit]
+Description=Auto V2ray-ng VPN
+After=network.target
+
+[Service]
+ExecStart=/bin/sh -c 'v2ray-ng run -c /path/to/config/default.json > /dev/null'
+#                                     ^---> replace it with a real config path
+StandardError=append:/var/log/v2ray_err.log
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+Alias=autov2.service
