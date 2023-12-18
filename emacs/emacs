@@ -218,6 +218,9 @@
   :ensure t)
 (use-package multiple-cursors
   :ensure t)
+;;; docker support
+(use-package docker-tramp
+  :ensure t)
 ;; end of other useful packages
 
 
