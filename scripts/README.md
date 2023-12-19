@@ -54,3 +54,17 @@
 
 there are other tiny simple scripts not documented here (mostly because of their simplicity and limited usage)
 like `ghassets`, `calTopPanel`, `conck`, `setresol`
+
+
+### Deploy
+As a standard, if any of these scripts depend on another one, it is done through
+running script name (without .sh), so make links from .sh files
+(to somewhere in your PATH) like: `ln -s /path/to/script1.sh ~/.local/bin/script1`.
+
+example: run this in the scripts directory
+``` bash
+for script in $(ls *sh -1); do
+    ln -s "$PWD/$script" ~/.local/bin/${script:0:-3}
+done
+```
+
