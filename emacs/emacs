@@ -82,14 +82,18 @@
 			  :prefix "SPC"
 			  :global-prefix "M-SPC")
   (dt/leader-keys
-    "b" '(:ignore t :wk "buffer")
+   "b"  '(:ignore t :wk "buffer")
    "bb" '(switch-to-buffer :wk "Switch buffer")
    "bk" '(kill-this-buffer :wk "Kill this buffer")
    "bn" '(next-buffer :wk "Next buffer")
    "bp" '(previous-buffer :wk "Previous buffer")
    "br" '(revert-buffer :wk "Reload buffer")
    "b/" 'lgrep
-   "g"  'revert-buffer))
+   "g"  'revert-buffer
+   "d"  '(:ignore t :wk "Dired")
+   "dd" '(dired :wk "Open dired")
+   "dw" '(wdired-change-to-wdired-mode :wk "Writable dired")
+   "df" '(wdired-finish-edit :wk "Finish editing")))
 
 
 ;;; markdown support
