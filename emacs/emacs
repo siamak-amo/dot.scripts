@@ -93,7 +93,36 @@
    "d"  '(:ignore t :wk "Dired")
    "dd" '(dired :wk "Open dired")
    "dw" '(wdired-change-to-wdired-mode :wk "Writable dired")
-   "df" '(wdired-finish-edit :wk "Finish editing")))
+   "df" '(wdired-finish-edit :wk "Finish editing")
+   "t"  '(:ignore t :wk "Terminal / Toggle")
+   "tv" '(vterm :wk "Open vterm")
+   "tt" '(vterm-toggle :wk "Toggle vterm")))
+
+
+(use-package vterm
+  :ensure t
+  :config
+  (setq shell-file-name "/bin/zsh"
+        vterm-max-scrollback 1000))
+
+(use-package vterm-toggle
+  :after vterm
+  :ensure t
+  :config
+  (setq vterm-toggle-fullscreen-p nil)
+  (add-to-list 'display-buffer-alist
+               '((lambda (buffer-or-name _)
+                   (let ((buffer (get-buffer buffer-or-name)))
+                     (with-current-buffer buffer
+                       (or (equal major-mode 'vterm-mode)
+                           (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
+                 (display-buffer-reuse-window display-buffer-at-bottom)
+                 ;;(display-buffer-reuse-window display-buffer-in-direction)
+                 ;;display-buffer-in-direction/direction/dedicated is added in emacs27
+                 ;;(direction . bottom)
+                 ;;(dedicated . t) ;dedicated is supported in emacs27
+                 (reusable-frames . visible)
+                 (window-height . 0.3))))
 
 
 ;;; markdown support
