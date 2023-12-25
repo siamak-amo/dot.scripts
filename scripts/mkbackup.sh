@@ -18,7 +18,7 @@ PEXCLUDES=""
 #
 #
 # add z to use gzip compressed data
-TFLAGS=cpf
+[ -z "$TFLAGS" ] && TFLAGS=cpf
 # other tar command options like --exclude-caches
 TOPTS=""
 #
