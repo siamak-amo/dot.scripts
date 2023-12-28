@@ -11,6 +11,7 @@
 #   by default, it runs tar command with `nice -n15`
 #   set `NICEN` shell variable to anything to disable that
 #   $ NICEN=1 mkbackup   # to run tar commands directly
+#   $ _nice_level=16 mkbackup   # to run with nice -n 16
 #
 # to be excluded from /
 EXCLUDES="/swapf /proc /sys /dev /mnt /media /tmp /run"
