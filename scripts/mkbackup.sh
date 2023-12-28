@@ -20,11 +20,11 @@ PARTS="/opt /var /home"
 # to be excluded from each paths in the PARTS variable
 PEXCLUDES=""
 # tar command niceness
-[ -z "$_nice_level" ] && _nice_level="15"
+[[ -z "$_nice_level" ]] && _nice_level="15"
 #
 #
 # add z to use gzip compressed data
-[ -z "$TFLAGS" ] && TFLAGS=cpf
+[[ -z "$TFLAGS" ]] && TFLAGS=cpf
 # other tar command options like --exclude-caches
 TOPTS=""
 #
@@ -83,7 +83,7 @@ fi
 _excludes=$(echo " "$PARTS" "$EXCLUDES | sed -e 's/ \// --exclude \//g')
 _pexcludes=$(echo " "$PEXCLUDES | sed -e 's/ \// --exclude \//g')
 
-[ -z $(echo $TFLAGS | grep "z" -o) ] && _ext="tar" || _ext="tar.gz"
+[[ -z $(echo $TFLAGS | grep "z" -o) ]] && _ext="tar" || _ext="tar.gz"
 
 mk_names(){
   _bname="$(echo $part|grep -E '[^\/]*$' -o|tr 'a-z' 'A-Z')"
