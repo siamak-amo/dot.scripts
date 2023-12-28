@@ -8,6 +8,9 @@
 #   you can set PARTS="" to disable this feature
 #   and make a single backup of the root file system.
 # 
+#   by default, it runs tar command with `nice -n15`
+#   set `NICEN` shell variable to anything to disable that
+#   $ NICEN=1 mkbackup   # to run tar commands directly
 #
 # to be excluded from /
 EXCLUDES="/swapf /proc /sys /dev /mnt /media /tmp /run"
@@ -15,6 +18,8 @@ EXCLUDES="/swapf /proc /sys /dev /mnt /media /tmp /run"
 PARTS="/opt /var /home"
 # to be excluded from each paths in the PARTS variable
 PEXCLUDES=""
+# tar command niceness
+[ -z "$_nice_level" ] && _nice_level="15"
 #
 #
 # add z to use gzip compressed data
@@ -58,9 +63,12 @@ EOF
 
 set -e
 
+# check is nice disabled
+[[ -z "$NICEN" ]] && NICE="nice -n$_nice_level" || NICE=""
+_TAR="$NICE $(which tar)"
 # check flags
 # use -n flag to just-print (dry run)
-[[ $1 = "-n" || $2 = "-n" || $3 = "-n" ]] && TAR="echo sudo tar" || TAR="sudo tar"
+[[ $1 = "-n" || $2 = "-n" || $3 = "-n" ]] && TAR="echo sudo $_TAR" || TAR="sudo $_TAR"
 # use -p flag to specify backup files path
 [[ $1 = "-p" || $1 = "--prefix" ]] && _prefix="$(echo $2|sed 's/\/$//g')/"
 # use -h flag to print help
