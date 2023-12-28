@@ -51,13 +51,14 @@ FLAGS:
     -h, --help          prints help
     -p, --prefix        specify backup path
 
-
 OPTIONS:
     --prefix: 
       use a path to store backups.
-      
-      $ mkbackup --prefix /mnt -n
-      will store backups in /mnt/*.tar (dry run)
+
+Examples:
+    $ mkbackup --prefix /mnt    # to store backups in /mnt
+    $ NICEN=1 mkbackup          # to run tar commands directly without nice
+    $ _nice_level=16 mkbackup   # to run with nice -n 16
 EOF
 }
 
