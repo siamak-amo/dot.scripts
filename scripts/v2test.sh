@@ -16,10 +16,11 @@
 #   $ TOUT=12s v2test [OPTIONS]
 #
 # OPTIONS:
-#   -co, --configs           keep generated config files anyway
-#   -rc, --keep-config       delete generated config files anyway
+#   -c,  --configs           to specify config files path
+#   -co, --keep-config       keep generated config files anyway
+#   -rc, --rm                delete generated config files anyway
 #   -tl, --quiet             use stdout only to print working links (quiet)
-#   -t,  --test              to only test the API
+#   -t,  --test              to only test the HTTP proxy itself
 #
 # this script won't modify your HTTP_PROXY shell variable
 # if it was previously set, so if your v2ray configuration makes
