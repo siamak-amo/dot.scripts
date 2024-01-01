@@ -5,15 +5,15 @@
 #
 # USAGE:
 #   - to test a json config file:
-#     v2test -c *.json
+#   $ v2test -c *.json
 #   - to generate tested config file from links
-#     echo LINKS | v2test [OPTIONS]
+#   $ echo LINKS | v2test [OPTIONS]
 #   - to test a running v2ray
-#     v2test -t
+#   $ v2test -t
 #   - to find working links
-#     echo LINKS | v2test -tl 2>/dev/null
+#   $ echo LINKS | v2test -tl 2>/dev/null
 #   - to specify the timeout duration during the testing process
-#     TOUT=12s v2test [OPTIONS]
+#   $ TOUT=12s v2test [OPTIONS]
 #
 # OPTIONS:
 #   -co        keep generated config files anyway
