@@ -111,26 +111,26 @@ if [[ -z "$1" ]]; then
     test_links_stdin
 else
     case "$1" in
-        "-c")
+        "-c"|"--configs")
             _print_path=1
             for _path in "${@:2}"; do
                 test_config_file $_path
             done
             ;;
-        "-co")
+        "-co"|"--keep-config")
             _keep_config_file=1
             test_links_stdin
             ;;
-        "-rc")
+        "-rc"|"--rm")
             _rm_config_file=1
             test_links_stdin
             ;;
-        "-tl")
+        "-tl"|"--quiet")
             _rm_config_file=1
             _test_quiet=1
             test_links_stdin
             ;;
-        "-t")
+        "-t"|"--test")
             test_api
             echo "Status: $_RES"
             ;;
