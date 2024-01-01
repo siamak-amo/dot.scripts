@@ -58,7 +58,11 @@ test_links_stdin(){
             test_config_file "$CCPATH"
 
             if [[ "OK." == "$_RES" ]]; then
-                echo "$_ln  --  $_RES"
+                if [[ 1 == $_test_quiet ]]; then
+                    echo "$_ln"
+                else
+                    echo "$_ln  --  $_RES"
+                fi
             elif [[ "Not Working." == "$_RES" ]]; then
                 if [[ 1 == $_test_quiet ]]; then
                     echo "$_ln  --  $_RES" >&2
