@@ -58,8 +58,10 @@ test_links_stdin(){
 
             if [[ "OK." == "$_RES" ]]; then
                 echo "$_ln  --  $_RES"
+            elif [[ "Not Working." == "$_RES" ]]; then
+                echo "${_ln:0:128} -- $_RES"
             else
-                echo "$_RES" >&2
+                echo "Error."
             fi
             
             if [[ 1 != $_rm_config_file ]] && \
