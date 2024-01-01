@@ -21,10 +21,16 @@
 #   -tl, --quiet             use stdout only to print working links (quiet)
 #   -t,  --test              to only test the API
 #
-# we assumed that your configuration files 
-# will set an HTTP proxy on localhost:10809,
-# so either use vs2conf script or edit your
-# files or edit HTTP_PROXY variable below.
+# this script won't modify your HTTP_PROXY shell variable
+# if it was previously set, so if your v2ray configuration makes
+# HTTP proxy on another port, either change it or use vs2conf
+# script (in this repo) to generate new config files, or
+# set the HTTP_PROXY variable before running this script:
+#   $ HTTP_PROXY="127.0.0.1:xxxx" v2test [OPTIONS]
+#
+# generated v2ray JSON config files by this script
+# come from the vs2conf script, which has `localhost:10809`
+# as the default value of the HTTP proxy field.
 #
 # DEPENDENCIES:
 #  vs2conf script (in this repo)
