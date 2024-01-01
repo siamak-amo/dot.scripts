@@ -12,6 +12,8 @@
 #     v2test -t
 #   - to find working links
 #     echo LINKS | v2test -tl 2>/dev/null
+#   - to specify the timeout duration during the testing process
+#     TOUT=12s v2test [OPTIONS]
 #
 # OPTIONS:
 #   -co        keep generated config files anyway
@@ -34,7 +36,7 @@ V2=$(which $_V2)
 CURL="$(which curl) -s"
 MKCONF=$(which vs2conf)
 
-TOUT="5s"
+[ -z "$TOUT" ] && TOUT="10s"
 TEST_API="https://api.ipify.org"
 HT_PROXY="127.0.0.1:10809"
 
