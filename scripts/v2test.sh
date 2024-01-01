@@ -3,23 +3,23 @@
 # v2test
 # test v2ray configuration files and links
 #
-# USAGE:
-#   - to test a json config file:
+# EXAMPLES:
+#     to test config files:
 #   $ v2test -c *.json
-#   - to generate tested config file from links
-#   $ echo LINKS | v2test [OPTIONS]
-#   - to test a running v2ray
+#     to generate tested config file from links:
+#   $ echo LINKS | v2test [OPTIONS]   # LINKS are newline separated
+#     to test a running v2ray:
 #   $ v2test -t
-#   - to find working links
+#     to find working links:
 #   $ echo LINKS | v2test -tl 2>/dev/null
-#   - to specify the timeout duration during the testing process
+#     to specify the timeout duration during the testing process:
 #   $ TOUT=12s v2test [OPTIONS]
 #
 # OPTIONS:
-#   -co        keep generated config files anyway
-#   -rc        delete generated config files anyway
-#   -tl        use stdout only to print working linkes (quiet test)
-#   -t         to only test the API
+#   -co, --configs           keep generated config files anyway
+#   -rc, --keep-config       delete generated config files anyway
+#   -tl, --quiet             use stdout only to print working links (quiet)
+#   -t,  --test              to only test the API
 #
 # we assumed that your configuration files 
 # will set an HTTP proxy on localhost:10809,
