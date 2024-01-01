@@ -7,9 +7,11 @@
 #   - to test a json config file:
 #     v2test -c *.json
 #   - to generate tested config file from links
-#     echo LINK | v2test [OPTIONS]
+#     echo LINKS | v2test [OPTIONS]
 #   - to test a running v2ray
 #     v2test -t
+#   - to find working links
+#     echo LINKS | v2test -tl 2>/dev/null 1>working.log
 #
 # OPTIONS:
 #   -co        keep generated config files anyway
