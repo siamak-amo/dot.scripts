@@ -59,9 +59,13 @@ test_links_stdin(){
             if [[ "OK." == "$_RES" ]]; then
                 echo "$_ln  --  $_RES"
             elif [[ "Not Working." == "$_RES" ]]; then
-                echo "${_ln:0:64}  --  $_RES"
+                if [[ 1 == $_test_quiet ]]; then
+                    echo "$_ln  --  $_RES" >&2
+                else
+                    echo "${_ln:0:64}  --  $_RES"
+                fi
             else
-                echo "Error."
+                [[ 1 != $_test_quiet ]] && echo "Error."
             fi
             
             if [[ 1 != $_rm_config_file ]] && \
@@ -119,6 +123,11 @@ else
             ;;
         "-rc")
             _rm_config_file=1
+            test_links_stdin
+            ;;
+        "-tl")
+            _rm_config_file=1
+            _test_quiet=1
             test_links_stdin
             ;;
         "-t")
