@@ -14,6 +14,7 @@
 # OPTIONS:
 #   -co        keep generated config files anyway
 #   -rc        delete generated config files anyway
+#   -tl        use stdout only to print linkes that work (quiet test)
 #   -t         to only test the API
 #
 # we assumed that your configuration files 
