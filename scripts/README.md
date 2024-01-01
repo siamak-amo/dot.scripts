@@ -48,8 +48,8 @@
 * v2test  
   I use this script to make tested v2ray config files and also to test existing config files:
   ```{bash}
-  vconfig | v2test        # to only make tested config files
-  v2test /path/to/*.json  # to test
+  vconfig | v2test 2>/dev/null        # to make verified config files
+  v2test /path/to/*.json              # to test config files
   ```
 
 there are other tiny simple scripts not documented here (mostly because of their simplicity and limited usage)
