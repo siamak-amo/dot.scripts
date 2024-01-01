@@ -61,10 +61,9 @@ as a standard, if any of these scripts depend on another one, it was done by ref
 the script name (without .sh), so creating links from some of `.sh` files to a location 
 in your PATH, such as `~/.local/bin/`, is necessary, Alternatively modify the scripts as needed.
 
-example: run this in the scripts directory
+example:
 ``` bash
 for script in $(ls *sh -1); do
     ln -s "$PWD/$script" ~/.local/bin/${script:0:-3}
 done
 ```
-
