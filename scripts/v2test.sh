@@ -24,7 +24,7 @@
 # we assumed that your configuration files 
 # will set an HTTP proxy on localhost:10809,
 # so either use vs2conf script or edit your
-# files or edit HT_PROXY variable below.
+# files or edit HTTP_PROXY variable below.
 #
 # DEPENDENCIES:
 #  vs2conf script (in this repo)
@@ -37,11 +37,11 @@ CURL="$(which curl) -s"
 MKCONF=$(which vs2conf)
 
 [ -z "$TOUT" ] && TOUT="10s"
+[ -z "$HTTP_PROXY" ] && HTTP_PROXY="127.0.0.1:10809"
 TEST_API="https://api.ipify.org"
-HT_PROXY="127.0.0.1:10809"
 
 test_api(){
-    _ip=$(timeout $TOUT $CURL $TEST_API --proxy $HT_PROXY)
+    _ip=$(timeout $TOUT $CURL $TEST_API --proxy $HTTP_PROXY)
 
     [[ -z $(echo $_ip | grep "[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*" -o) ]] \
         && _RES="Not Working." || _RES="OK."
