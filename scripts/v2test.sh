@@ -84,6 +84,7 @@ test_config_file(){
     get_v2_pid
     if [[ -n "$V2_PID" ]]; then
         echo "first kill the current running $_V2 instance." >&2
+        exit 1
     else
         $V2 run -c $1 >/dev/null & 
         sleep 0.2s
