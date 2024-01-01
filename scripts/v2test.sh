@@ -59,7 +59,7 @@ test_links_stdin(){
             if [[ "OK." == "$_RES" ]]; then
                 echo "$_ln  --  $_RES"
             elif [[ "Not Working." == "$_RES" ]]; then
-                echo "${_ln:0:128} -- $_RES"
+                echo "${_ln:0:64}  --  $_RES"
             else
                 echo "Error."
             fi
