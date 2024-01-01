@@ -23,14 +23,14 @@
 #
 # this script won't modify your HTTP_PROXY shell variable
 # if it was previously set, so if your v2ray configuration makes
-# HTTP proxy on another port, either change it or use vs2conf
-# script (in this repo) to generate new config files, or
+# HTTP proxy on another port, either change it or 
 # set the HTTP_PROXY variable before running this script:
 #   $ HTTP_PROXY="127.0.0.1:xxxx" v2test [OPTIONS]
 #
 # generated v2ray JSON config files by this script
 # come from the vs2conf script, which has `localhost:10809`
-# as the default value of the HTTP proxy field.
+# as the default value of the HTTP proxy field,
+# so we use this value when HTTP_PROXY is not set.
 #
 # DEPENDENCIES:
 #  vs2conf script (in this repo)
