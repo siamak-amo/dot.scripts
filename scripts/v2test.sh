@@ -81,7 +81,11 @@ test_links_stdin(){
                     echo "${_ln:0:64}  --  $_RES"
                 fi
             else
-                [[ 1 != $_test_quiet ]] && echo "Error."
+                if [[ 1 == $_test_quiet ]]; then
+                    echo "$_ln  --  Error." >&2
+                else
+                    echo "${_ln:0:64}  --  Error."
+                fi
             fi
             
             if [[ 1 != $_rm_config_file ]] && \
