@@ -78,13 +78,13 @@ test_links_stdin(){
                 if [[ 1 == $_test_quiet ]]; then
                     echo "$_ln  --  $_RES" >&2
                 else
-                    echo "${_ln:0:64}  --  $_RES"
+                    echo "$_ln  --  $_RES"
                 fi
             else
                 if [[ 1 == $_test_quiet ]]; then
                     echo "$_ln  --  Error." >&2
                 else
-                    echo "${_ln:0:64}  --  Error."
+                    echo "$_ln  --  Error."
                 fi
             fi
             
