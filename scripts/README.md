@@ -57,9 +57,9 @@ like `ghassets`, `calTopPanel`, `conck`, `setresol`
 
 
 ### Deploy
-As a standard, if any of these scripts depend on another one, it is done through
-running script name (without .sh), so make links from .sh files
-(to somewhere in your PATH) like: `ln -s /path/to/script1.sh ~/.local/bin/script1`.
+as a standard, if any of these scripts depend on another one, it was done by referring to
+the script name (without .sh), so creating links from some of `.sh` files to a location 
+in your PATH, such as `~/.local/bin/`, is necessary, Alternatively modify the scripts as needed.
 
 example: run this in the scripts directory
 ``` bash
