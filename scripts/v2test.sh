@@ -134,7 +134,13 @@ else
         "-c"|"--configs")
             _print_path=1
             for _path in "${@:2}"; do
-                test_config_file $_path
+                if [[ -f "$_path" ]]; then
+                    test_config_file $_path
+                else
+                    for _json_cfg in $(ls -1 $_path); do
+                        test_config_file $_json_cfg
+                    done
+                fi
             done
             ;;
         "-co"|"--keep-config")
