@@ -137,7 +137,7 @@ else
                 if [[ -f "$_path" ]]; then
                     test_config_file $_path
                 else
-                    for _json_cfg in $(ls -1 $_path); do
+                    for _json_cfg in $(ls -1 $_path/*\.json); do
                         test_config_file $_json_cfg
                     done
                 fi
