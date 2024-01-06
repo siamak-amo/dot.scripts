@@ -38,8 +38,8 @@
   
   I use it like `for f in $(ls *.mp3); do  ffmpeg -i $f $(echo $f | oggify);  done` to convert all mp3 files to ogg format.
 
-* vconfig  
-  this script downloads and reformats gathered v2ray vpn configs by this repo [https://github.com/yebekhe/ConfigCollector] to formats like text, json, and html.
+* ln2ml  
+  this script can be used to reformat files that include links separated by newlines, to a proper HTML format.
 
 * vs2conf  
   this script gives you v2ray configuration file, based on URLs like vmess://xxx.
@@ -48,8 +48,8 @@
 * v2test  
   I use this script to make tested v2ray config files and also to test existing config files:
   ```{bash}
-  vconfig | v2test 2>/dev/null        # to make verified config files
-  v2test /path/to/*.json              # to test config files
+  cat /path/to/links.text | v2test 2>/dev/null        # to make verified config files
+  v2test /path/to/*.json                              # to test config files
   ```
 
 there are other tiny simple scripts not documented here (mostly because of their simplicity and limited usage)
