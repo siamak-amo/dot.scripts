@@ -1,39 +1,21 @@
 #!/bin/sh
 #
-# `vconfig` is a simple script to convert v2ray config urls
-#  gathered by php ConfigCollector program, to formats
-#  like text, json or html.
-# 
-# ConfigCollector:  https://github.com/yebekhe/ConfigCollector
+# `ln2ml` is a simple script to convert raw links file to
+# proper html format
+# raw link file is a text file which contains
+# newline separated links like: (proto://xxx.yyy/zzz)
 #
 #
-# Usage:   vconfig [OPTION]
-#
-# OPTIONS:
-#          -t, --text      output text format  (default option)
-#          -j, --json      output json format
-#          -h, --html      output html format
-#
+# Usage:   ln2ml /path/to/links.text
 #
 #  ** jq ** is a dependency.
 #
-LN="https://raw.githubusercontent.com/yebekhe/ConfigCollector/main/json/configs.json"
-DL_FILE_PATH="/tmp/conf$(date +%s%m%h%d%m%Y).json"
 HTML_TEMPLATE_H="<li><code onclick=\"cp(this)\">\1<\/code><\/li>"
-#
-DL="$(which curl) -s -o $DL_FILE_PATH"  # you might use wget
 JQ="$(which jq)"
-RM="rm -f"
-
-
-# download raw file
-#
-$DL $LN
 
 
 # make html output
 #
-mkhtml(){
 cat <<EOF
 <html><body>
 <script>
@@ -52,36 +34,9 @@ cat <<EOF
     }
 </script>
 <ul>
-$($JQ ".[] | .config" $DL_FILE_PATH |\
-    sed "s/\"\(.*\)\".*/$HTML_TEMPLATE_H/"
+$(cat $1 |\
+    sed "s/^\(.*\)$/$HTML_TEMPLATE_H/"
 )
 </ul>
 </body></html>
 EOF
-}
-
-
-# make text output
-#
-mktext(){
-    $JQ ".[] | .config" $DL_FILE_PATH |\
-        sed "s/\"\(.*\)\".*/\1/"
-}
-
-
-case $1 in
-    "-t"|"--text")
-        mktext
-        ;;
-    "-h"|"--html")
-        mkhtml
-        ;;
-    "-j"|"--json")
-        $JQ "." $DL_FILE_PATH
-        ;;
-    *)
-        mktext
-        ;;
-esac
-
-$RM $DL_FILE_PATH
