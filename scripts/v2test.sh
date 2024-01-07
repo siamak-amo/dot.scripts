@@ -5,15 +5,17 @@
 #
 # EXAMPLES:
 #     to test config files:
-#   $ v2test -c *.json
+#   $ v2test -c [dirs or files]
 #     to generate tested config file from links:
-#   $ echo LINKS | v2test [OPTIONS]   # LINKS are newline separated
+#   $ echo LINKS | v2test 2>/dev/null
 #     to test a running v2ray:
 #   $ v2test -t
-#     to find working links:
+#     to only print working links:
 #   $ echo LINKS | v2test -tl 2>/dev/null
 #     to specify the timeout duration during the testing process:
 #   $ TOUT=12s v2test [OPTIONS]
+#     to specify a prefix to write json files
+#   $ echo LINKS | PREFIX=/tmp v2test
 #
 # OPTIONS:
 #   -c,  --configs           to specify config files path
