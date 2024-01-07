@@ -57,7 +57,7 @@ test_api(){
 # $1 is v2ray config link
 mk_ccpath(){
     CCPATH=$(echo $1 | sha1sum)
-    CCPATH="${CCPATH:0:16}.json"
+    CCPATH="$PREFIX/${CCPATH:0:16}.json"
 }
 
 # if $1 is set, will keep generated json config files
