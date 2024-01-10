@@ -46,6 +46,7 @@ CURL="$(which curl) -s"
 MKCONF=$(which vs2conf)
 
 [ -z "$TOUT" ] && TOUT="10s"
+[ -z "$PREFIX" ] && PREFIX="."
 [ -z "$HTTP_PROXY" ] && HTTP_PROXY="127.0.0.1:10809"
 TEST_API="https://api.ipify.org"
 
