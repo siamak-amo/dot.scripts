@@ -105,7 +105,7 @@ test_links_stdin(){
 }
 
 get_v2_pid(){
-    V2_PID=$(ps -C $_V2 -o pid | tail -1 | grep "[0-9]*" -o)
+    V2_PID=$(ps h -C $_V2 -o pid | grep "[0-9]*" -o)
 }
 
 # $1 is the file path
