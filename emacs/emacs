@@ -329,6 +329,7 @@
 
 
 ;; load custom themes
+(add-to-list 'load-path "~/.emacs.d/themes")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
 ;;; setup backup files path to the ~/.emacs.saves and /tmp/emacs
