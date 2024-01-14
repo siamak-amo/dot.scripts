@@ -245,6 +245,13 @@
 
 
 ;; other useful packages
+;;; modern org mode
+(use-package org-modern
+  :ensure t
+  :config
+  (require 'org-modern)
+  (add-hook 'org-mode-hook #'org-modern-mode)
+  (add-hook 'org-agenda-finalize-hook #'org-modern-agenda))
 ;;; mpd client
 (use-package mpdel
   :ensure t
