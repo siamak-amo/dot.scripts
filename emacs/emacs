@@ -252,6 +252,8 @@
   (require 'org-modern)
   (add-hook 'org-mode-hook #'org-modern-mode)
   (add-hook 'org-agenda-finalize-hook #'org-modern-agenda))
+;;; org presentation mode
+(use-package org-present)
 ;;; mpd client
 (use-package mpdel
   :ensure t
