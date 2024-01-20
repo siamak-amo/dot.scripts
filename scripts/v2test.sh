@@ -19,8 +19,8 @@
 #
 # OPTIONS:
 #   -c,  --configs           to specify config files path
-#   -co, --keep-config       keep generated config files anyway
-#   -rc, --rm                delete generated config files anyway
+#   -ko, --keep-config       keep generated config files anyway
+#   -ro, --rm-config         delete generated config files anyway
 #   -tl, --quiet             use stdout only to print working links (quiet)
 #   -t,  --test              to only test the HTTP proxy itself
 #
@@ -146,11 +146,11 @@ else
                 fi
             done
             ;;
-        "-co"|"--keep-config")
+        "-ko"|"--keep-config")
             _keep_config_file=1
             test_links_stdin
             ;;
-        "-rc"|"--rm")
+        "-do"|"--rm-config")
             _rm_config_file=1
             test_links_stdin
             ;;
