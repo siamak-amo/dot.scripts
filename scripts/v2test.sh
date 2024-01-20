@@ -125,6 +125,10 @@ test_config_file(){
             if [[ 1 == $_print_path ]]; then
                 printf "%s\t -- %s\n" "$1" "$_RES"
             fi
+            if [[ 1 == $_rm_config_file ]] &&\
+                   [[ "$_RES" == "Not Working." ]]; then
+                rm $1
+            fi
             killall $_V2
         fi
     fi
@@ -134,7 +138,8 @@ if [[ -z "$1" ]]; then
     test_links_stdin
 else
     case "$1" in
-        "-c"|"--configs")
+        "-c"|"-rc")
+            [ $1 == "-rc" ] &&  _rm_config_file=1
             _print_path=1
             for _path in "${@:2}"; do
                 if [[ -f "$_path" ]]; then
