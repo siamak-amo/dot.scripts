@@ -32,6 +32,15 @@
 ; packages            ;
 ;---------------------;
 
+;;; auto complete stuff
+(use-package auto-complete
+  :ensure t
+  :config
+  (require 'auto-complete)
+  (require 'auto-complete-config)
+  (ac-config-default)
+  (add-hook 'c-mode-hook #'auto-complete-mode))
+
 ;;; evil mode (vi mode)
 (use-package evil
   :config
