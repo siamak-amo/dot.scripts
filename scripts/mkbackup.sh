@@ -128,12 +128,10 @@ do
   mk_names
   echo " * Backup $_bname:"
   if [[ -s "$_fname" && -z "$_dry_run" ]]; then
-    read -p "$_fname already exists, overwrite it (y/n)? " _cho
+    read -p "$_fname already exists, overwrite it (y/N)? " _cho
     case "$_cho" in
         y|Y ) do_backup;;
-        n|N )
-            echo -e "ignored.\n";;
-        * ) echo -e "invalid.\n";;
+        * ) echo -e "ignored.\n";;
     esac
   else
     do_backup
