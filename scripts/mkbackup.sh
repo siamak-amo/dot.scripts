@@ -84,7 +84,7 @@ fi
 # use -p flag to specify backup files path
 [[ $1 = "-p" || $1 = "--prefix" ]] && _prefix="$(echo $2|sed 's/\/$//g')/"
 if [[ ! -z "$_prefix" && ! -d $_prefix ]]; then
-    echo "invalid prefix" >&2
+    echo "invalid prefix -- No such directory." >&2
     exit 1
 fi
 # use -h flag to print help
@@ -94,7 +94,9 @@ if [[ $1 = "-h" || $1 = "--help" ]]; then
 fi
 
 
+# to be excluded from the root filesystem
 _excludes=$(echo " "$PARTS" "$EXCLUDES | sed -e 's/ \// --exclude \//g')
+# to be excluded from the other parts
 _pexcludes=$(echo " "$PEXCLUDES | sed -e 's/ \// --exclude \//g')
 
 [[ -z $(echo $TFLAGS | grep "z" -o) ]] && _ext="tar" || _ext="tar.gz"
