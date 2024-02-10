@@ -91,22 +91,25 @@ _pexcludes=$(echo " "$PEXCLUDES | sed -e 's/ \// --exclude \//g')
 [[ -z $(echo $TFLAGS | grep "z" -o) ]] && _ext="tar" || _ext="tar.gz"
 
 mk_names(){
-  _bname="$(echo $part|grep -E '[^\/]*$' -o|tr 'a-z' 'A-Z')"
+  if [[ "$part" == "/" ]]; then
+      _bname="ROOT"
+  else
+      _bname="$(echo $part|grep -E '[^\/]*$' -o|tr 'a-z' 'A-Z')"
+  fi
   _fname="$_prefix$_bname$_d.$_ext"
 }
 
+do_backup(){
+  [[ "$part" == "/" ]] && _EX=$_excludes || _EX=$_pexcludes
+
+  $TAR -$TFLAGS $_fname $TOPTS $_EX $_src_path && echo -e "done.\n"
+}
 
 
-echo " * Backup ROOT:"
-$TAR -$TFLAGS $_prefix''ROOT$_d.$_ext $TOPTS $_excludes / \
-  && echo -e "done.\n"
-
-
-for part in $PARTS
+for part in '/' $PARTS
 do
   mk_names
   echo " * Backup $_bname:"
-  [[ $CD = 1 ]] && part="-C $part ."
-  $TAR -$TFLAGS $_fname $TOPTS $_pexcludes $part \
-    && echo -e "done.\n"
+  [[ $CD = 1 ]] && _src_path="-C $part ." || _src_path=$part
+  do_backup
 done
