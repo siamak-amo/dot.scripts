@@ -111,6 +111,16 @@ for part in '/' $PARTS
 do
   mk_names
   echo " * Backup $_bname:"
-  [[ $CD = 1 ]] && _src_path="-C $part ." || _src_path=$part
-  do_backup
+  if [[ -s $_fname ]]; then
+    read -p "$_fname already exists, overwrite it (y/n)? " _cho
+    case "$_cho" in
+        y|Y ) do_backup;;
+        n|N )
+            echo -e "ignored.\n"
+            continue;;
+        * ) echo -e "invalid.\n";;
+    esac
+  else
+    do_backup
+  fi
 done
