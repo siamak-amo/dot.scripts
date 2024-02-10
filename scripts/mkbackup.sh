@@ -75,7 +75,12 @@ else
 fi
 # check flags
 # use -n flag to just-print (dry run)
-[[ $1 = "-n" || $2 = "-n" || $3 = "-n" ]] && TAR="echo $_TAR" || TAR="$_TAR"
+if [[ $1 = "-n" || $2 = "-n" || $3 = "-n" ]]; then
+  TAR="echo $_TAR"
+  _dry_run=1
+else
+  TAR="$_TAR"
+fi
 # use -p flag to specify backup files path
 [[ $1 = "-p" || $1 = "--prefix" ]] && _prefix="$(echo $2|sed 's/\/$//g')/"
 # use -h flag to print help
@@ -111,7 +116,7 @@ for part in '/' $PARTS
 do
   mk_names
   echo " * Backup $_bname:"
-  if [[ -s $_fname ]]; then
+  if [[ -s "$_fname" && -z "$_dry_run" ]]; then
     read -p "$_fname already exists, overwrite it (y/n)? " _cho
     case "$_cho" in
         y|Y ) do_backup;;
