@@ -79,8 +79,7 @@ fi
 # use -p flag to specify backup files path
 [[ $1 = "-p" || $1 = "--prefix" ]] && _prefix="$(echo $2|sed 's/\/$//g')/"
 # use -h flag to print help
-if [[ $1 = "-h" || $1 = "--help" ]]
-then
+if [[ $1 = "-h" || $1 = "--help" ]]; then
   usage
   exit 0
 fi
