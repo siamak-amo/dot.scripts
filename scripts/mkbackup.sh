@@ -109,8 +109,13 @@ mk_names(){
 }
 
 do_backup(){
-  [[ $CD = 1 ]] && _src_path="-C $part ." || _src_path=$part
-  [[ "$part" == "/" ]] && _EX=$_excludes || _EX=$_pexcludes
+  if [[ "$part" == "/" ]]; then
+      _EX=$_excludes
+      _src_path=$part
+  else
+      _EX=$_pexcludes
+      [[ $CD = 1 ]] && _src_path="-C $part ." || _src_path=$part
+  fi
 
   $TAR -$TFLAGS $_fname $TOPTS $_EX $_src_path && echo -e "done.\n"
 }
