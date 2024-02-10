@@ -116,8 +116,7 @@ do
     case "$_cho" in
         y|Y ) do_backup;;
         n|N )
-            echo -e "ignored.\n"
-            continue;;
+            echo -e "ignored.\n";;
         * ) echo -e "invalid.\n";;
     esac
   else
