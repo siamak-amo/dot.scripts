@@ -67,10 +67,15 @@ set -e
 
 # check is nice disabled
 [[ -z "$NICEN" ]] && NICE="nice -n$_nice_level" || NICE=""
-_TAR="$NICE $(which tar)"
+#
+if [[ "root" == "$(whoami)" ]]; then
+    _TAR="$NICE $(which tar)"
+else
+    _TAR="sudo $NICE $(which tar)"
+fi
 # check flags
 # use -n flag to just-print (dry run)
-[[ $1 = "-n" || $2 = "-n" || $3 = "-n" ]] && TAR="echo sudo $_TAR" || TAR="sudo $_TAR"
+[[ $1 = "-n" || $2 = "-n" || $3 = "-n" ]] && TAR="echo $_TAR" || TAR="$_TAR"
 # use -p flag to specify backup files path
 [[ $1 = "-p" || $1 = "--prefix" ]] && _prefix="$(echo $2|sed 's/\/$//g')/"
 # use -h flag to print help
