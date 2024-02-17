@@ -1,12 +1,20 @@
 #----------------------------------------------------------
-# this file is a part of my /etc/hosts file
-# *append* not commented lines to your /etc/hosts file
+# this file contains some parts of my /etc/hosts file
+# you can append it to your hosts file
 #----------------------------------------------------------
 
+# ns
+#
+8.8.8.8         ns1.google.com goog1
+4.2.2.4         ns2.google.com goog2
+1.1.1.1         ns1.cloudflare.com
 # shecan.ir DNS
-# shecan is based on `tls sni proxy`
 185.51.200.2    ns1.shecan.ir shecan1
 178.22.122.100  ns2.shecan.ir shecan2
+
+# gateway
+#
+192.168.1.1 default_gateway default
 
 # I dont use this section anymore (see dnsmasq.conf)
 #
