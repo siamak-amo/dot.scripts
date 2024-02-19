@@ -39,7 +39,13 @@
   (require 'auto-complete)
   (require 'auto-complete-config)
   (ac-config-default)
-  (add-hook 'c-mode-hook #'auto-complete-mode))
+  (add-hook 'c-mode-hook #'auto-complete-mode)
+  (defadvice auto-complete-mode (around enable-ac-modes activate)
+    "Enable auto-complete-mode unless in python-mode or go-mode."
+    (unless (or (eq major-mode 'python-mode)
+                (eq major-mode 'go-mode))
+      ad-do-it))
+  (ad-activate 'auto-complete-mode))
 
 ;;; evil mode (vi mode)
 (use-package evil
