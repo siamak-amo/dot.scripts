@@ -357,19 +357,19 @@
   (interactive)
   (let ((current-alpha (or (frame-parameter nil 'alpha-background) 100)))
     (if (> current-alpha 90)
-        (message "Maximum Transparency 100%%")
+        (message "Maximum Alpha 100%%")
       (setq current-alpha (+ current-alpha 10))
       (set-frame-parameter nil 'alpha-background current-alpha)
-      (message "+ Transparency %d%%" current-alpha))))
+      (message "+ Alpha %d%%" current-alpha))))
 (defun decrease-transparency ()
   "Decrease transparency of the frame by 10%."
   (interactive)
   (let ((current-alpha (or (frame-parameter nil 'alpha-background) 100)))
     (if (< current-alpha 10)
-        (message "Minimum Transparency 0%%")
+        (message "Minimum Alpha 0%%")
       (setq current-alpha (- current-alpha 10))
       (set-frame-parameter nil 'alpha-background current-alpha)
-      (message "- Transparency %d%%" current-alpha))))
+      (message "- Alpha %d%%" current-alpha))))
 ;;; end of my basic configs
 
 
