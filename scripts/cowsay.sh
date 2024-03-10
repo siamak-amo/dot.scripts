@@ -14,10 +14,10 @@ VL="|"
 cat <<EOF
 $(IFS=$'\n'
 printf -- "$HL%.0s" $(seq 1 $(($DIALOG_LEN+4)))
-for _ln in $(eval $_fetch    |\
-        sed -E "s/\t/  /g"   |\
-        sed -E "s/^$/ \n /g" |\
-        sed -E "s/(.{$DIALOG_LEN})/\1\n/g")
+for _ln in $(eval $_fetch |\
+        sed -E -e "s/\t/  /g" \
+               -e "s/^$/ \n /g" \
+               -e "s/(.{$DIALOG_LEN})/\1\n/g")
 do
         printf -- "\n%c %-"$DIALOG_LEN"s %c" \
                   "$VL" $_ln "$VL"
