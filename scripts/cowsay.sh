@@ -30,5 +30,16 @@ printf -- "$HL%.0s" $(seq 1 $(($DIALOG_LEN+4))))
              (__)\\       )\\/\\\\
                  ||----w |
                  ||     ||
+$(if [ "$1" == "-c" -o "$2" == "-c" ]; then
+echo -n "                        "
+for i in `seq 1 $((DIALOG_LEN-20))`; do
+    _R=$((RANDOM % 10))
+    case $_R in
+        0|1|2|3|4|5) echo -en "\033[$((_R+90));5m*";;
+        *) echo -n ' ';;
+    esac
+done
+echo -en "\033[0m"
+fi)
 
 EOF
