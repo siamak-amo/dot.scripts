@@ -2,7 +2,8 @@
 #
 #   a minimal cowsay program!
 #
-[ -z "$1" ] && _fetch="cat" || _fetch="echo -e '$1'"
+[ -z "$1" -o "-c" == "$1" ] && _fetch="cat" \
+        || _fetch="echo -e '$1'"
 [ -z "$DIALOG_LEN" ] && DIALOG_LEN=40
 
 # be careful using the printf special characters,
