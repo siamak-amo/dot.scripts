@@ -7,11 +7,10 @@
 
 # be careful using the printf special characters,
 # for instance, use %% for a single % character
-HL="-"
-VL="|"
-
 [ -z "$HL" ] && HL="-"
 [ -z "$VL" ] && VL="|"
+# use AL to set HL and VL at once
+[ -n "$AL" ] && HL=$AL VL=$AL
 
 cat <<EOF
 $(IFS=$'\n'
