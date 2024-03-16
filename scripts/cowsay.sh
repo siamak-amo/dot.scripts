@@ -46,7 +46,6 @@ for i in `seq 1 $((DIALOG_LEN-22))`; do
         *) echo -n ' ';;
     esac
 done
-echo -en "\033[0m"
+echo -e "\033[0m"
 fi)
-
 EOF
