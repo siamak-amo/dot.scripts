@@ -370,6 +370,8 @@
       (setq current-alpha (- current-alpha 10))
       (set-frame-parameter nil 'alpha-background current-alpha)
       (message "- Alpha %d%%" current-alpha))))
+;; smerge
+(setq smerge-command-prefix "\C-cm")
 ;;; end of my basic configs
 
 
