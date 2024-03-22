@@ -57,6 +57,7 @@
   (setq evil-want-keybinding nil)
   (setq evil-vsplit-window-right t)
   (setq evil-split-window-bellow t)
+  (add-hook 'prog-mode-hook #'hs-minor-mode)
   (evil-mode))
 
 (use-package evil-collection
