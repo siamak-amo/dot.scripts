@@ -190,8 +190,6 @@
 ;;; fuzzy searching support
 (use-package fzf
   :ensure t
-  :bind
-    ;; Don't forget to set keybinds!
   :config
   (require 'fzf)
   (setq fzf/args "-x --print-query --margin=1,0 --no-hscroll"
