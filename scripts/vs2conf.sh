@@ -311,6 +311,7 @@ parse_ss(){
 }
 
 parse(){
+    URL=${URL/\#*/} # remove link description at the end
     CONF_proto=${URL%%:*}
     set_default_confs
     
