@@ -11,11 +11,13 @@
 #     to test a running v2ray:
 #   $ v2test -t
 #     to only print working links:
-#   $ echo LINKS | v2test -tl 2>/dev/null
+#   $ v2test -tl 2>/dev/null
 #     to specify the timeout duration during the testing process:
 #   $ TOUT=12s v2test [OPTIONS]
 #     to specify a prefix to write json files
-#   $ echo LINKS | PREFIX=/tmp v2test
+#   $ PREFIX=/tmp v2test [OPTIONS]
+#     to use v2ray program instead of v2ray-ng
+#   $ _V2="v2ray" v2test [OPTIONS]
 #
 # OPTIONS:
 #   -c, -rc                  to specify path to config files
@@ -37,9 +39,8 @@
 # so we use this value when HTTP_PROXY is not set.
 #
 # DEPENDENCIES:
-#  vs2conf script (in this repo)
-#  curl
-#  v2ray-ng (alternatively you can use v2ray by editing _V2 variable)
+#  vs2conf script (available in this repo)
+#  curl command
 #  v2ray-ng (set _V2="v2ray" to use v2ray instead of v2ray-ng)
 #
 [ -z "$_V2" ] && _V2="v2ray-ng"
