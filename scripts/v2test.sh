@@ -40,8 +40,9 @@
 #  vs2conf script (in this repo)
 #  curl
 #  v2ray-ng (alternatively you can use v2ray by editing _V2 variable)
+#  v2ray-ng (set _V2="v2ray" to use v2ray instead of v2ray-ng)
 #
-_V2="v2ray-ng"
+[ -z "$_V2" ] && _V2="v2ray-ng"
 V2=$(which $_V2)
 CURL="$(which curl) -s"
 MKCONF=$(which vs2conf)
