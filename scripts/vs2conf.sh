@@ -350,6 +350,8 @@ if [ -z $1 ]; then
         parse
     done
 else
-    URL=$1
-    parse
+    for arg; do
+        URL="$arg"
+        parse
+    done
 fi
