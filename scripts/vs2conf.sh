@@ -200,11 +200,11 @@ set_default_confs(){
 
 # normalize _key and _value
 # some of the _key names come from the trurl program
-# and some others come directly from vmess URL,
+# and some others come directly from input vmess URL,
 # in addition, trojan and *ss URLs, have different
 # naming for their parameters.
-# so, we have to normalize them to ensure,
-# they are substituted correctly in the template.
+# therefore keys need to be normalized to ensure,
+# their values are substituted correctly in the template.
 normalize_kv(){
     case $_key in
         "enc"|"encryption")
