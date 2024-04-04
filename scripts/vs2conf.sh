@@ -186,6 +186,7 @@ unset_confs(){
         unset $v
     done
 }
+
 set_default_confs(){
     V2CONF_sec="auto"
     V2CONF_aid=0
@@ -278,7 +279,7 @@ parse_url_tsv(){
 parse_vmess(){
     URL_TSV=$(echo -n "${URL#*://}" | base64 -d |\
                $JQ -r "to_entries[] | [.key, .value] | @tsv")
-    
+
     parse_url_tsv
 }
 
@@ -315,7 +316,7 @@ parse_ss(){
 }
 
 parse(){
-    URL=${URL/\#*/} # remove link description at the end
+    URL=${URL/\#*/} # remove v2 link details (url shebang)
     URL=${URL//amp\;/}
     V2CONF_proto=${URL%%:*}
     set_default_confs
