@@ -259,8 +259,8 @@ normalize_kv(){
     esac
 }
 
-# parse helper function
-parse__H(){
+# parse the URL_TSV and export V2CONF_xxx variables
+parse_url_tsv(){
     IFS=$'\n'
     for _row in $URL_TSV; do
         _key=${_row%%$'\t'*}
@@ -281,7 +281,7 @@ parse_vmess(){
     URL_TSV=$(echo -n "${URL#*://}" | base64 -d |\
                $JQ -r "to_entries[] | [.key, .value] | @tsv")
     
-    parse__H
+    parse_url_tsv
 }
 
 parse_vless(){
@@ -292,7 +292,7 @@ parse_vless(){
                       to_entries[] | [.key, .value] | @tsv" |\
               grep -v "^url\|^query") # ignore useless trurl outputs
 
-   parse__H
+   parse_url_tsv
 }
 
 parse_trojan(){
@@ -301,7 +301,7 @@ parse_trojan(){
                       to_entries[] | [.key, .value] | @tsv" |\
               grep -v "^url\|^query")
 
-    parse__H
+    parse_url_tsv
 }
 
 parse_ss(){
@@ -310,7 +310,7 @@ parse_ss(){
                           [.key, .value] | @tsv" |\
                grep -v "^url")
 
-    parse__H
+    parse_url_tsv
     _m_p=$(echo $V2CONF_id | base64 -d)  # id==user part of shadowsocks,
     V2CONF_method=${_m_p%:*}             # is base64 of encryption method
     V2CONF_password=${_m_p#*:}           # and password, separated by a comma
