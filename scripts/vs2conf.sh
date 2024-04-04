@@ -13,8 +13,8 @@
 # edit the template below (in the parse_template function)
 #  to make your desired configuration.
 #
-#  - we use the CONF_xxx pattern for substitution.
-#  - if you need to define a new CONF_xxx parameter,
+#  - we use the V2CONF_xxx pattern for substitution.
+#  - if you need to define a new V2CONF_xxx parameter,
 #    you need to modify the `normalize_kv` function.
 #
 TRURL=$(which trurl)
@@ -71,25 +71,25 @@ parse_template(){
         "concurrency": 8,
         "enabled": false
       },
-      "protocol": "$CONF_proto",
+      "protocol": "$V2CONF_proto",
         "settings": {
-              $(case $CONF_proto in
+              $(case $V2CONF_proto in
                 "vless"|"vmess")
                                                 ### begining of the vless and vmes
 cat <<EOF2
 
           "vnext": [
             {
-              "address": "$CONF_add",
-              "port": $CONF_port,
+              "address": "$V2CONF_add",
+              "port": $V2CONF_port,
               "users": [
                 {
-                  "encryption": "$CONF_enc",
-                  "flow": "$CONF_flow",
-                  "id": "$CONF_id",
-                  "alterId": $CONF_aid,
+                  "encryption": "$V2CONF_enc",
+                  "flow": "$V2CONF_flow",
+                  "id": "$V2CONF_id",
+                  "alterId": $V2CONF_aid,
                   "level": 8,
-                  "security": "$CONF_sec"
+                  "security": "$V2CONF_sec"
                 }
               ]
             }
@@ -102,12 +102,12 @@ cat <<EOF2
 
           "servers": [
             {
-                "address": "$CONF_add",
+                "address": "$V2CONF_add",
                 "level": 8,
-                "method": "$CONF_method",
+                "method": "$V2CONF_method",
                 "ota": false,
-                "password": "$CONF_password",
-                "port": $CONF_port
+                "password": "$V2CONF_password",
+                "port": $V2CONF_port
             }
           ]
 EOF2
@@ -115,31 +115,31 @@ EOF2
               esac)
         },
       "streamSettings": {
-        "network": "$CONF_net",
+        "network": "$V2CONF_net",
         "realitySettings": {
           "allowInsecure": false,
           "alpn": [
-            "$CONF_alpn"
+            "$V2CONF_alpn"
           ],
-          "fingerprint": "$CONF_fp",
-          "publicKey": "$CONF_pbk",
-          "serverName": "$CONF_sn",
-          "shortId": "$CONF_sid",
+          "fingerprint": "$V2CONF_fp",
+          "publicKey": "$V2CONF_pbk",
+          "serverName": "$V2CONF_sn",
+          "shortId": "$V2CONF_sid",
           "show": false,
           "spiderX": ""
         },
-        "security": "$CONF_sec",
+        "security": "$V2CONF_sec",
         "tcpSettings": {
           "header": {
-            "type": "$CONF_headerType"
+            "type": "$V2CONF_headerType"
           }
         }
       },
         "wsSettings": {
           "connectionReuse": true,
-          "path": "$CONF_path",
+          "path": "$V2CONF_path",
           "headers": {
-            "Host": "$CONF_host"
+            "Host": "$V2CONF_host"
           }
         },
       "tag": "proxy"
@@ -182,19 +182,19 @@ EOF
 # functions
 #-----------
 unset_confs(){
-    for v in ${!CONF_*}; do
+    for v in ${!V2CONF_*}; do
         unset $v
     done
 }
 set_default_confs(){
-    CONF_sec="auto"
-    CONF_aid=0
-    CONF_port=443
-    CONF_enc="none"
-    CONF_method="chacha20-poly1305"
-    CONF_net="ws"
-    CONF_fp="chrome"
-    CONF_headerType="none"
+    V2CONF_sec="auto"
+    V2CONF_aid=0
+    V2CONF_port=443
+    V2CONF_enc="none"
+    V2CONF_method="chacha20-poly1305"
+    V2CONF_net="ws"
+    V2CONF_fp="chrome"
+    V2CONF_headerType="none"
 }
 
 # normalize _key and _value
@@ -215,7 +215,7 @@ normalize_kv(){
             _key="aid"
             ;;
         "id"|"user")
-            [ $CONF_proto != "trojan" ] && _key="id" || _key="password"
+            [ $V2CONF_proto != "trojan" ] && _key="id" || _key="password"
             ;;
         "sec"|"scy"|"security")
             _key="sec"
@@ -267,10 +267,10 @@ parse__H(){
         _val=${_row#*$'\t'}
         
         normalize_kv        
-        export CONF_$_key="$_val"
+        export V2CONF_$_key="$_val"
 
         [ -n "$DEBUG" ] && printf "Debug -- %-20s was set to %s\n"\
-                       \`CONF_$_key\` \`$_val\` >&2
+                       \`V2CONF_$_key\` \`$_val\` >&2
     done
 }
 
@@ -308,17 +308,17 @@ parse_ss(){
                grep -v "^url")
 
     parse__H
-    _m_p=$(echo $CONF_id | base64 -d)  # id==user part of shadowsocks,
-    CONF_method=${_m_p%:*}             # is base64 of encryption method
-    CONF_password=${_m_p#*:}           # and password, separated by a comma
+    _m_p=$(echo $V2CONF_id | base64 -d)  # id==user part of shadowsocks,
+    V2CONF_method=${_m_p%:*}             # is base64 of encryption method
+    V2CONF_password=${_m_p#*:}           # and password, separated by a comma
 }
 
 parse(){
     URL=${URL/\#*/} # remove link description at the end
-    CONF_proto=${URL%%:*}
+    V2CONF_proto=${URL%%:*}
     set_default_confs
     
-    case $CONF_proto in
+    case $V2CONF_proto in
         "vless")
             parse_vless
             parse_template
@@ -332,7 +332,7 @@ parse(){
             parse_template
             ;;
         "ss")
-            CONF_proto="shadowsocks"
+            V2CONF_proto="shadowsocks"
             parse_ss
             parse_template
             ;;
