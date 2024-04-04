@@ -250,7 +250,7 @@ normalize_kv(){
         "path"|"spx")
             _key="path"
             ;;
-        "port"|"scheme"|"fragment"|"serviceName"|"mode"|"flow"|"headerType"|"v"|"ps")
+        ""|"port"|"scheme"|"fragment"|"serviceName"|"mode"|"flow"|"headerType"|"v"|"ps")
             ;;
         *)
             # _key won't affect the final result
@@ -265,12 +265,15 @@ parse__H(){
     for _row in $URL_TSV; do
         _key=${_row%%$'\t'*}
         _val=${_row#*$'\t'}
-        
-        normalize_kv        
-        export V2CONF_$_key="$_val"
-
-        [ -n "$DEBUG" ] && printf "Debug -- %-20s was set to %s\n"\
-                       \`V2CONF_$_key\` \`$_val\` >&2
+        # normalize the _key and the _val
+        normalize_kv
+        if [ -z "$_key" ]; then
+            echo "Warning -- got an empty key for value \`$_val\`" >&2
+        else
+            export V2CONF_$_key="$_val"
+            [ -n "$DEBUG" ] && printf "Debug -- %-20s was set to %s\n"\
+                                      \`V2CONF_$_key\` \`$_val\` >&2
+        fi
     done
 }
 
