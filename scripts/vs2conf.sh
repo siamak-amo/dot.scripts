@@ -262,7 +262,7 @@ normalize_kv(){
 # parse helper function
 parse__H(){
     IFS=$'\n'
-    for _row in $_csv; do
+    for _row in $URL_TSV; do
         _key=${_row%%$'\t'*}
         _val=${_row#*$'\t'}
         
@@ -273,7 +273,7 @@ parse__H(){
 }
 
 parse_vmess(){
-    _csv=$(echo -n "${URL#*://}" | base64 -d |\
+    URL_TSV=$(echo -n "${URL#*://}" | base64 -d |\
                $JQ -r "to_entries[] | [.key, .value] | @tsv")
     
     parse__H
@@ -282,7 +282,7 @@ parse_vmess(){
 parse_vless(){
    # distinguish between the domain and the host parameters
    # by replacing `host` -> `Host`
-   _csv=$($TRURL --url $URL  --json | sed "s/: \"host/: \"Host/" |\
+   URL_TSV=$($TRURL --url $URL  --json | sed "s/: \"host/: \"Host/" |\
               $JQ -r ".[] | (.parts)+(.params|from_entries) |\
                       to_entries[] | [.key, .value] | @tsv" |\
               grep -v "^url\|^query") # ignore useless trurl outputs
@@ -291,7 +291,7 @@ parse_vless(){
 }
 
 parse_trojan(){
-    _csv=$($TRURL --url $URL  --json | sed "s/: \"host/: \"Host/" |\
+    URL_TSV=$($TRURL --url $URL  --json | sed "s/: \"host/: \"Host/" |\
               $JQ -r ".[] | (.parts)+(.params|from_entries) |\
                       to_entries[] | [.key, .value] | @tsv" |\
               grep -v "^url\|^query")
@@ -300,7 +300,7 @@ parse_trojan(){
 }
 
 parse_ss(){
-    _csv=$($TRURL --url $URL  --json | sed "s/: \"host/: \"Host/" |\
+    URL_TSV=$($TRURL --url $URL  --json | sed "s/: \"host/: \"Host/" |\
                $JQ -r ".[]|.parts | to_entries[] |\
                           [.key, .value] | @tsv" |\
                grep -v "^url")
