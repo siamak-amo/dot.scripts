@@ -8,6 +8,8 @@
 alias sl="ls"
 alias mv="mv -i"
 alias cp="cp -i"
+alias ymv="yes | mv"
+alias ycp="yes | cp"
 alias ping="timeout 20s ping -c4"
 #
 # Git
