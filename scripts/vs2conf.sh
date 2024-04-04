@@ -268,7 +268,9 @@ parse__H(){
         
         normalize_kv        
         export CONF_$_key="$_val"
-        # printf "Debug -- %-13s was set to %s\n" CONF_$_key \"$_val\" >&2
+
+        [ -n "$DEBUG" ] && printf "Debug -- %-20s was set to %s\n"\
+                       \`CONF_$_key\` \`$_val\` >&2
     done
 }
 
