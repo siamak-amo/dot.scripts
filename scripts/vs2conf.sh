@@ -205,8 +205,6 @@ set_default_confs(){
 # so, we have to normalize them to ensure,
 # they are substituted correctly in the template.
 normalize_kv(){
-    _key=${_key//amp\;/}
-    
     case $_key in
         "enc"|"encryption")
             _key="enc"
@@ -318,6 +316,7 @@ parse_ss(){
 
 parse(){
     URL=${URL/\#*/} # remove link description at the end
+    URL=${URL//amp\;/}
     V2CONF_proto=${URL%%:*}
     set_default_confs
     
