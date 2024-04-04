@@ -261,9 +261,10 @@ normalize_kv(){
 
 # parse helper function
 parse__H(){
+    IFS=$'\n'
     for _row in $_csv; do
-        _key=${_row%%,*} && _key=${_key//\"/}
-        _val=${_row#*,}  && _val=${_val//\"/}
+        _key=${_row%%$'\t'*}
+        _val=${_row#*$'\t'}
         
         normalize_kv        
         export CONF_$_key="$_val"
