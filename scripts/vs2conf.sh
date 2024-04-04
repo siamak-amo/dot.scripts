@@ -273,36 +273,36 @@ parse__H(){
 
 parse_vmess(){
     _csv=$(echo -n "${URL#*://}" | base64 -d |\
-               $JQ -r "to_entries[] | [.key, .value] | @csv")
+               $JQ -r "to_entries[] | [.key, .value] | @tsv")
     
     parse__H
 }
 
 parse_vless(){
-    # we need to distinguish between domain and host parameter
-    # so we change `host` paramiter to `Host`
-    _csv=$($TRURL --url $URL  --json | sed "s/: \"host/: \"Host/" |\
-               $JQ ".[] | (.parts)+(.params|from_entries) |\
-                       to_entries[] | .key+\",\"+ .value" |\
-               grep -v "^\"url" | grep -v "^\"query")
+   # distinguish between the domain and the host parameters
+   # by replacing `host` -> `Host`
+   _csv=$($TRURL --url $URL  --json | sed "s/: \"host/: \"Host/" |\
+              $JQ -r ".[] | (.parts)+(.params|from_entries) |\
+                      to_entries[] | [.key, .value] | @tsv" |\
+              grep -v "^url\|^query") # ignore useless trurl outputs
 
    parse__H
 }
 
 parse_trojan(){
     _csv=$($TRURL --url $URL  --json | sed "s/: \"host/: \"Host/" |\
-               $JQ ".[] | (.parts)+(.params|from_entries) |\
-                       to_entries[] | .key+\",\"+ .value" |\
-               grep -v "^\"url" | grep -v "^\"query")
+              $JQ -r ".[] | (.parts)+(.params|from_entries) |\
+                      to_entries[] | [.key, .value] | @tsv" |\
+              grep -v "^url\|^query")
 
     parse__H
 }
 
 parse_ss(){
     _csv=$($TRURL --url $URL  --json | sed "s/: \"host/: \"Host/" |\
-               $JQ ".[]|.parts | to_entries[] |\
-                           .key+\",\"+.value" |\
-               grep -v "^\"url")
+               $JQ -r ".[]|.parts | to_entries[] |\
+                          [.key, .value] | @tsv" |\
+               grep -v "^url")
 
     parse__H
     _m_p=$(echo $CONF_id | base64 -d)  # id==user part of shadowsocks,
