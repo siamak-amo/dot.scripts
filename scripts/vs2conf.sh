@@ -10,7 +10,7 @@
 #  Usage:    v2config [URL]  (or use stdin)
 #
 #
-# edit the template below (in the parse_template function)
+# edit the template below (in the flush_json_config function)
 #  to make your desired configuration.
 #
 #  - we use the V2CONF_xxx pattern for substitution.
@@ -25,7 +25,7 @@ JQ=$(which jq)
 #-----------
 # template
 #-----------
-parse_template(){
+flush_json_config(){
     cat <<EOF
 {
   "dns": {
@@ -324,20 +324,20 @@ parse(){
     case $V2CONF_proto in
         "vless")
             parse_vless
-            parse_template
+            flush_json_config
             ;;
         "vmess")
             parse_vmess
-            parse_template
+            flush_json_config
             ;;
         "trojan")
             parse_trojan
-            parse_template
+            flush_json_config
             ;;
         "ss")
             V2CONF_proto="shadowsocks"
             parse_ss
-            parse_template
+            flush_json_config
             ;;
         *)
             printf "vs2conf: invalid protocol -- '%s'\n" ${URL%%:*} >&2
