@@ -45,7 +45,7 @@
 #
 [ -z "$_V2" ] && _V2="v2ray-ng"
 V2=$(which $_V2)
-CURL="$(which curl) -s"
+CURL="$(which curl) -sk"
 MKCONF=$(which vs2conf)
 
 [ -z "$TOUT" ] && TOUT="10s"
