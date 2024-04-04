@@ -75,7 +75,7 @@ parse_template(){
         "settings": {
               $(case $V2CONF_proto in
                 "vless"|"vmess")
-                                                ### begining of the vless and vmes
+                                                ### begining of vless and vmess
 cat <<EOF2
 
           "vnext": [
@@ -95,9 +95,9 @@ cat <<EOF2
             }
           ]
 EOF2
-                ;;                              ### end of the vless and vmess
+                ;;                              ### end of vless and vmess
                 "shadowsocks"|"ss"|"trojan")
-                                                ### begining of the ss and trojan
+                                                ### begining of ss and trojan
 cat <<EOF2
 
           "servers": [
@@ -111,7 +111,7 @@ cat <<EOF2
             }
           ]
 EOF2
-                ;;                              ### end of the ss and trojan
+                ;;                              ### end of ss and trojan
               esac)
         },
       "streamSettings": {
