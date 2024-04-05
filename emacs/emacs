@@ -347,6 +347,7 @@
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
+(which-function-mode 1)
 (setq confirm-kill-emacs 'y-or-n-p)
 (set-face-attribute 'font-lock-comment-face nil
 		    :slant 'italic)
