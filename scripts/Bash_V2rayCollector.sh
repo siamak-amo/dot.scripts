@@ -4,7 +4,7 @@
 #  Bash V2ray configuration file collector
 #
 #  this script downloads v2ray config links from
-#  telegram channels in the _CHANNELS variable below
+#  telegram channels in the CHANNELS variable below
 #  the output will be in text format
 #
 #  some of the configuration links from these channels
@@ -19,7 +19,7 @@ TIMEOUT="timeout 10s"
 [[ -z "$HTTP_PROXY" ]] && CURL="$TIMEOUT $(which curl) -sk" \
         || CURL="$TIMEOUT $(which curl) -sk --proxy $HTTP_PROXY"
 
-_CHANNELS="\
+CHANNELS="\
 https://t.me/s/Awlix_ir
 https://t.me/s/beta_v2ray
 https://t.me/s/Configforvpn01
@@ -103,7 +103,7 @@ https://t.me/s/WeePeeN
 https://t.me/s/YtTe3la"
 
 
-for _ln in $_CHANNELS; do
+for _ln in $CHANNELS; do
     truncate -s 0 $TMP_FILE
     $CURL $_ln -o $TMP_FILE 2>&2
     
