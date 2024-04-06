@@ -55,9 +55,19 @@ TEST_API="https://api.ipify.org"
 
 test_api(){
     _ip=$(timeout $TOUT $CURL $TEST_API --proxy $HTTP_PROXY)
+    __api_exit=$?
 
-    [[ -z $(echo $_ip | grep "[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*" -o) ]] \
-        && _RES="Not Working." || _RES="OK."
+    if [[ $__api_exit == 124 ]]; then # timeout
+        _RES="Not Responding."
+    elif [[ $__api_exit == 7 ]]; then # not listening
+        _RES="HTTP_PROXY is Not Listening."
+    else
+        if [[ -z $(echo $_ip | grep "[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*" -o) ]]; then
+            _RES="Not Working."
+        else
+            _RES="OK."
+        fi
+    fi
 }
 
 # $1 is v2ray config link
