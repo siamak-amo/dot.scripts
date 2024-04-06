@@ -182,5 +182,9 @@ else
             test_api
             echo "Status: $_RES"
             ;;
+        *)
+            echo "Unknown Option ($1) -- exiting." >&2
+            exit 1
+            ;;
     esac
 fi
