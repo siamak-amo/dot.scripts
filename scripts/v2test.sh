@@ -18,6 +18,8 @@
 #   $ PREFIX=/tmp v2test [OPTIONS]
 #     to use v2ray program instead of v2ray-ng
 #   $ _V2="v2ray" v2test [OPTIONS]
+#     to create config files from all links without testing them
+#   $ v2test -tn
 #
 # OPTIONS:
 #   -c, -rc                  to specify path to config files
@@ -26,6 +28,7 @@
 #   -ro, --rm-config         delete generated config files anyway
 #   -tl, --quiet             use stdout only to print working links (quiet)
 #   -t,  --test              to only test the HTTP proxy itself
+#   -tn, --no-test           create config files and ignore testing them
 #
 # this script won't modify your HTTP_PROXY shell variable
 # if it was previously set, so if your v2ray configuration makes
