@@ -141,14 +141,15 @@ run_v2(){
 test_config_file(){
     get_v2_pid
     if [[ -n "$V2_PID" ]]; then
-        echo "first kill the current running $_V2 instance." >&2
+        echo "$_V2 is Already Running," \
+        "first kill the current running $_V2 instance." >&2
         exit 1
     else
         run_v2 "$1"
         sleep 0.2s
         get_v2_pid
         if [[ -z "$V2_PID" ]]; then
-            echo "running $_V2 failed." >&2
+            echo "$_V2 Running Failure." >&2
         else
             test_api
             if [[ 1 == $_print_path ]]; then
