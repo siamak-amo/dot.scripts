@@ -156,7 +156,7 @@ test_config_file(){
                 printf "%s\t -- %s\n" "$1" "$_RES"
             fi
             if [[ 1 == $_rm_config_file ]] &&\
-                   [[ "$_RES" == "Not Working." ]]; then
+                   [[ "$_RES" != "OK." ]]; then
                 rm $1
             fi
             killall $_V2
