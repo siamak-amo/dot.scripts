@@ -125,6 +125,17 @@ get_v2_pid(){
     V2_PID=$(ps h -C $_V2 -o pid | grep "[0-9]*" -o)
 }
 
+run_v2(){
+    if [[ "$_V2" == "v2ray-ng" ]]; then
+        $V2 run -c $1 >/dev/null &
+    elif [[ "$_V2" == "v2ray" ]]; then
+        $V2 -c $1 >/dev/null &
+    else
+        echo "Not Supported Command $_V2." >&2
+        exit 2
+    fi
+}
+
 # $1 is the file path
 test_config_file(){
     get_v2_pid
@@ -132,7 +143,7 @@ test_config_file(){
         echo "first kill the current running $_V2 instance." >&2
         exit 1
     else
-        $V2 run -c $1 >/dev/null & 
+        run_v2 "$1"
         sleep 0.2s
         get_v2_pid
         if [[ -z "$V2_PID" ]]; then
