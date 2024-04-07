@@ -105,20 +105,7 @@ test_links_stdin(){
         echo "$_ln" | $MKCONF > $CCPATH
         if [[ -n "$(cat $CCPATH)" ]]; then
             test_config_file "$CCPATH"
-
-            if [[ "OK." == "$_RES" ]]; then
-                if [[ 1 == $_test_quiet ]]; then
-                    echo "$_ln"
-                else
-                    echo "$_ln  --  $_RES [IP: $_ip]"
-                fi
-            else
-                if [[ 1 == $_test_quiet ]]; then
-                    echo "$_ln  --  $_RES" >&2
-                else
-                    echo "$_ln  --  $_RES"
-                fi
-            fi
+            log_result "$_ln"
             
             if [[ 1 != $_rm_config_file ]] && \
                    [[ 1 == $_keep_config_file || "OK." == "$_RES" ]]
@@ -164,8 +151,9 @@ test_config_file(){
             echo "$_V2 Running Failure." >&2
         else
             test_api
+
             if [[ 1 == $_print_path ]]; then
-                printf "%s\t -- %s\n" "$1" "$_RES"
+                log_result "$1"
             fi
             if [[ 1 == $_rm_config_file ]] &&\
                    [[ "$_RES" != "OK." ]]; then
