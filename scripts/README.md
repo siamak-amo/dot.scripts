@@ -52,6 +52,7 @@
   v2test -c /path/to/*.json                           # to test config files
   cat /path/to/links.text | v2test -tn                # to skip testing and convert all links
   ```
+  add `-s` and `2>/dev/null` to only get working links (simple link in each line)
 
 * Bash_V2rayCollector  
   this script downloads v2ray config links from several telegram channels.
