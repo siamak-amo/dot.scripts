@@ -92,7 +92,7 @@ test_links_stdin(){
                 if [[ 1 == $_test_quiet ]]; then
                     echo "$_ln"
                 else
-                    echo "$_ln  --  $_RES"
+                    echo "$_ln  --  $_RES [IP: $_ip]"
                 fi
             else
                 if [[ 1 == $_test_quiet ]]; then
