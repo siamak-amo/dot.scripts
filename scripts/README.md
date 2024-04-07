@@ -56,7 +56,7 @@
 * Bash_V2rayCollector  
   this script downloads v2ray config links from several telegram channels.
   you need to use another proxy if telegram is blocked in your region:
-  `HTTP_PROXY="IP:port" Bash_V2rayCollector > links`
+  `HTTP_PROXY="IP:port" Bash_V2rayCollector >> links`
   and then you may kill the current proxy and use the `v2test` script to generate JSON config files.
 
 there are other tiny simple scripts not documented here (mostly because of their simplicity and limited usage)
