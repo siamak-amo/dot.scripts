@@ -49,7 +49,8 @@
   I use this script to make tested v2ray config files and also to test existing config files:
   ```{bash}
   cat /path/to/links.text | v2test 2>/dev/null        # to make verified config files
-  v2test /path/to/*.json                              # to test config files
+  v2test -c /path/to/*.json                           # to test config files
+  cat /path/to/links.text | v2test -tn                # to skip testing and convert all links
   ```
 
 * Bash_V2rayCollector  
