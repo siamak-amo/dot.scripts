@@ -11,7 +11,7 @@
 #     to test a running v2ray:
 #   $ v2test -t
 #     to only print working links:
-#   $ v2test -tl 2>/dev/null
+#   $ v2test -s 2>/dev/null
 #     to specify the timeout duration during the testing process:
 #   $ TOUT=12s v2test [OPTIONS]
 #     to specify a prefix to write json files
@@ -26,7 +26,7 @@
 #                            use -rc to delete if config is not working
 #   -ko, --keep-config       keep generated config files anyway
 #   -ro, --rm-config         delete generated config files anyway
-#   -tl, --quiet             use stdout only to print working links (quiet)
+#   -s,  --quiet             use stdout only to print working links (quiet)
 #   -t,  --test              to only test the HTTP proxy itself
 #   -tn, --no-test           create config files and ignore testing them
 #
@@ -195,7 +195,7 @@ else
             _rm_config_file=1
             test_links_stdin
             ;;
-        "-tl"|"--quiet")
+        "-s"|"--quiet")
             _rm_config_file=1
             _test_quiet=1
             test_links_stdin
