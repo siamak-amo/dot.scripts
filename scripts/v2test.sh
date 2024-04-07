@@ -165,6 +165,12 @@ else
                 fi
             done
             ;;
+        "-tn"|"--no-test")
+            while IFS=$'\n' read -r _ln; do
+                mk_ccpath "$_ln"
+                echo "$_ln" | $MKCONF > $CCPATH
+            done
+            ;;
         "-ko"|"--keep-config")
             _keep_config_file=1
             test_links_stdin
