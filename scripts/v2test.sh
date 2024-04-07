@@ -80,6 +80,24 @@ mk_ccpath(){
     CCPATH="$PREFIX/$(echo $1 | sha1sum | head -c 16).json"
 }
 
+# $1 must be the link `URL` or config file path
+log_result(){
+    if [[ "OK." == "$_RES" ]]; then
+        if [[ 1 == $_test_quiet ]]; then
+            echo "$1"
+        else
+            echo "$1  --  [IP: $_ip] $_RES"
+        fi
+    else
+        if [[ 1 == $_test_quiet ]]; then
+            echo "$1  --  $_RES" >&2
+        else
+            echo "$1  --  $_RES"
+        fi
+    fi
+}
+
+
 # if $1 is set, will keep generated json config files
 test_links_stdin(){
     while IFS=$'\n' read -r _ln; do
