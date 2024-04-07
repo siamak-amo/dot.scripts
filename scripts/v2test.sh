@@ -94,17 +94,11 @@ test_links_stdin(){
                 else
                     echo "$_ln  --  $_RES"
                 fi
-            elif [[ "Not Working." == "$_RES" ]]; then
+            else
                 if [[ 1 == $_test_quiet ]]; then
                     echo "$_ln  --  $_RES" >&2
                 else
                     echo "$_ln  --  $_RES"
-                fi
-            else
-                if [[ 1 == $_test_quiet ]]; then
-                    echo "$_ln  --  Error." >&2
-                else
-                    echo "$_ln  --  Error."
                 fi
             fi
             
