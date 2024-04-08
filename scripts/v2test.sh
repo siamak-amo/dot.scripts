@@ -103,7 +103,10 @@ test_links_stdin(){
     while IFS=$'\n' read -r _ln; do
         mk_ccpath "$_ln"
         echo "$_ln" | $MKCONF > $CCPATH
-        if [[ -n "$(cat $CCPATH)" ]]; then
+        
+        if [[ ! -s "$CCPATH" ]]; then
+            echo "Config File Was not Created." >&2
+        else
             test_config_file "$CCPATH"
             log_result "$_ln"
             
@@ -114,8 +117,6 @@ test_links_stdin(){
             else
                 rm -f $CCPATH
             fi
-        else
-            echo "creating config file failed" >&2
         fi
     done
 }
