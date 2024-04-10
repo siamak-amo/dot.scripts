@@ -256,6 +256,8 @@ normalize_kv(){
             printf "Warning -- unrecognized key '%s' was ignored.\n" $_key >&2
             ;;
     esac
+    # remove comments (_val = `xxx=@comment@...` -> `xxx`) observed in some links
+    _val=${_val%=*}
 }
 
 # parse the URL_TSV and export V2CONF_xxx variables
