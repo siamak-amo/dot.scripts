@@ -447,6 +447,7 @@
 (global-set-key (kbd "M-[") 'decrease-transparency)
 (global-set-key (kbd "M-n") #'dired-next-marked-file)
 (global-set-key (kbd "M-p") #'dired-prev-marked-file)
+(global-set-key (kbd "M-m") #'man)
 
 
 
