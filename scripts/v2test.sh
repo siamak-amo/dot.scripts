@@ -204,6 +204,7 @@ else
         "-t"|"--test")
             test_api
             echo "Status: $_RES"
+            echo "IP: $_ip"
             ;;
         *)
             echo "Unknown Option ($1) -- exiting." >&2
