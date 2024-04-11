@@ -409,10 +409,10 @@
 ;;; end of my basic configs
 
 
-
 ;; load custom themes
 (add-to-list 'load-path "~/.emacs.d/themes")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+
 
 ;;; setup backup files path to the ~/.emacs.saves and /tmp/emacs
 (setq backup-by-copying t)
@@ -422,6 +422,7 @@
       `((".*" "/tmp/emacs/" t)))
 (setq undo-tree-history-directory-alist
       `((".*" . "/tmp/emacs/undo/")))
+
 
 ;; custom shortcuts
 ;; <Fn>
@@ -456,7 +457,6 @@
 (global-set-key (kbd "M-]") 'increase-transparency)
 (global-set-key (kbd "M-[") 'decrease-transparency)
 (global-set-key (kbd "C-`") 'vterm-toggle)
-
 
 
 
