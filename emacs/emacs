@@ -424,44 +424,38 @@
       `((".*" . "/tmp/emacs/undo/")))
 
 ;; custom shortcuts
-(with-eval-after-load 'evil-maps
- ; (define-key evil-normal-state-map (kbd "C-,") nil)
- ; (define-key evil-normal-state-map (kbd "C-.") nil)
-  (define-key evil-normal-state-map (kbd "C-n") nil)
-  (define-key evil-normal-state-map (kbd "C-p") nil))
-
-(eval-after-load "dired" '(progn
-  (define-key dired-mode-map (kbd "<backspace>") 'dired-up-directory)))
+;; <Fn>
+(global-set-key (kbd "<f3>") 'search_dict)
 (global-set-key (kbd "<f6>") #'recompile)
 (global-set-key (kbd "<f8>") #'flyspell-mode)
 (global-set-key (kbd "<f9>") #'ispell-word)
+;; managing buffers
 (global-set-key (kbd "C-<prior>") #'switch-to-next-buffer)
 (global-set-key (kbd "C-n")      #'switch-to-next-buffer)
 (global-set-key (kbd "C-<next>") #'switch-to-prev-buffer)
 (global-set-key (kbd "C-p")     #'switch-to-prev-buffer)
 (global-set-key (kbd "C-<home>") #'tab-bar-switch-to-prev-tab)
 (global-set-key (kbd "C-<end>") #'tab-bar-switch-to-next-tab)
-;(global-set-key (kbd "C-.")      #'switch-to-next-buffer)
-;(global-set-key (kbd "C-,")     #'switch-to-prev-buffer)
-;(global-set-key (kbd "C->") #'mc/mark-next-like-this)
-;(global-set-key (kbd "C-<") #'mc/mark-previous-like-this)
-(global-set-key (kbd "C-x C-i") #'image-dired)
-(global-set-key (kbd "<f3>") 'search_dict)
 (global-set-key (kbd "C-k") 'kill-buffer)
 (global-set-key (kbd "s-k") 'kill-buffer)
-(global-set-key (kbd "C-`") 'vterm-toggle)
 (global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "M-]") 'increase-transparency)
-(global-set-key (kbd "M-[") 'decrease-transparency)
+;; dired
+(global-set-key (kbd "C-x C-i") #'image-dired)
 (global-set-key (kbd "M-n") #'dired-next-marked-file)
 (global-set-key (kbd "M-p") #'dired-prev-marked-file)
-(global-set-key (kbd "M-m") #'man)
+(eval-after-load "dired" '(progn
+  (define-key dired-mode-map (kbd "<backspace>") 'dired-up-directory)))
 ;; split window
 (global-set-key (kbd "C-\"") #'split-window-right)
 (global-set-key (kbd "C-3")  #'split-window-right)
 (global-set-key (kbd "C-\;") #'split-window-below)
 (global-set-key (kbd "C-2")  #'split-window-below)
 (global-set-key (kbd "C-0")  #'delete-window)
+;; others
+(global-set-key (kbd "M-m") #'man)
+(global-set-key (kbd "M-]") 'increase-transparency)
+(global-set-key (kbd "M-[") 'decrease-transparency)
+(global-set-key (kbd "C-`") 'vterm-toggle)
 
 
 
