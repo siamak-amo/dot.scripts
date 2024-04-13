@@ -449,7 +449,7 @@
 (eval-after-load "dired" '(progn
   (define-key dired-mode-map (kbd "<backspace>") 'dired-up-directory)))
 ;; split window
-(global-set-key (kbd "C-\"") #'split-window-right)
+(global-set-key (kbd "C-'")  #'split-window-right)
 (global-set-key (kbd "C-3")  #'split-window-right)
 (global-set-key (kbd "C-\;") #'split-window-below)
 (global-set-key (kbd "C-2")  #'split-window-below)
