@@ -58,6 +58,7 @@
   (setq evil-vsplit-window-right t)
   (setq evil-split-window-bellow t)
   (add-hook 'prog-mode-hook #'hs-minor-mode)
+  (add-hook 'prog-mode-hook #'electric-indent-local-mode)
   (evil-mode))
 
 (use-package evil-collection
