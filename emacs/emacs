@@ -353,6 +353,7 @@
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (which-function-mode 1)
+(electric-indent-mode -1)
 (setq-default mode-line-format (delq 'mode-line-modes mode-line-format))
 (setq confirm-kill-emacs 'y-or-n-p)
 (set-face-attribute 'font-lock-comment-face nil
