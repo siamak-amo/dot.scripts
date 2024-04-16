@@ -466,45 +466,45 @@
 ;--------------------------;
 ; emacs generated stuff    ;
 ;--------------------------;
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enable-theme '(deeper-blue))
- '(custom-enabled-themes '(gruber-darker))
- '(display-line-numbers t)
- '(display-line-numbers-width nil)
- '(line-spacing 0.2)
- '(package-selected-packages '(suscolors-theme))
- '(tab-bar-close-last-tab-choice 'tab-bar-mode-disable)
- '(tab-bar-mode t)
- '(tab-bar-show 1)
- '(tab-width 8)
- '(warning-suppress-log-types
-   '(((python python-shell-completion-native-turn-on-maybe))
-     ((python python-shell-completion-native-turn-on-maybe))
-     ((python python-shell-completion-native-turn-on-maybe))
-     ((python python-shell-completion-native-turn-on-maybe))
-     (emacs)
-     (emacs)
-     (emacs)
-     (emacs)
-     (emacs)
-     (emacs)))
- '(warning-suppress-types
-   '((ein)
-     ((python python-shell-completion-native-turn-on-maybe))
-     ((python python-shell-completion-native-turn-on-maybe))
-     ((python python-shell-completion-native-turn-on-maybe))
-     ((python python-shell-completion-native-turn-on-maybe))
-     ((python python-shell-completion-native-turn-on-maybe))
-     ((python python-shell-completion-native-turn-on-maybe))
-     (emacs)
-     (emacs)
-     (emacs)
-     (emacs)
-     (emacs)
-     (emacs))))
-(put 'downcase-region 'disabled nil)
+;  
+;  (custom-set-variables
+;   ;; custom-set-variables was added by Custom.
+;   ;; If you edit it by hand, you could mess it up, so be careful.
+;   ;; Your init file should contain only one such instance.
+;   ;; If there is more than one, they won't work right.
+;   '(custom-enable-theme '(deeper-blue))
+;   '(custom-enabled-themes '(gruber-darker))
+;   '(display-line-numbers t)
+;   '(display-line-numbers-width nil)
+;   '(line-spacing 0.2)
+;   '(package-selected-packages '(suscolors-theme))
+;   '(tab-bar-close-last-tab-choice 'tab-bar-mode-disable)
+;   '(tab-bar-mode t)
+;   '(tab-bar-show 1)
+;   '(tab-width 8)
+;   '(warning-suppress-log-types
+;     '(((python python-shell-completion-native-turn-on-maybe))
+;       ((python python-shell-completion-native-turn-on-maybe))
+;       ((python python-shell-completion-native-turn-on-maybe))
+;       ((python python-shell-completion-native-turn-on-maybe))
+;       (emacs)
+;       (emacs)
+;       (emacs)
+;       (emacs)
+;       (emacs)
+;       (emacs)))
+;   '(warning-suppress-types
+;     '((ein)
+;       ((python python-shell-completion-native-turn-on-maybe))
+;       ((python python-shell-completion-native-turn-on-maybe))
+;       ((python python-shell-completion-native-turn-on-maybe))
+;       ((python python-shell-completion-native-turn-on-maybe))
+;       ((python python-shell-completion-native-turn-on-maybe))
+;       ((python python-shell-completion-native-turn-on-maybe))
+;       (emacs)
+;       (emacs)
+;       (emacs)
+;       (emacs)
+;       (emacs)
+;       (emacs))))
+;  (put 'downcase-region 'disabled nil)
