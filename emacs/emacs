@@ -99,34 +99,41 @@
 			  :prefix "SPC"
 			  :global-prefix "M-SPC")
   (dt/leader-keys
+    ;; buffer management
     "b" '(:ignore t :wk "buffer")
-   "bb" '(switch-to-buffer :wk "Switch buffer")
-   "bk" '(kill-this-buffer :wk "Kill this buffer")
-   "bn" '(next-buffer :wk "Next buffer")
-   "bp" '(previous-buffer :wk "Previous buffer")
-   "br" '(revert-buffer :wk "Reload buffer")
-   "b/" 'lgrep
+    "bb" '(switch-to-buffer :wk "Switch buffer")
+    "bk" '(kill-this-buffer :wk "Kill this buffer")
+    "bn" '(next-buffer :wk "Next buffer")
+    "bp" '(previous-buffer :wk "Previous buffer")
+    ;; revert / reload
     "g" 'revert-buffer
+    "hr" '(:ignore t :wk "Reload")
+    "hrr" '((lambda () (interactive)
+              (load-file "~/.emacs")
+              (ignore (elpaca-process-queues)))
+            :wk "Reload emacs config")
+    "br" '(revert-buffer :wk "Reload buffer")
+    ;; dired
     "d" '(:ignore t :wk "Dired")
-   "dd" '(dired :wk "Open dired")
-   "dw" '(wdired-change-to-wdired-mode :wk "Writable dired")
-   "df" '(wdired-finish-edit :wk "Finish editing")
-   "hr" '(:ignore t :wk "Reload")
-  "hrr" '((lambda () (interactive)
-            (load-file "~/.emacs.d/init.el")
-            (ignore (elpaca-process-queues)))
-          :wk "Reload emacs config")
+    "dd" '(dired :wk "Open dired")
+    "dw" '(wdired-change-to-wdired-mode :wk "Writable dired")
+    "df" '(wdired-finish-edit :wk "Finish editing")
+    ;; vterm
     "t" '(:ignore t :wk "Terminal / Toggle")
-   "tv" '(vterm :wk "Open vterm")
-   "tt" '(vterm-toggle :wk "Toggle vterm")
-    "z" '(:ignore t :wk "FUZZ")
-   "zz" '(fzf :wk "Fuzz")
-   "zd" '(fzf-directory :wk "Directory")
-   "zb" '(fzf-switch-buffer :wk "Switch buffer")
-   "zg" '(fzf-grep :wk "Grep")
-   "zG" '(fzf-grep-in-dir :wk "Grep in directory")
-   "zf" '(fzf-find-in-buffer :wk "Find in buffer")
-   "zF" '(fzf-find-file-in-dir :wk "Find file")))
+    "tv" '(vterm :wk "Open vterm")
+    "tt" '(vterm-toggle :wk "Toggle vterm")
+    ;; fuzz
+    "z"  '(:ignore t :wk "FUZZ")
+    "zz" '(fzf :wk "Fuzz")
+    "zd" '(fzf-directory :wk "Directory")
+    "zb" '(fzf-switch-buffer :wk "Switch buffer")
+    "zg" '(fzf-grep :wk "Grep")
+    "zG" '(fzf-grep-in-dir :wk "Grep in directory")
+    "zf" '(fzf-find-in-buffer :wk "Find in buffer")
+    "zF" '(fzf-find-file-in-dir :wk "Find file")
+    ;; others
+    "b/" 'lgrep
+    ))
 
 
 (use-package vterm
