@@ -32,9 +32,14 @@ while test $# -gt 0; do
             VL=$2
             shift 2
             ;;
-        -al)
+         -vr)
+            VR=$2
+            shift 2
+            ;;
+         -al)
             HL=$2
             VL=$2
+            VR=$2
             shift 2
             ;;
         --)
@@ -56,8 +61,9 @@ done
 # for instance, use %% for a single % character
 [ -z "$HL" ] && HL="-"
 [ -z "$VL" ] && VL="|"
+[ -z "$VR" ] && VR="|"
 # use AL to set HL and VL at once
-[ -n "$AL" ] && HL=$AL VL=$AL
+[ -n "$AL" ] && HL=$AL VL=$AL VR=$AL
 # cow's eyes
 [ -z "$E" ] && E="oo"
 
@@ -70,7 +76,7 @@ for _ln in $(eval $_fetch |\
                -e "s/(.{$DIALOG_LEN})/\1\n/g")
 do
         printf -- "\n%c %-"$DIALOG_LEN"s %c" \
-                  "$VL" $_ln "$VL"
+                  "$VL" $_ln "$VR"
 done
 printf "\n"
 printf -- "$HL%.0s" $(seq 1 $(($DIALOG_LEN+4))))
