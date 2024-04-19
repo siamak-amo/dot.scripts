@@ -1,0 +1,6 @@
+[Unit]
+Description=Display a message to discharge the laptop's battery
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/notify-send -u critical -i /usr/share/icons/Adwaita/symbolic/devices/battery-symbolic.svg "Time to 5%" "<b>Remember</b> to fully discharge your battery <u>once a week</u>."
