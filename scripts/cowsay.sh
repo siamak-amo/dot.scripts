@@ -10,7 +10,7 @@ while test $# -gt 0; do
             ;;
         --)
             shift
-            _fetch="echo -e '$1'"
+            _fetch="echo -e '$@'"
             break
             ;;
         *)
