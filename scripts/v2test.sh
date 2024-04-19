@@ -77,8 +77,21 @@ test_api(){
 # make configuration file path
 mk_ccpath(){
     # $1 must be a v2ray configuration `URL`
-    # output format: ./xxxxxxxxxxxxxxxx.json
-    CCPATH="$PREFIX/$(echo $1 | sha1sum | head -c 16).json"
+    # output format: xxx.yyy.json
+    # where: yyy is the first 16 bytes sha1 hash of $1
+    #   and, xxx is either `v2` or `v2ng` (based on $_V2)
+    #   or `V` for unknown v2ray client name $_V2
+    _na_sha1=$(echo $1 | sha1sum)
+    case $_V2 in
+        "v2ray")
+            _pref_na="v2";;
+        "v2ray-ng")
+            _pref_na="v2ng";;
+        *)
+            _pref_na="V";;
+    esac
+
+    CCPATH="$PREFIX/$_pref_na-${_na_sha1:0:16}.json"
 }
 
 # $1 must be the link `URL` or config file path
