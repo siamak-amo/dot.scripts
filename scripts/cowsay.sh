@@ -16,6 +16,10 @@ while test $# -gt 0; do
             [ -s "$2" ] && _cow_file="$2"
             shift 2
             ;;
+        -g | --greedy)
+            E='$$'
+            shift
+            ;;
         -e | --eye | --eyes)
             E="$2"
             shift 2
