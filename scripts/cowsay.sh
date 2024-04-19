@@ -8,6 +8,23 @@ while test $# -gt 0; do
             _color_mode=1
             shift
             ;;
+        -l | -dl | --len | --length | --dialog-len | --dialog-length)
+            DIALOG_LEN=$2
+            shift
+            ;;
+        -hl)
+            HL=$2
+            shift
+            ;;
+        -vl)
+            VL=$2
+            shift
+            ;;
+        -al)
+            HL=$2
+            VL=$2
+            shift
+            ;;
         --)
             shift
             _fetch="echo -e '$@'"
