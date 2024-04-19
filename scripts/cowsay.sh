@@ -12,6 +12,10 @@ while test $# -gt 0; do
             DIALOG_LEN=$2
             shift 2
             ;;
+        -f)
+            [ -s "$2" ] && _cow_file="$2"
+            shift 2
+            ;;
         -hl)
             HL=$2
             shift 2
@@ -60,12 +64,13 @@ do
 done
 printf "\n"
 printf -- "$HL%.0s" $(seq 1 $(($DIALOG_LEN+4))))
+$([ -n "$_cow_file" ] && cat "$_cow_file" || echo "\
         \\
          \\   ^__^ 
           \\  (oo)\\_______
              (__)\\       )\\/\\\\
                  ||----w |
-                 ||     ||
+                 ||     ||")
 $(if [ $_color_mode ]; then
 echo -n "                          "
 for i in `seq 1 $((DIALOG_LEN-22))`; do
