@@ -91,7 +91,7 @@ $([ -n "$_cow_file" ] && cat "$_cow_file" || echo "\
              (__)\\       )\\/\\\\
                  ||----w |
                  ||     ||")
-$(if [ $_color_mode ]; then
+$(if [ $_color_mode -a -z "$_cow_file" ]; then
 echo -n "                          "
 for i in `seq 1 $((DIALOG_LEN-22))`; do
     _R=$((RANDOM % 10))
