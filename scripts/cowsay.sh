@@ -20,6 +20,10 @@ while test $# -gt 0; do
             E='$$'
             shift
             ;;
+        -t | --think)
+            C="o"
+            shift
+            ;;
         -e | --eye | --eyes)
             E="$2"
             shift 2
@@ -64,6 +68,8 @@ done
 [ -n "$AL" ] && HL=$AL VL=$AL  VR=$AL
 # cow's eyes
 [ -z "$E" ] && E="oo"
+# cow's connector
+[ -z "$C" ] && C="\\"
 
 cat <<EOF
 $(IFS=$'\n'
@@ -79,9 +85,9 @@ done
 printf "\n"
 printf -- "$HL%.0s" $(seq 1 $(($DIALOG_LEN+4))))
 $([ -n "$_cow_file" ] && cat "$_cow_file" || echo "\
-        \\
-         \\   ^__^ 
-          \\  ($E)\\_______
+        $C
+         $C   ^__^
+          $C  ($E)\\_______
              (__)\\       )\\/\\\\
                  ||----w |
                  ||     ||")
