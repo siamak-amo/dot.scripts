@@ -37,9 +37,7 @@ while test $# -gt 0; do
             shift 2
             ;;
          -al)
-            HL=$2
-            VL=$2
-            VR=$2
+            HL=$2 VL=$2 VR=$2
             shift 2
             ;;
         --)
@@ -63,7 +61,7 @@ done
 [ -z "$VL" ] && VL="|"
 [ -z "$VR" ] && VR="|"
 # use AL to set HL and VL at once
-[ -n "$AL" ] && HL=$AL VL=$AL VR=$AL
+[ -n "$AL" ] && HL=$AL VL=$AL  VR=$AL
 # cow's eyes
 [ -z "$E" ] && E="oo"
 
