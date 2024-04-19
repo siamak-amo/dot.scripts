@@ -20,6 +20,10 @@ while test $# -gt 0; do
             E='$$'
             shift
             ;;
+        -d | --dead)
+            E='xx'
+            shift
+            ;;
         -t | --think)
             C="o"
             shift
