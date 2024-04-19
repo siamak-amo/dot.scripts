@@ -16,6 +16,10 @@ while test $# -gt 0; do
             [ -s "$2" ] && _cow_file="$2"
             shift 2
             ;;
+        -e | --eye | --eyes)
+            E="$2"
+            shift 2
+            ;;
         -hl)
             HL=$2
             shift 2
@@ -50,6 +54,8 @@ done
 [ -z "$VL" ] && VL="|"
 # use AL to set HL and VL at once
 [ -n "$AL" ] && HL=$AL VL=$AL
+# cow's eyes
+[ -z "$E" ] && E="oo"
 
 cat <<EOF
 $(IFS=$'\n'
@@ -67,7 +73,7 @@ printf -- "$HL%.0s" $(seq 1 $(($DIALOG_LEN+4))))
 $([ -n "$_cow_file" ] && cat "$_cow_file" || echo "\
         \\
          \\   ^__^ 
-          \\  (oo)\\_______
+          \\  ($E)\\_______
              (__)\\       )\\/\\\\
                  ||----w |
                  ||     ||")
