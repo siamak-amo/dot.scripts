@@ -31,6 +31,10 @@ while test $# -gt 0; do
             C="o"
             shift
             ;;
+        -T | -ti | --tired)
+            E='--'
+            shift
+            ;;
         -e | --eye | --eyes)
             E="$2"
             shift 2
