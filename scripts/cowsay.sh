@@ -2,13 +2,25 @@
 #
 #   a minimal cowsay program!
 #
-if [[ -n "$2" ]]; then
-    _fetch="echo -e '$2'"
-elif [[ -z "$1" || "-c" == "$1" ]]; then
-    _fetch="cat"
-else
-    _fetch="echo -e '$1'"
-fi
+while test $# -gt 0; do
+    case "$1" in
+        -c | --col | --color)
+            _color_mode=1
+            shift
+            ;;
+        --)
+            shift
+            _fetch="echo -e '$1'"
+            break
+            ;;
+        *)
+            _fetch="echo -e '$1'"
+            shift
+            ;;
+    esac
+done
+
+[ -z "$_fetch" ] && _fetch="cat"
 [ -z "$DIALOG_LEN" ] && DIALOG_LEN=40
 
 # be careful using the printf special characters,
