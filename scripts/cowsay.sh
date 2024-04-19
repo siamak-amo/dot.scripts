@@ -10,20 +10,20 @@ while test $# -gt 0; do
             ;;
         -l | -dl | --len | --length | --dialog-len | --dialog-length)
             DIALOG_LEN=$2
-            shift
+            shift 2
             ;;
         -hl)
             HL=$2
-            shift
+            shift 2
             ;;
         -vl)
             VL=$2
-            shift
+            shift 2
             ;;
         -al)
             HL=$2
             VL=$2
-            shift
+            shift 2
             ;;
         --)
             shift
