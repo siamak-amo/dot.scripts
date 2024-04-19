@@ -49,7 +49,7 @@ printf -- "$HL%.0s" $(seq 1 $(($DIALOG_LEN+4))))
              (__)\\       )\\/\\\\
                  ||----w |
                  ||     ||
-$(if [ "$1" == "-c" -o "$2" == "-c" ]; then
+$(if [ $_color_mode ]; then
 echo -n "                          "
 for i in `seq 1 $((DIALOG_LEN-22))`; do
     _R=$((RANDOM % 10))
