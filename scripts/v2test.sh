@@ -50,6 +50,7 @@
 V2=$(which $_V2)
 CURL="$(which curl) -sk"
 MKCONF=$(which vs2conf)
+TMP_FILE="/tmp/config.json"
 
 [ -z "$TOUT" ] && TOUT="10s"
 [ -z "$PREFIX" ] && PREFIX="."
@@ -102,20 +103,19 @@ log_result(){
 test_links_stdin(){
     while IFS=$'\n' read -r _ln; do
         mk_ccpath "$_ln"
-        echo "$_ln" | $MKCONF > $CCPATH
+        echo "$_ln" | $MKCONF > $TMP_FILE
         
-        if [[ ! -s "$CCPATH" ]]; then
+        if [[ ! -s "$TMP_FILE" ]]; then
             echo "Config File Was not Created." >&2
         else
-            test_config_file "$CCPATH"
+            test_config_file "$TMP_FILE"
             log_result "$_ln"
             
             if [[ 1 != $_rm_config_file ]] && \
                    [[ 1 == $_keep_config_file || "OK." == "$_RES" ]]
             then
+                cp "$TMP_FILE" "$CCPATH"
                 unset CCPATH
-            else
-                rm -f $CCPATH
             fi
         fi
     done
