@@ -13,7 +13,10 @@ while test $# -gt 0; do
             shift 2
             ;;
         -f)
-            [ -s "$2" ] && _cow_file="$2"
+            if [ -s "$2" ]; then
+                _cow_file="$2"
+                unset _color_mode
+            fi
             shift 2
             ;;
         -g | --greedy)
@@ -95,7 +98,7 @@ $([ -n "$_cow_file" ] && cat "$_cow_file" || echo "\
              (__)\\       )\\/\\\\
                  ||----w |
                  ||     ||")
-$(if [ $_color_mode ] && [ -z "$_cow_file" ]; then
+$(if [ $_color_mode ]; then
 echo -n "                          "
 for i in `seq 1 $((DIALOG_LEN-22))`; do
     _R=$((RANDOM % 10))
