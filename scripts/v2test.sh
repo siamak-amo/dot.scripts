@@ -46,8 +46,60 @@
 #  curl command
 #  v2ray-ng (set _V2="v2ray" to use v2ray instead of v2ray-ng)
 #
+while test $# -gt 0; do
+    case $1 in
+        -c | --conf | --config)
+            _print_path=1
+            _test_path="$_test_path $2"
+            shift 2;;
+        -T | --time | --timeout)
+            TOUT="${2//[^0-9]/}s"
+            if [[ "$TOUT" == 's' || "$TOUT" == '0s' ]]; then
+                echo "invalid timeout ($2) -- exiting." >&2
+                exit 1
+            fi
+            shift 2;;
+        --pref | --prefix)
+            PREFIX="$2"
+            shift 2;;
+        -x | --proxy)
+            HTTP_PROXY="$2"
+            shift 2;;
+        -v | -v2 | --v2 | --v2ray)
+            _V2=$2
+            shift 2;;
+        -r | --rm)
+            _rm_config_file=1
+            shift;;
+        -k | -ko | --keep | --keep-config)
+            _keep_config_file=1
+            shift;;
+        -s | --silent | --quiet)
+            _print_path=0
+            _test_quiet=1
+            shift;;
+        -tn | --no-test | --test-no)
+            _no_test=1
+            shift;;
+        -t | --test)
+            test_api
+            echo "Status: $_RES"
+            [[ "OK." == "$_RES" ]] && echo "IP: $_ip"
+            exit 0;;
+        *)
+            echo "invalid option ($1) -- exiting." >&2
+            exit 1;;
+    esac
+done
+
+# defaults
 [ -z "$_V2" ] && _V2="v2ray-ng"
 V2=$(which $_V2)
+if [[ -z "$V2" ]]; then
+    echo "command not found ($_V2) -- exiting." >&2
+    exit 2
+fi
+
 CURL="$(which curl) -sk"
 MKCONF=$(which vs2conf)
 TMP_FILE="/tmp/config.json"
