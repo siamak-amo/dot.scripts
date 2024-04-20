@@ -21,14 +21,6 @@
 #     to create config files from all links without testing them
 #   $ v2test -tn
 #
-# OPTIONS:
-#   -c, -rc                  to specify path to config files
-#                            use -rc to delete if config is not working
-#   -ko, --keep-config       keep generated config files anyway
-#   -ro, --rm-config         delete generated config files anyway
-#   -s,  --quiet             use stdout only to print working links (quiet)
-#   -t,  --test              to only test the HTTP proxy itself
-#   -tn, --no-test           create config files and ignore testing them
 #
 # this script won't modify your HTTP_PROXY shell variable
 # if it was previously set, so if your v2ray configuration makes
@@ -109,6 +101,10 @@ TMP_FILE="/tmp/config.json"
 [ -z "$HTTP_PROXY" ] && HTTP_PROXY="127.0.0.1:10809"
 TEST_API="https://api.ipify.org"
 
+
+#-----------
+# functions
+#-----------
 test_api(){
     _ip=$(timeout $TOUT $CURL $TEST_API --proxy $HTTP_PROXY)
     __api_exit=$?
