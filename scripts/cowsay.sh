@@ -103,18 +103,18 @@ done
 
 # be careful using the printf special characters,
 # for instance, use %% for a single % character
-[ -z "$HL" ] && HL='-' || HL="${HL:0:1}"
-[ -z "$VL" ] && VL='<' || VL="${VL:0:1}"
-[ -z "$VR" ] && VR='>' || VR="${VR:0:1}"
+[ -z "$HL" ] && HL='-'
+[ -z "$VL" ] && VL='<'
+[ -z "$VR" ] && VR='>'
 # use AL to set HL and VL at once
 [ -n "$AL" ] && AL="${AL:0:1}" HL=$AL VL=$AL VR=$AL
 # cow's eyes
-[ -z "$E" ] && E='oo' || E="${E:0:2}"
+[ -z "$E" ] && E='oo'
 # cow's connector
-[ -z "$C" ] && C='\' || C="${C:0:1}"
+[ -z "$C" ] && C='\'
 # dialog box corners
-[ -z "$MD" ] && MD=' ' || MD="${MD:0:1}" # main diagonal
-[ -z "$OD" ] && OD=' ' || OD="${OD:0:1}" # other diagonal
+[ -z "$MD" ] && MD=' ' # main diagonal
+[ -z "$OD" ] && OD=' ' # other diagonal
 
 cat <<EOF
 $MD$(printf -- "$HL%.0s" $(seq 1 $(($DIALOG_LEN+2))))$OD \
