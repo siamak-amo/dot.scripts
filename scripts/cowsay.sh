@@ -27,8 +27,8 @@ while test $# -gt 0; do
             E='xx'
             shift
             ;;
-        -t | --think)
-            C="o"
+        -t | --think | --think-mode)
+            C='o' MD=' ' OD=' ' VR=')' VL='('
             shift
             ;;
         -T | -ti | --tired)
