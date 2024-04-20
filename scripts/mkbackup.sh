@@ -15,34 +15,6 @@
 #     - to run with nice -n 16
 #     $ mkbackup --level 16  OR   $ _nice_level=16 mkbackup
 #
-# to be excluded from /
-EXCLUDES="/swapf /proc /sys /dev /mnt /media /tmp /run"
-# creates backup of /opt /var /home (and / excluding PARTS)
-PARTS="/opt /var /home"
-# to be excluded from each paths in the PARTS variable
-PEXCLUDES=""
-# tar command niceness
-[[ -z "$_nice_level" ]] && _nice_level="15"
-#
-#
-# add z to use gzip compressed data
-[[ -z "$TFLAGS" ]] && TFLAGS=cpf
-# other tar command options like --exclude-caches
-TOPTS=""
-#
-#
-# finename date format
-_d=$(date +"-%d-%b-%Y")
-#
-#
-# CD into the backup directory (will pass `-C PATH .` to the tar command)
-# by CD=1, contents of your backup tar file of /var wont begin with /var
-# instead will include only files and directories in /var
-# set it 0 to disable this feature, so content of your backup file
-# will contain the absolute paths like /opt/FILE1 /var/DIR1
-CD=1
-_TAR=$(which tar)
-
 
 usage(){
   cat <<EOF
@@ -58,10 +30,8 @@ OPTIONS:
 EOF
 }
 
-
+# parsing args
 set -e
-
-# main
 while test $# -gt 0; do
     case "$1" in
         -n | --dry | --dry-run)
@@ -95,6 +65,32 @@ while test $# -gt 0; do
             ;;
     esac
 done
+
+# to be excluded from /
+EXCLUDES="/swapf /proc /sys /dev /mnt /media /tmp /run"
+# creates backup of /opt /var /home (and / excluding PARTS)
+PARTS="/opt /var /home"
+# to be excluded from each paths in the PARTS variable
+PEXCLUDES=""
+# tar command niceness
+[[ -z "$_nice_level" ]] && _nice_level="15"
+#
+# add z to use gzip compressed data
+[[ -z "$TFLAGS" ]] && TFLAGS=cpf
+# other tar command options like --exclude-caches
+TOPTS=""
+#
+# finename date format
+_d=$(date +"-%d-%b-%Y")
+#
+# CD into the backup directory (will pass `-C PATH .` to the tar command)
+# by CD=1, contents of your backup tar file of /var wont begin with /var
+# instead will include only files and directories in /var
+# set it 0 to disable this feature, so content of your backup file
+# will contain the absolute paths like /opt/FILE1 /var/DIR1
+CD=1
+_TAR=$(which tar)
+
 
 # normalizing
 if [[ -z "$NICEN" ]]; then
