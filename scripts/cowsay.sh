@@ -81,10 +81,13 @@ done
 [ -z "$E" ] && E="oo"
 # cow's connector
 [ -z "$C" ] && C="\\"
+# dialog box corners
+[ -z "$MD" ] && MD="/" # main diagonal
+[ -z "$OD" ] && OD="\\"  # other diagonal
 
 cat <<EOF
+$MD$(printf -- "$HL%.0s" $(seq 1 $(($DIALOG_LEN+2))))$OD \
 $(IFS=$'\n'
-printf -- "$HL%.0s" $(seq 1 $(($DIALOG_LEN+4)))
 for _ln in $(eval $_fetch |\
         sed -E -e "s/\t/  /g" \
                -e "s/^$/ \n /g" \
@@ -92,9 +95,8 @@ for _ln in $(eval $_fetch |\
 do
         printf -- "\n%c %-"$DIALOG_LEN"s %c" \
                   "$VL" $_ln "$VR"
-done
-printf "\n"
-printf -- "$HL%.0s" $(seq 1 $(($DIALOG_LEN+4))))
+done)
+$OD$(printf -- "$HL%.0s" $(seq 1 $(($DIALOG_LEN+2))))$MD
 $([ -n "$_cow_file" ] && cat "$_cow_file" || echo "\
         $C
          $C   ^__^
