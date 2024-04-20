@@ -38,6 +38,27 @@
 #  curl command
 #  v2ray-ng (default) or any other v2ray client (see -v2 option)
 #
+function usage(){
+    cat <<EOF
+v2test [OPTIONS] [args.]
+
+OPTIONS:
+    -c, --config             to specify path to config files
+    -T, --timeout            to specify testing timeout
+        --prefix             to specify prefix to save output json files
+    -v, --v2ray              to set v2ray client command
+    -x, --proxy              for testing config files, should be set to
+                             the same address that is used in config,
+                             in the `inbounds` section
+    -k, --keep               to keep generated config files anyway
+    -r, --rm                 to delete generated config files anyway
+    -s, --quiet              use stdout only to print working links (quiet)
+    -t, --test               to only test the HTTP_PROXY itself
+   -tn, --no-test            create config files and ignore testing them
+
+EOF
+}
+
 while test $# -gt 0; do
     case $1 in
         -c | --conf | --config)
@@ -77,6 +98,9 @@ while test $# -gt 0; do
             test_api
             echo "Status: $_RES"
             [[ "OK." == "$_RES" ]] && echo "IP: $_ip"
+            exit 0;;
+        -h | --help)
+            usage
             exit 0;;
         *)
             echo "invalid option ($1) -- exiting." >&2
