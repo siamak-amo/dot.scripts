@@ -27,6 +27,10 @@ while test $# -gt 0; do
             E='xx'
             shift
             ;;
+        -C | --connect | --connector)
+            C="$2"
+            shift 2
+            ;;
         -t | --think | --think-mode)
             C='o' MD=' ' OD=' ' VR=')' VL='('
             shift
