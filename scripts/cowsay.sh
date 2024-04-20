@@ -2,25 +2,31 @@
 #
 #  `cowsay.sh` a minimal version of the `cowsay` program
 #
-#   usage:       ./cowsay.sh [OPTIONS] [--] [text to print]
-#          ... | ./cowsay.sh [OPTIONS]
-#
-#   OPTIONS:
-#      -c, --color [UNOFFICIAL FEATURE]
-#      -l, --dialog-len                     to set the dialog's width
-#      -f                                   file name of the cow ascii art
-#      -e, --eye                            to set the cow's eyes
-#      -g, --greedy                         sets cow's eyes to `$$` (money)
-#      -T, --tired                          sets cow's eyes to `--` (sleep)
-#      -d, --dead                           sets cow's eyes to `xx` (dead)
-#      -C, --connector                      to set the characters that connect
-#                                           the cow to the dialog box
-#      -t, --think                          sets the connector character to `o`
-#      -vr, -vl                             to set left/right characters of the dialog
-#      -hl                                  to set horizontal characters of the dialog
-#      -al                                  to set the vr,vl,al characters at once
-#      -md, -od                             to set the corners of the dialog,
-#                                           (main and other diagonals)
+function usage(){
+    cat <<EOF
+usage:       cowsay.sh [OPTIONS] [--] [text to print]
+       ... | cowsay.sh [OPTIONS]
+
+OPTIONS:
+   -c, --color [UNOFFICIAL FEATURE]
+   -l, --dialog-len                     to set the dialog's width
+   -f                                   file name of the cow ascii art
+   -e, --eye                            to set the cow's eyes
+   -g, --greedy                         sets cow's eyes to \`$$\` (money)
+   -T, --tired                          sets cow's eyes to \`--\` (sleep)
+   -d, --dead                           sets cow's eyes to \`xx\` (dead)
+   -C, --connector                      to set the characters that connect
+                                        the cow to the dialog box
+   -t, --think                          sets the connector character to \`o\`
+   -vr, -vl                             to set left/right characters of the dialog
+   -hl                                  to set horizontal characters of the dialog
+   -al                                  to set the vr,vl,al characters at once
+   -md, -od                             to set the corners of the dialog,
+                                        (main and other diagonals)
+
+EOF
+}
+
 while test $# -gt 0; do
     case "$1" in
         -c | --col | --color)
@@ -90,6 +96,10 @@ while test $# -gt 0; do
             shift
             _fetch="echo -e '$@'"
             break
+            ;;
+        -h | --help)
+            usage
+            exit 0
             ;;
         *)
             _fetch="echo -e '$1'"
