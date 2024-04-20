@@ -104,6 +104,7 @@ while test $# -gt 0; do
             exit 0;;
         *)
             echo "invalid option ($1) -- exiting." >&2
+            echo "Try '--help' for more information." >&2
             exit 1;;
     esac
 done
