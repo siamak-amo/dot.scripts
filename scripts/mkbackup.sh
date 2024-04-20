@@ -34,7 +34,6 @@ OPTIONS:
 EOF
 }
 
-# parsing args
 set -e
 while test $# -gt 0; do
     case "$1" in
@@ -93,6 +92,7 @@ while test $# -gt 0; do
     esac
 done
 
+# defaults
 # to be excluded from /
 EXCLUDES="/swapf /proc /sys /dev /mnt /media /tmp /run"
 # creates backup of /opt /var /home (and / excluding PARTS)
@@ -120,7 +120,6 @@ _d=$(date +"-%d-%b-%Y")
 CD=1
 _TAR=$(which tar)
 
-
 # normalizing
 if [[ -z "$NICEN" ]]; then
     NICE="nice -n$_nice_level"
@@ -134,7 +133,7 @@ else
 fi
 [[ -n "$_dry_run" ]] && TAR="echo $TAR"
 
-
+# prepare excludes
 # to be excluded from the root filesystem
 _excludes=$(echo " "$PARTS" "$EXCLUDES | sed -e 's/ \// --exclude \//g')
 # to be excluded from the other parts
@@ -142,6 +141,9 @@ _pexcludes=$(echo " "$PEXCLUDES | sed -e 's/ \// --exclude \//g')
 
 [[ -z "$_gzip" ]] && _ext="tar" || _ext="tar.gz"
 
+#-----------
+# functions
+#-----------
 mk_names(){
   if [[ "$part" == "/" ]]; then
       _bname="ROOT"
@@ -163,7 +165,9 @@ do_backup(){
   $TAR -$TFLAGS $_fname $TOPTS $_EX $_src_path && echo -e "done.\n"
 }
 
-
+#------
+# main
+#------
 for part in '/' $PARTS
 do
   mk_names
