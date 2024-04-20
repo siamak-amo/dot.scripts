@@ -67,6 +67,20 @@ while test $# -gt 0; do
                     echo "Warning, '$2' No such file or directory." >&2
             shift 2
             ;;
+        --part | --parts)
+            for _p in $2; do
+                if [[ ! -s $_p ]]; then
+                    echo "Error, $_p  No such file or directory." >&2
+                    exit 1
+                fi
+            done
+            PARTS="$2"
+            shift 2
+            ;;
+        -s | --solid)
+            PARTS=" "
+            shift 1
+            ;;
         *)
             echo "invalid option -- '$1'," >&2
             echo "Try '--help' for more information." >&2
@@ -78,7 +92,7 @@ done
 # to be excluded from /
 EXCLUDES="/swapf /proc /sys /dev /mnt /media /tmp /run"
 # creates backup of /opt /var /home (and / excluding PARTS)
-PARTS="/opt /var /home"
+[[ -z "$PARTS" ]] && PARTS="/opt /var /home"
 # to be excluded from each paths in the PARTS variable
 [ -z "$PEXCLUDES" ] && PEXCLUDES=""
 # tar command niceness
