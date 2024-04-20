@@ -69,7 +69,6 @@ set -e
 while test $# -gt 0; do
     case "$1" in
         -n | --dry | --dry-run)
-            TAR="echo $_TAR"
             _dry_run=1
             shift
             ;;
@@ -94,15 +93,17 @@ while test $# -gt 0; do
 done
 
 # normalizing
-[[ -z "$TAR" ]] && TAR="$_TAR"
-# check is nice disabled
-[[ -z "$NICEN" ]] && NICE="nice -n$_nice_level" || NICE=""
-#
-if [[ "root" == "$(whoami)" ]]; then
-    _TAR="$NICE $(which tar)"
+if [[ -z "$NICEN" ]]; then
+    NICE="nice -n$_nice_level"
 else
-    _TAR="sudo $NICE $(which tar)"
+    NICE=""
 fi
+if [[ "root" == "$(whoami)" ]]; then
+    TAR="$NICE $_TAR"
+else
+    TAR="sudo $NICE $_TAR"
+fi
+[[ -n "$_dry_run" ]] && TAR="echo $TAR"
 
 
 # to be excluded from the root filesystem
