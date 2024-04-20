@@ -84,6 +84,14 @@ while test $# -gt 0; do
             usage
             exit 0
             ;;
+        -N | -nn | --no_nice)
+            NICEN=1
+            shift
+            ;;
+        -l | -nl | --nice | --nice-level)
+            _nice_level=$2
+            shift 2
+            ;;
         *)
             echo "invalid option -- \'$1\'" >&2
             echo "Try \'--help\' for more information." >&2
