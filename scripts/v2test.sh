@@ -192,14 +192,12 @@ get_v2_pid(){
 
 # $1 is the config.json path
 run_v2(){
-    if [[ "$_V2" == "v2ray-ng" ]]; then
-        $V2 run -c "$1" >/dev/null &
-    elif [[ "$_V2" == "v2ray" ]]; then
-        $V2 -c "$1" >/dev/null &
-    else
-        echo "Not Supported Command $_V2." >&2
-        exit 2
-    fi
+    case "$_V2" in
+        v2ray)
+            $V2 -c "$1" >/dev/null & ;;
+        v2ray-ng)
+            $V2 run -c "$1" >/dev/null & ;;
+    esac
 }
 
 # $1 is the file path
