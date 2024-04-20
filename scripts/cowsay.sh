@@ -55,6 +55,14 @@ while test $# -gt 0; do
             HL=$2 VL=$2 VR=$2
             shift 2
             ;;
+         -md | --main-diag | --main-diagonal)
+             MD=$2
+             shift 2
+             ;;
+         -od | --other-diag | --other-diagonal | --diag | --diagonal)
+             OD=$2
+             shift 2
+             ;;
         --)
             shift
             _fetch="echo -e '$@'"
