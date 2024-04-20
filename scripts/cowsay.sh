@@ -31,7 +31,7 @@ while test $# -gt 0; do
             C='o' MD=' ' OD=' ' VR=')' VL='('
             shift
             ;;
-        -T | -ti | --tired)
+        -T | --tired | --tired-mode)
             E='--'
             shift
             ;;
