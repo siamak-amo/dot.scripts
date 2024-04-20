@@ -49,7 +49,9 @@ mkbackup [OPTIONS args] [FLAGS]
 FLAGS:
     -n                  dry run
     -h, --help          prints help
-    -p, --prefix        specify backup path
+    -p, --prefix        to specify backup path
+    -N, --no-nice       to disable nice
+    -l, --nice-level    to specify nice -n level
 
 OPTIONS:
     --prefix: 
