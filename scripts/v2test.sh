@@ -49,7 +49,7 @@ OPTIONS:
     -v, --v2ray              to set v2ray client command
     -x, --proxy              for testing config files, should be set to
                              the same address that is used in config,
-                             in the `inbounds` section
+                             in the \`inbounds\` section
     -k, --keep               to keep generated config files anyway
     -r, --rm                 to delete generated config files anyway
     -s, --quiet              use stdout only to print working links (quiet)
