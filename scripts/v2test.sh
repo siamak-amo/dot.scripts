@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # v2test
-# test v2ray configuration files and links
+# tests v2ray configuration files and links
 #
 # EXAMPLES:
 #     to test config files (add -r to delete bad files):
@@ -9,7 +9,7 @@
 #     to change v2ray client command (v2ray instead of v2ray-ng)
 #   $ v2test --v2ray v2ray
 #     to create config files without testing them
-#   $ v2test --no-test
+#   $ cat links.txt | v2test --no-test
 #
 #
 # this script uses your HTTP_PROXY shell variable,
