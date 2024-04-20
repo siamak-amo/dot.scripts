@@ -119,7 +119,7 @@ fi
 
 CURL="$(which curl) -sk"
 MKCONF=$(which vs2conf)
-TMP_FILE="/tmp/config.json"
+TMP_FILE="/tmp/.v2test_temp_config.json"
 
 [ -z "$TOUT" ] && TOUT="10s"
 [ -z "$PREFIX" ] && PREFIX="."
