@@ -4,34 +4,23 @@
 # test v2ray configuration files and links
 #
 # EXAMPLES:
-#     to test config files (use -rc to delete broken config files):
-#   $ v2test -c [dirs or files]
-#     to generate tested config file from links:
-#   $ echo LINKS | v2test 2>/dev/null
-#     to test a running v2ray:
-#   $ v2test -t
-#     to only print working links:
-#   $ v2test -s 2>/dev/null
-#     to specify the timeout duration during the testing process:
-#   $ TOUT=12s v2test [OPTIONS]
-#     to specify a prefix to write json files
-#   $ PREFIX=/tmp v2test [OPTIONS]
-#     to use v2ray program instead of v2ray-ng
-#   $ _V2="v2ray" v2test [OPTIONS]
-#     to create config files from all links without testing them
-#   $ v2test -tn
+#     to test config files (add -r to delete bad files):
+#   $ v2test --config /path/to/files -r --timeout 42s
+#     to change v2ray client command (v2ray instead of v2ray-ng)
+#   $ v2test --v2ray v2ray
+#     to create config files without testing them
+#   $ v2test --no-test
 #
 #
-# this script won't modify your HTTP_PROXY shell variable
-# if it was previously set, so if your v2ray configuration makes
-# HTTP proxy on another port, either change it or 
-# set the HTTP_PROXY variable before running this script:
-#   $ HTTP_PROXY="127.0.0.1:xxxx" v2test [OPTIONS]
+# this script uses your HTTP_PROXY shell variable,
+# so if your v2ray configuration (in the `indoors` section)
+# makes HTTP proxy on another port, either change it,
+# or set the HTTP_PROXY variable before running this script,
+# or use --proxy option to change it's default value.
 #
 # generated v2ray JSON config files by this script
 # come from the vs2conf script, which has `localhost:10809`
-# as the default value of the HTTP proxy field,
-# so we use this value when HTTP_PROXY is not set.
+# as the default value of the indoors HTTP proxy field.
 #
 # DEPENDENCIES:
 #  vs2conf script (available in this repo)
@@ -51,7 +40,7 @@ OPTIONS:
                              the same address that is used in config,
                              in the \`inbounds\` section
     -k, --keep               to keep generated config files anyway
-    -r, --rm                 to delete generated config files anyway
+    -r, --rm                 to delete faulty config files
     -s, --quiet              use stdout only to print working links (quiet)
     -t, --test               to only test the HTTP_PROXY itself
    -tn, --no-test            create config files and ignore testing them
