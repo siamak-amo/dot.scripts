@@ -44,7 +44,7 @@
 # DEPENDENCIES:
 #  vs2conf script (available in this repo)
 #  curl command
-#  v2ray-ng (set _V2="v2ray" to use v2ray instead of v2ray-ng)
+#  v2ray-ng (default) or any other v2ray client (see -v2 option)
 #
 while test $# -gt 0; do
     case $1 in
