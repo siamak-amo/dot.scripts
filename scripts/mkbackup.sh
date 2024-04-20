@@ -4,14 +4,16 @@
 #   by default will make separate backups:
 #     backup of / excluding /opt /var /home
 #     and then 3 backups of /opt /var /home separately.
-#   
 #   you can set PARTS="" to disable this feature
 #   and make a single backup of the root file system.
 # 
-#   by default, it runs tar command with `nice -n15`
-#   set `NICEN` shell variable to anything to disable that
-#   $ NICEN=1 mkbackup   # to run tar commands directly
-#   $ _nice_level=16 mkbackup   # to run with nice -n 16
+#   Examples:
+#     - to store backups in /mnt
+#     $ mkbackup --prefix /mnt
+#     - to run tar commands directly without nice
+#     $ mkbackup --no-nice   OR   $ NICEN=1 mkbackup
+#     - to run with nice -n 16
+#     $ mkbackup --level 16  OR   $ _nice_level=16 mkbackup
 #
 # to be excluded from /
 EXCLUDES="/swapf /proc /sys /dev /mnt /media /tmp /run"
@@ -44,23 +46,15 @@ _TAR=$(which tar)
 
 usage(){
   cat <<EOF
-mkbackup [OPTIONS args] [FLAGS]
-
-FLAGS:
-    -n                  dry run
-    -h, --help          prints help
-    -p, --prefix        to specify backup path
-    -N, --no-nice       to disable nice
-    -l, --nice-level    to specify nice -n level
+mkbackup [OPTIONS]
 
 OPTIONS:
-    --prefix: 
-      use a path to store backups.
+    -n                        dry run
+    -h, --help                prints help
+    -p, --prefix              to specify backup path
+    -N, --no-nice             to disable nice
+    -l, --nice-level          to specify nice -n level
 
-Examples:
-    $ mkbackup --prefix /mnt    # to store backups in /mnt
-    $ NICEN=1 mkbackup          # to run tar commands directly without nice
-    $ _nice_level=16 mkbackup   # to run with nice -n 16
 EOF
 }
 
@@ -95,8 +89,8 @@ while test $# -gt 0; do
             shift 2
             ;;
         *)
-            echo "invalid option -- \'$1\'" >&2
-            echo "Try \'--help\' for more information." >&2
+            echo "invalid option -- '$1'," >&2
+            echo "Try '--help' for more information." >&2
             exit 1
             ;;
     esac
