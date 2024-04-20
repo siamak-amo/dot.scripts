@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 #
-#  `cowsay.sh` a minimal version of the `cowsay` program
+#  cowsay.sh
+#  a minimal version of the `cowsay` program
 #
 function usage(){
     cat <<EOF
