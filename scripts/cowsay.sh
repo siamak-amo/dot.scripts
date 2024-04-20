@@ -88,7 +88,7 @@ done
 # cow's eyes
 [ -z "$E" ] && E='oo' || E="${E:0:2}"
 # cow's connector
-[ -z "$C" ] && C='\\' || C="${C:0:1}"
+[ -z "$C" ] && C='\' || C="${C:0:1}"
 # dialog box corners
 [ -z "$MD" ] && MD=' ' || MD="${MD:0:1}" # main diagonal
 [ -z "$OD" ] && OD=' ' || OD="${OD:0:1}" # other diagonal
