@@ -228,50 +228,31 @@ test_config_file(){
     fi
 }
 
-if [[ -z "$1" ]]; then
-    test_links_stdin
+
+#------
+# main
+#------
+if [[ -z "$_test_path" ]]; then  # use stdin
+    if [[ 1 == $_no_test ]]; then
+        while IFS=$'\n' read -r _ln; do
+            mk_ccpath "$_ln"
+            echo "$_ln" | $MKCONF > $CCPATH
+        done
+    else
+        test_links_stdin
+    fi
 else
-    case "$1" in
-        "-c"|"-rc")
-            [ $1 == "-rc" ] &&  _rm_config_file=1
-            _print_path=1
-            for _path in "${@:2}"; do
-                if [[ -f "$_path" ]]; then
-                    test_config_file $_path
-                else
-                    for _json_cfg in $(ls -1 $_path/*\.json); do
-                        test_config_file $_json_cfg
-                    done
-                fi
+    if [[ 1 == $_no_test ]]; then
+        echo "nothing to do -- exiting."
+        exit 0
+    fi
+    for _path in "$_test_path"; do
+        if [[ -f "$_path" ]]; then
+            test_config_file $_path
+        else
+            for _json_cfg in $(ls -1 $_path/*\.json); do
+                test_config_file $_json_cfg
             done
-            ;;
-        "-tn"|"--no-test")
-            while IFS=$'\n' read -r _ln; do
-                mk_ccpath "$_ln"
-                echo "$_ln" | $MKCONF > $CCPATH
-            done
-            ;;
-        "-ko"|"--keep-config")
-            _keep_config_file=1
-            test_links_stdin
-            ;;
-        "-do"|"--rm-config")
-            _rm_config_file=1
-            test_links_stdin
-            ;;
-        "-s"|"--quiet")
-            _rm_config_file=1
-            _test_quiet=1
-            test_links_stdin
-            ;;
-        "-t"|"--test")
-            test_api
-            echo "Status: $_RES"
-            echo "IP: $_ip"
-            ;;
-        *)
-            echo "Unknown Option ($1) -- exiting." >&2
-            exit 1
-            ;;
-    esac
+        fi
+    done
 fi
