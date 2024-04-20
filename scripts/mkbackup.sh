@@ -58,6 +58,10 @@ while test $# -gt 0; do
             _nice_level=$2
             shift 2
             ;;
+        -z | --gzip | --gnuzip)
+            _gzip=1
+            shift
+            ;;
         *)
             echo "invalid option -- '$1'," >&2
             echo "Try '--help' for more information." >&2
@@ -71,12 +75,14 @@ EXCLUDES="/swapf /proc /sys /dev /mnt /media /tmp /run"
 # creates backup of /opt /var /home (and / excluding PARTS)
 PARTS="/opt /var /home"
 # to be excluded from each paths in the PARTS variable
-PEXCLUDES=""
+[ -z "$PEXCLUDES" ] && PEXCLUDES=""
 # tar command niceness
 [[ -z "$_nice_level" ]] && _nice_level="15"
 #
 # add z to use gzip compressed data
-[[ -z "$TFLAGS" ]] && TFLAGS=cpf
+if [[ -z "$TFLAGS" ]]; then
+    [[ -z "$_gzip" ]] && TFLAGS=cpf || TFLAGS=zcpf
+fi
 # other tar command options like --exclude-caches
 TOPTS=""
 #
@@ -111,7 +117,7 @@ _excludes=$(echo " "$PARTS" "$EXCLUDES | sed -e 's/ \// --exclude \//g')
 # to be excluded from the other parts
 _pexcludes=$(echo " "$PEXCLUDES | sed -e 's/ \// --exclude \//g')
 
-[[ -z $(echo $TFLAGS | grep "z" -o) ]] && _ext="tar" || _ext="tar.gz"
+[[ -z "$_gzip" ]] && _ext="tar" || _ext="tar.gz"
 
 mk_names(){
   if [[ "$part" == "/" ]]; then
