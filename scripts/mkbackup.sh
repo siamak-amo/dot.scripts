@@ -26,6 +26,10 @@ OPTIONS:
     -p, --prefix              to specify backup path
     -N, --no-nice             to disable nice
     -l, --nice-level          to specify nice -n level
+    --parts                   to specify separated backup parts
+    -s, --solid               to backup in a single file
+    -e, --exclude             to exclude (file/dir) from backup
+    -z, --gzip                to make compressed tar files (tar.gz)
 
 EOF
 }
