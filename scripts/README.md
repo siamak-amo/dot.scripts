@@ -15,9 +15,9 @@
 * mkbackup  
   make backup, is my backup script, you can dry run it (just echo what it's going to do) by `mkbackup -n`.
   
-  you can exclude files and directories by editing `EXCLUDES` variable, and also break your backup parts by declaring them in `PARTS` variable, for instance, if you set `PARTS="/home /var"` you will get 3 backup files `ROOT-xxx.tar,  HOME-xxx.tar,  VAR-xxx.tar`.
+  you can exclude files and directories by editing `EXCLUDES` variable or using `--exclude` option, and also break your backup parts by declaring them in `PARTS` variable or using `--parts` option, for instance, if you pass `--parts "/home /var"` you will get 3 backup files `ROOT-xxx.tar,  HOME-xxx.tar,  VAR-xxx.tar`.
   
-  also by setting `TFLAGS=cpfz`, the output will be in gzip compressed format.
+  also by setting `TFLAGS=cpfz` or using `-z` option, the output will be in gzip compressed format.
 
 * dideofy  
   dideo.ir is YouTube cache website (that makes it possible to watch 'some' YouTube videos from Iran without using VPN), I use this script to convert YouTube links (either direct links or links from Google search) to compatible dideo.ir links.
