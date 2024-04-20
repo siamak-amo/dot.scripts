@@ -80,15 +80,15 @@ done
 
 # be careful using the printf special characters,
 # for instance, use %% for a single % character
-[ -z "$HL" ] && HL="-" || HL="${HL:0:1}"
-[ -z "$VL" ] && VL="<" || VL="${VL:0:1}"
-[ -z "$VR" ] && VR=">" || VR="${VR:0:1}"
+[ -z "$HL" ] && HL='-' || HL="${HL:0:1}"
+[ -z "$VL" ] && VL='<' || VL="${VL:0:1}"
+[ -z "$VR" ] && VR='>' || VR="${VR:0:1}"
 # use AL to set HL and VL at once
 [ -n "$AL" ] && AL="${AL:0:1}" HL=$AL VL=$AL VR=$AL
 # cow's eyes
-[ -z "$E" ] && E="oo" || E="${E:0:2}"
+[ -z "$E" ] && E='oo' || E="${E:0:2}"
 # cow's connector
-[ -z "$C" ] && C="\\" || C="${C:0:1}"
+[ -z "$C" ] && C='\\' || C="${C:0:1}"
 # dialog box corners
 [ -z "$MD" ] && MD=' ' || MD="${MD:0:1}" # main diagonal
 [ -z "$OD" ] && OD=' ' || OD="${OD:0:1}" # other diagonal
