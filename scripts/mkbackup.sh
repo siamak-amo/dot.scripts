@@ -62,6 +62,11 @@ while test $# -gt 0; do
             _gzip=1
             shift
             ;;
+        -e | --exc | --exclude | --extra_exclude)
+            [[ -s "$2" ]] && PEXCLUDES="$PEXCLUDES $(realpath $2)" ||\
+                    echo "Warning, '$2' No such file or directory." >&2
+            shift 2
+            ;;
         *)
             echo "invalid option -- '$1'," >&2
             echo "Try '--help' for more information." >&2
@@ -130,7 +135,7 @@ mk_names(){
 
 do_backup(){
   if [[ "$part" == "/" ]]; then
-      _EX=$_excludes
+      _EX="$_excludes $_pexcludes"
       _src_path=$part
   else
       _EX=$_pexcludes
