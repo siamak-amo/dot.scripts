@@ -58,7 +58,7 @@ while test $# -gt 0; do
             _nice_level=$2
             shift 2
             ;;
-        -z | --gzip | --gnuzip)
+        -z | --gzip | --zip | --gnuzip)
             _gzip=1
             shift
             ;;
@@ -123,7 +123,7 @@ mk_names(){
   if [[ "$part" == "/" ]]; then
       _bname="ROOT"
   else
-      _bname="$(echo $part|grep -E '[^\/]*$' -o|tr 'a-z' 'A-Z')"
+      _bname="$(echo $part | grep -E '[^\/]*$' -o | tr 'a-z' 'A-Z')"
   fi
   _fname="$_prefix$_bname$_d.$_ext"
 }
