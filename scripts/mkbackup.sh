@@ -39,7 +39,7 @@ _d=$(date +"-%d-%b-%Y")
 # set it 0 to disable this feature, so content of your backup file
 # will contain the absolute paths like /opt/FILE1 /var/DIR1
 CD=1
-
+_TAR=$(which tar)
 
 
 usage(){
@@ -65,6 +65,36 @@ EOF
 
 set -e
 
+# main
+while test $# -gt 0; do
+    case "$1" in
+        -n | --dry | --dry-run)
+            TAR="echo $_TAR"
+            _dry_run=1
+            shift
+            ;;
+        -p | --pref | --prefix)
+            _prefix="$(echo $2 | sed 's/\/$//g')/"
+            if [[ ! -z "$_prefix" && ! -d $_prefix ]]; then
+                echo "invalid prefix -- No such directory." >&2
+                exit 1
+            fi
+            shift 2
+            ;;
+        -h | --help)
+            usage
+            exit 0
+            ;;
+        *)
+            echo "invalid option -- \'$1\'" >&2
+            echo "Try \'--help\' for more information." >&2
+            exit 1
+            ;;
+    esac
+done
+
+# normalizing
+[[ -z "$TAR" ]] && TAR="$_TAR"
 # check is nice disabled
 [[ -z "$NICEN" ]] && NICE="nice -n$_nice_level" || NICE=""
 #
@@ -72,25 +102,6 @@ if [[ "root" == "$(whoami)" ]]; then
     _TAR="$NICE $(which tar)"
 else
     _TAR="sudo $NICE $(which tar)"
-fi
-# check flags
-# use -n flag to just-print (dry run)
-if [[ $1 = "-n" || $2 = "-n" || $3 = "-n" ]]; then
-  TAR="echo $_TAR"
-  _dry_run=1
-else
-  TAR="$_TAR"
-fi
-# use -p flag to specify backup files path
-[[ $1 = "-p" || $1 = "--prefix" ]] && _prefix="$(echo $2|sed 's/\/$//g')/"
-if [[ ! -z "$_prefix" && ! -d $_prefix ]]; then
-    echo "invalid prefix -- No such directory." >&2
-    exit 1
-fi
-# use -h flag to print help
-if [[ $1 = "-h" || $1 = "--help" ]]; then
-  usage
-  exit 0
 fi
 
 
