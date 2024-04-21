@@ -9,7 +9,7 @@
 # 
 #   Examples:
 #     - to store backups in /mnt
-#     $ mkbackup --prefix /mnt
+#     $ mkbackup -o /mnt
 #     - to run tar commands directly without nice
 #     $ mkbackup --no-nice   OR   $ NICEN=1 mkbackup
 #     - to run with nice -n 16
@@ -23,7 +23,7 @@ mkbackup [OPTIONS]
 OPTIONS:
     -n                        dry run
     -h, --help                prints help
-    -p, --prefix              to specify backup path
+    -o, --prefix              to specify backup path
     -N, --no-nice             to disable nice
     -l, --nice-level          to specify nice -n level
     --parts                   to specify separated backup parts
@@ -41,7 +41,7 @@ while test $# -gt 0; do
             _dry_run=1
             shift
             ;;
-        -p | --pref | --prefix)
+        -o | --pref | --prefix)
             _prefix="$(echo $2 | sed 's/\/$//g')/"
             if [[ ! -z "$_prefix" && ! -d $_prefix ]]; then
                 echo "invalid prefix -- No such directory." >&2
