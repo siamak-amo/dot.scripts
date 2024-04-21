@@ -34,7 +34,7 @@ v2test [OPTIONS] [args.]
 OPTIONS:
     -c, --config             to specify path to config files
     -T, --timeout            to specify testing timeout
-        --prefix             to specify prefix to save output json files
+    -o, --prefix             to specify prefix to save output json files
     -v, --v2ray              to set v2ray client command
     -x, --proxy              for testing config files, should be set to
                              the same address that is used in config,
@@ -61,7 +61,7 @@ while test $# -gt 0; do
                 exit 1
             fi
             shift 2;;
-        --pref | --prefix)
+        -o | --pref | --prefix)
             PREFIX="$2"
             shift 2;;
         -x | --proxy)
