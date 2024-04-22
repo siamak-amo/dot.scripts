@@ -260,7 +260,7 @@ else
         echo "nothing to do -- exiting."
         exit 0
     fi
-    for _path in "$_test_path"; do
+    for _path in $_test_path; do
         if [[ -f "$_path" ]]; then
             test_config_file $_path
         else
