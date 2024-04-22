@@ -8,4 +8,5 @@ Description=Display a message to discharge the laptop's battery
 
 [Service]
 Type=oneshot
+# Environment="DISPLAY=:1" "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus" "XDG_RUNTIME_DIR=/run/user/1000"
 ExecStart=/usr/bin/notify-send -u critical -i /usr/share/icons/Adwaita/symbolic/devices/battery-symbolic.svg "Time to 5%" "<b>Remember</b> to fully discharge your battery <u>once a week</u>."
