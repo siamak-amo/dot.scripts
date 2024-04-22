@@ -262,8 +262,10 @@ else
     fi
     for _path in $_test_path; do
         if [[ -f "$_path" ]]; then
+            [[ 1 == $_verbose ]] && echo " - testing file '$_path':"
             test_config_file $_path
         elif [[ -d "$_path" ]]; then
+            [[ 1 == $_verbose ]] && echo " - testing files in '$_path':"
             for _json_cfg in $(ls -1 $_path/*\.json 2>/dev/null); do
                 test_config_file $_json_cfg
             done
