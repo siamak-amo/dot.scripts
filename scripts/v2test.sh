@@ -263,8 +263,8 @@ else
     for _path in $_test_path; do
         if [[ -f "$_path" ]]; then
             test_config_file $_path
-        else
-            for _json_cfg in $(ls -1 $_path/*\.json); do
+        elif [[ -d "$_path" ]]; then
+            for _json_cfg in $(ls -1 $_path/*\.json 2>/dev/null); do
                 test_config_file $_json_cfg
             done
         fi
