@@ -269,6 +269,8 @@ else
             for _json_cfg in $(ls -1 $_path/*\.json 2>/dev/null); do
                 test_config_file $_json_cfg
             done
+        else
+            echo "cannot use path '$_path' -- ignoring." >&2
         fi
     done
 fi
