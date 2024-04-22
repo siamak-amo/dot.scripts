@@ -83,6 +83,9 @@ while test $# -gt 0; do
         -tn | --no-test | --test-no)
             _no_test=1
             shift;;
+        -v | --ver | --verbose)
+            _verbose=1
+            shift;;
         -t | --test)
             test_api
             echo "Status: $_RES"
@@ -162,7 +165,8 @@ log_result(){
         if [[ 1 == $_test_quiet ]]; then
             echo "$1"
         else
-            echo "$1  --  [IP: $_ip] $_RES"
+            [[ 1 == $_verbose ]] && echo "$1  --  [IP: $_ip] $_RES" \
+                    || echo "$1  --  $_RES"
         fi
     else
         if [[ 1 == $_test_quiet ]]; then
