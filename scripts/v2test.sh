@@ -35,7 +35,7 @@ OPTIONS:
     -c, --config             to specify path to config files
     -T, --timeout            to specify testing timeout
     -o, --prefix             to specify prefix to save output json files
-    -v, --v2ray              to set v2ray client command
+    -V, --v2ray              to set v2ray client command
     -x, --proxy              for testing config files, should be set to
                              the same address that is used in config,
                              in the \`inbounds\` section
@@ -67,7 +67,7 @@ while test $# -gt 0; do
         -x | --proxy)
             HTTP_PROXY="$2"
             shift 2;;
-        -v | -v2 | --v2 | --v2ray)
+        -V | -V2 | -v2 | --v2 | --V2 | --v2ray)
             _V2=$2
             shift 2;;
         -r | --rm)
@@ -83,7 +83,7 @@ while test $# -gt 0; do
         -tn | --no-test | --test-no)
             _no_test=1
             shift;;
-        -v | --ver | --verbose)
+        -v | --ver | --verb | --verbose)
             _verbose=1
             shift;;
         -t | --test)
