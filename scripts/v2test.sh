@@ -240,6 +240,10 @@ test_config_file(){
     else
         run_v2 "$1"
         sleep 0.2s
+        # *Do Not* use `$!` instead of `get_v2_pid`
+        # *Do Not* get pid before `sleep`
+        # for error handling purposes, we need to make sure
+        # that v2 client is still running and hasn't exited
         get_v2_pid
 
         if [[ -z "$V2_PID" ]]; then
