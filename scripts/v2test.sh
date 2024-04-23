@@ -97,6 +97,7 @@ while test $# -gt 0; do
             exit 0;;
         --)
             shift
+            _print_path=1
             _test_path="$_test_path $@"
             break;;
         *)
@@ -105,6 +106,7 @@ while test $# -gt 0; do
                 echo "Try '--help' for more information." >&2
                 exit 1
             else
+                _print_path=1
                 _test_path="$_test_path $1"
                 shift 1
             fi
