@@ -232,6 +232,7 @@ run_v2(){
 # $1 is the file path
 test_config_file(){
     get_v2_pid
+
     if [[ -n "$V2_PID" ]]; then
         echo "$_V2 is Already Running," \
         "first kill the current running $_V2 instance." >&2
@@ -240,6 +241,7 @@ test_config_file(){
         run_v2 "$1"
         sleep 0.2s
         get_v2_pid
+
         if [[ -z "$V2_PID" ]]; then
             _RES="Error"
             log_result "$1"
