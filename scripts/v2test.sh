@@ -175,16 +175,19 @@ mk_ccpath(){
 log_result(){
     if [[ "OK." == "$_RES" ]]; then
         if [[ 1 == $_test_quiet ]]; then
-            echo "$1"
+            [[ 1 == $_print_path ]] && echo "$1"
         else
-            [[ 1 == $_verbose ]] && echo "$1  --  [IP: $_ip] $_RES" \
-                    || echo "$1  --  $_RES"
+            if [[ 1 == $_verbose ]];then
+                echo "$1  --  [IP: $_ip] $_RES"
+            else
+                [[ 1 == $_print_path ]] && echo "$1  --  $_RES"
+            fi
         fi
     else
         if [[ 1 == $_test_quiet ]]; then
             echo "$1  --  $_RES" >&2
         else
-            echo "$1  --  $_RES"
+            [[ 1 == $_print_path ]] && echo "$1  --  $_RES"
         fi
     fi
 }
