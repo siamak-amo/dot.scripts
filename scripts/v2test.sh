@@ -248,7 +248,7 @@ test_config_file(){
         else
             test_api
             log_result "$1"
-            killall $_V2
+            kill $V2_PID
 
             if [[ 1 == $_rm_config_file ]] && \
                    [[ "$_RES" != "OK." ]]; then
