@@ -243,7 +243,7 @@ test_config_file(){
         get_v2_pid
 
         if [[ -z "$V2_PID" ]]; then
-            _RES="Error"
+            _RES="Error."
             log_result "$1"
         else
             test_api
