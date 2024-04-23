@@ -29,10 +29,11 @@
 #
 function usage(){
     cat <<EOF
-v2test [OPTIONS] [args.]
+v2test [OPTIONS] [/path/to/file.json] [/path/to/dir]
+
 
 OPTIONS:
-    -c, --config             to specify path to config files
+    -c, --config [Optional]  to specify path to config files
     -T, --timeout            to specify testing timeout
     -o, --prefix             to specify prefix to save output json files
     -V, --v2ray              to set v2ray client command
