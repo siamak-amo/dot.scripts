@@ -244,10 +244,8 @@ test_config_file(){
             echo "$_V2 Running Failure." >&2
         else
             test_api
+            log_result "$1"
 
-            if [[ 1 == $_print_path ]]; then
-                log_result "$1"
-            fi
             if [[ 1 == $_rm_config_file ]] &&\
                    [[ "$_RES" != "OK." ]]; then
                 rm $1
