@@ -246,12 +246,12 @@ test_config_file(){
         else
             test_api
             log_result "$1"
+            killall $_V2
 
-            if [[ 1 == $_rm_config_file ]] &&\
+            if [[ 1 == $_rm_config_file ]] && \
                    [[ "$_RES" != "OK." ]]; then
                 rm $1
             fi
-            killall $_V2
         fi
     fi
 }
