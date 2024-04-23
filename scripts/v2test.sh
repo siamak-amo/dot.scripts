@@ -241,7 +241,8 @@ test_config_file(){
         sleep 0.2s
         get_v2_pid
         if [[ -z "$V2_PID" ]]; then
-            echo "$_V2 Running Failure." >&2
+            _RES="Error"
+            log_result "$1"
         else
             test_api
             log_result "$1"
