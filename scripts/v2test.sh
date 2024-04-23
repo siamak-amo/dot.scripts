@@ -95,6 +95,10 @@ while test $# -gt 0; do
         -h | --help)
             usage
             exit 0;;
+        --)
+            shift
+            _test_path="$_test_path $@"
+            break;;
         *)
             if [[ "${1:0:1}" == '-' ]]; then
                 echo "invalid option ($1) -- exiting." >&2
