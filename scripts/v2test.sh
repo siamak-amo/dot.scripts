@@ -95,9 +95,14 @@ while test $# -gt 0; do
             usage
             exit 0;;
         *)
-            echo "invalid option ($1) -- exiting." >&2
-            echo "Try '--help' for more information." >&2
-            exit 1;;
+            if [[ "${1:0:1}" == '-' ]]; then
+                echo "invalid option ($1) -- exiting." >&2
+                echo "Try '--help' for more information." >&2
+                exit 1
+            else
+                _test_path="$_test_path $1"
+                shift 1
+            fi
     esac
 done
 
