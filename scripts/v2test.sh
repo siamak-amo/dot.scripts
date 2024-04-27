@@ -47,9 +47,8 @@ OPTIONS:
     -T, --timeout            to specify testing timeout
     -o, --prefix             to specify prefix to save output json files
     -V, --v2ray              to set v2ray client command
-    -x, --proxy              for testing config files, should be set to
-                             the same address that is used in config,
-                             in the \`inbounds\` section
+    -x, --proxy              for testing config files, should be set to the same
+                             address that is used in the \`inbounds\` section
     -k, --keep               to keep generated config files anyway
     -r, --rm                 to delete faulty config files
     -s, --quiet              use stdout only to print working links (quiet)
