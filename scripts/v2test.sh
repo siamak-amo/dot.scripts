@@ -221,7 +221,7 @@ test_links_stdin(){
         if [[ 1 == $_no_test ]]; then
             mk_ccpath "$_ln"
             echo "$_ln" | $MKCONF > $CCPATH
-            return 0
+            continue
         fi
         # create config file and test it
         echo "$_ln" | $MKCONF > $TMP_FILE
