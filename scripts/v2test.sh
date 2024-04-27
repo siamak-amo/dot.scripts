@@ -27,6 +27,16 @@
 #  curl command
 #  v2ray-ng (default) or any other v2ray client (see -v2 option)
 #
+function cleanup {
+    if [[ -n "$V2_PID" ]] && \
+           [[ -n "$(ps h -p $V2_PID -o comm)" ]]; then
+        kill $V2_PID
+        [[ 1 = $_verbose ]] && \
+            echo "cleanup: $V2 child process (PID: $V2_PID) was killed."
+    fi
+}
+trap cleanup EXIT
+
 function usage(){
     cat <<EOF
 v2test [OPTIONS] [/path/to/file.json] [/path/to/dir]
