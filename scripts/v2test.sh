@@ -224,18 +224,21 @@ test_links_stdin(){
         echo " - using '$PREFIX' as the output path"
         _print_path=1
     fi
+
     # read from stdin
     while IFS=$'\n' read -r _ln; do
         # comments
         case "${_ln:0:1}" in
             '#'|' '|''|$'\n'|$'\t'|$'\r') continue;;
         esac
+
         # only create config file without testing
         if [[ 1 == $_no_test ]]; then
             mk_ccpath "$_ln"
             echo "$_ln" | $MKCONF > $CCPATH
             continue
         fi
+
         # create config file and test it
         echo "$_ln" | $MKCONF > $TMP_FILE
         if [[ ! -s "$TMP_FILE" ]]; then
@@ -311,7 +314,6 @@ test_config_file(){
 # main
 #------
 get_v2_pid
-
 if [[ -n "$V2_PID" ]]; then
     echo "$_V2 is Already Running," \
          "first kill the current running $_V2 instance." >&2
