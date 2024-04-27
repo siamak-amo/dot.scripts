@@ -264,7 +264,7 @@ test_config_file(){
             kill $V2_PID
 
             if [[ 1 == $_rm_config_file ]] && \
-                   [[ "$_RES" != "OK." ]]; then
+                   [[ "$_RES" == "Not Working." ]]; then
                 rm $1
             fi
         fi
