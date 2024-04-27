@@ -224,7 +224,9 @@ test_links_stdin(){
     # read from stdin
     while IFS=$'\n' read -r _ln; do
         # comments
-        [[ ${_ln:0:1} == "#" ]] && continue
+        case "${_ln:0:1}" in
+            '#'|' '|''|$'\n'|$'\t'|$'\r') continue;;
+        esac
         # only create config file without testing
         if [[ 1 == $_no_test ]]; then
             mk_ccpath "$_ln"
