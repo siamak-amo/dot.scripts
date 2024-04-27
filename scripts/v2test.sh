@@ -193,10 +193,18 @@ log_result(){
             fi
         fi
     else
-        if [[ 1 == $_test_quiet ]]; then
-            echo "$1  --  $_RES" >&2
+        if [[ 1 == $_verbose ]]; then
+             if [[ 1 == $_test_quiet ]]; then
+                echo "$2 $1  --  $_RES" >&2
+            else
+                [[ 1 == $_print_path ]] && echo "$2 $1  --  $_RES"
+            fi
         else
-            [[ 1 == $_print_path ]] && echo "$1  --  $_RES"
+            if [[ 1 == $_test_quiet ]]; then
+                echo "$1  --  $_RES" >&2
+            else
+                [[ 1 == $_print_path ]] && echo "$1  --  $_RES"
+            fi
         fi
     fi
 }
@@ -265,10 +273,10 @@ test_config_file(){
         if [[ 1 == $_rm_config_file ]] && \
                [[ "$_RES" == "Not Working." || "$_RES" == "Error." ]]; then
             rm $1
-            [[ 1 == $_verbose ]] && echo -n "[removed] "
+            log_result "$1" "[removed]"
+        else
+            log_result "$1"
         fi
-
-        log_result "$1"
     fi
 }
 
