@@ -272,14 +272,6 @@ run_v2(){
 
 # $1 is the file path
 test_config_file__H(){
-    get_v2_pid
-
-    if [[ -n "$V2_PID" ]]; then
-        echo "$_V2 is Already Running," \
-        "first kill the current running $_V2 instance." >&2
-        exit 1
-    fi
-
     run_v2 "$1"
     sleep 0.2s
     # *Do Not* use `$!` instead of `get_v2_pid`
@@ -318,6 +310,14 @@ test_config_file(){
 #------
 # main
 #------
+get_v2_pid
+
+if [[ -n "$V2_PID" ]]; then
+    echo "$_V2 is Already Running," \
+         "first kill the current running $_V2 instance." >&2
+    exit 1
+fi
+
 if [[ -z "$_test_path" ]]; then  # use stdin
     test_links_stdin
 else
