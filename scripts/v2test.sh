@@ -257,18 +257,18 @@ test_config_file(){
 
         if [[ -z "$V2_PID" ]]; then
             _RES="Error."
-            log_result "$1"
         else
             test_api
             kill $V2_PID
-
-            if [[ 1 == $_rm_config_file ]] && \
-                   [[ "$_RES" == "Not Working." ]]; then
-                rm $1
-                [[ 1 == $_verbose ]] && echo -n "[removed] "
-            fi
-            log_result "$1"
         fi
+
+        if [[ 1 == $_rm_config_file ]] && \
+               [[ "$_RES" == "Not Working." || "$_RES" == "Error." ]]; then
+            rm $1
+            [[ 1 == $_verbose ]] && echo -n "[removed] "
+        fi
+
+        log_result "$1"
     fi
 }
 
