@@ -257,7 +257,8 @@ normalize_kv(){
             printf "Warning -- unrecognized key '%s' was ignored.\n" $_key >&2
             ;;
     esac
-    # remove comments (_val = `xxx=@comment@...` -> `xxx`) observed in some links
+    # the pattern _val=`xxx=@comment0...` has been observed
+    # in some cases, that should be eliminated
     _val=${_val%%=*}
 }
 
