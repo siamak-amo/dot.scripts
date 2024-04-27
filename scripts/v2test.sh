@@ -220,7 +220,10 @@ test_links_stdin(){
         echo "'$PREFIX': No such file or directory." >&2
         exit 1
     fi
-    [[ 1 == $_verbose ]] && echo " - using '$PREFIX' as the output path"
+    if [[ 1 == $_verbose ]]; then
+        echo " - using '$PREFIX' as the output path"
+        _print_path=1
+    fi
     # read from stdin
     while IFS=$'\n' read -r _ln; do
         # comments
