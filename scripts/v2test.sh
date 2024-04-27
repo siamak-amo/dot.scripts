@@ -260,13 +260,14 @@ test_config_file(){
             log_result "$1"
         else
             test_api
-            log_result "$1"
             kill $V2_PID
 
             if [[ 1 == $_rm_config_file ]] && \
                    [[ "$_RES" == "Not Working." ]]; then
                 rm $1
+                [[ 1 == $_verbose ]] && echo -n "[removed] "
             fi
+            log_result "$1"
         fi
     fi
 }
