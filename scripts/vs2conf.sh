@@ -258,7 +258,7 @@ normalize_kv(){
             ;;
     esac
     # remove comments (_val = `xxx=@comment@...` -> `xxx`) observed in some links
-    _val=${_val%=*}
+    _val=${_val%%=*}
 }
 
 # parse the URL_TSV and export V2CONF_xxx variables
