@@ -245,7 +245,7 @@ test_links_stdin(){
             echo "Config File Was not Created." >&2
         else
             test_config_file__H "$TMP_FILE"
-            log_result "$_ln"
+            log_result "$_ln" "  "
             
             if [[ 1 != $_rm_config_file ]] && \
                    [[ 1 == $_keep_config_file || "OK." == "$_RES" ]]
