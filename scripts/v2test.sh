@@ -271,42 +271,46 @@ run_v2(){
 }
 
 # $1 is the file path
-test_config_file(){
+test_config_file__H(){
     get_v2_pid
 
     if [[ -n "$V2_PID" ]]; then
         echo "$_V2 is Already Running," \
         "first kill the current running $_V2 instance." >&2
         exit 1
+    fi
+
+    run_v2 "$1"
+    sleep 0.2s
+    # *Do Not* use `$!` instead of `get_v2_pid`
+    # *Do Not* get the pid before the `sleep` command
+    # for error handling purposes, we need to make sure
+    # that v2 client is still running and hasn't exited
+    get_v2_pid
+
+    if [[ -z "$V2_PID" ]]; then
+        _RES="Error."
     else
-        run_v2 "$1"
-        sleep 0.2s
-        # *Do Not* use `$!` instead of `get_v2_pid`
-        # *Do Not* get the pid before the `sleep` command
-        # for error handling purposes, we need to make sure
-        # that v2 client is still running and hasn't exited
-        get_v2_pid
+        test_api
+        kill $V2_PID
+    fi
+}
 
-        if [[ -z "$V2_PID" ]]; then
-            _RES="Error."
-        else
-            test_api
-            kill $V2_PID
-        fi
+test_config_file(){
+    test_config_file__H "$1"
 
-        if [[ 1 == $_rm_config_file ]]; then
-            if [[ "$_RES" == "Not Working." || "$_RES" == "Error." ]]; then
-                rm $1
-                log_result "$1" "rm"
-            else
-                log_result "$1" "  "
-            fi
-        elif [[ 1 == $_ext_rm_config_file ]]; then
+    if [[ 1 == $_rm_config_file ]]; then
+        if [[ "$_RES" == "Not Working." || "$_RES" == "Error." ]]; then
             rm $1
             log_result "$1" "rm"
         else
-            log_result "$1"
+            log_result "$1" "  "
         fi
+    elif [[ 1 == $_ext_rm_config_file ]]; then
+        rm $1
+        log_result "$1" "rm"
+    else
+        log_result "$1"
     fi
 }
 
