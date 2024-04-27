@@ -271,10 +271,13 @@ test_config_file(){
             kill $V2_PID
         fi
 
-        if [[ 1 == $_rm_config_file ]] && \
-               [[ "$_RES" == "Not Working." || "$_RES" == "Error." ]]; then
-            rm $1
-            log_result "$1" "[removed]"
+        if [[ 1 == $_rm_config_file ]]; then
+            if [[ "$_RES" == "Not Working." || "$_RES" == "Error." ]]; then
+                rm $1
+                log_result "$1" "rm"
+            else
+                log_result "$1" "  "
+            fi
         else
             log_result "$1"
         fi
