@@ -217,6 +217,8 @@ log_result(){
 test_links_stdin(){
     [[ 1 == $_verbose ]] && echo " - using $PREFIX as the output path"
     while IFS=$'\n' read -r _ln; do
+        # comments
+        [[ ${_ln:0:1} == "#" ]] && continue
         # only create config file without testing
         if [[ 1 == $_no_test ]]; then
             mk_ccpath "$_ln"
