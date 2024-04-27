@@ -282,6 +282,9 @@ test_config_file(){
             else
                 log_result "$1" "  "
             fi
+        elif [[ 1 == $_ext_rm_config_file ]]; then
+            rm $1
+            log_result "$1" "rm"
         else
             log_result "$1"
         fi
