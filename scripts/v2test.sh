@@ -217,8 +217,14 @@ log_result(){
 test_links_stdin(){
     [[ 1 == $_verbose ]] && echo " - using $PREFIX as the output path"
     while IFS=$'\n' read -r _ln; do
+        # only create config file without testing
+        if [[ 1 == $_no_test ]]; then
+            mk_ccpath "$_ln"
+            echo "$_ln" | $MKCONF > $CCPATH
+            return 0
+        fi
+        # create config file and test it
         echo "$_ln" | $MKCONF > $TMP_FILE
-        
         if [[ ! -s "$TMP_FILE" ]]; then
             echo "Config File Was not Created." >&2
         else
@@ -296,14 +302,7 @@ test_config_file(){
 # main
 #------
 if [[ -z "$_test_path" ]]; then  # use stdin
-    if [[ 1 == $_no_test ]]; then
-        while IFS=$'\n' read -r _ln; do
-            mk_ccpath "$_ln"
-            echo "$_ln" | $MKCONF > $CCPATH
-        done
-    else
-        test_links_stdin
-    fi
+    test_links_stdin
 else
     if [[ 1 == $_no_test ]]; then
         echo "nothing to do -- exiting."
