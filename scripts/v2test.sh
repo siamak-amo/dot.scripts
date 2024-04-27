@@ -215,7 +215,13 @@ log_result(){
 }
 
 test_links_stdin(){
-    [[ 1 == $_verbose ]] && echo " - using $PREFIX as the output path"
+    # check path exists
+    if [[ -n "$PREFIX" && ! -s "$PREFIX" ]]; then
+        echo "'$PREFIX': No such file or directory." >&2
+        exit 1
+    fi
+    [[ 1 == $_verbose ]] && echo " - using '$PREFIX' as the output path"
+    # read from stdin
     while IFS=$'\n' read -r _ln; do
         # comments
         [[ ${_ln:0:1} == "#" ]] && continue
