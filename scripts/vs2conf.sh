@@ -249,7 +249,8 @@ normalize_kv(){
         "path"|"spx")
             _key="path"
             ;;
-        ""|"port"|"scheme"|"fragment"|"serviceName"|"mode"|"flow"|"headerType"|"v"|"ps"|"tls")
+        ""|"port"|"scheme"|"fragment"|"serviceName"|"mode"|"flow"|\
+            "headerType"|"v"|"ps"|"tls")
             ;;
         *)
             # _key won't affect the final result
