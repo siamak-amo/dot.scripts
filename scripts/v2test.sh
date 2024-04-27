@@ -205,7 +205,6 @@ log_result(){
 test_links_stdin(){
     [[ 1 == $_verbose ]] && echo " - using $PREFIX as the output path"
     while IFS=$'\n' read -r _ln; do
-        mk_ccpath "$_ln"
         echo "$_ln" | $MKCONF > $TMP_FILE
         
         if [[ ! -s "$TMP_FILE" ]]; then
@@ -217,6 +216,7 @@ test_links_stdin(){
             if [[ 1 != $_rm_config_file ]] && \
                    [[ 1 == $_keep_config_file || "OK." == "$_RES" ]]
             then
+                mk_ccpath "$_ln"
                 cp "$TMP_FILE" "$CCPATH"
                 [[ 1 == $_verbose ]] && echo "$CCPATH was created."
                 unset CCPATH
