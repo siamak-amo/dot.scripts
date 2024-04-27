@@ -51,6 +51,7 @@ OPTIONS:
                              address that is used in the \`inbounds\` section
     -k, --keep               to keep generated config files anyway
     -r, --rm                 to delete faulty config files
+    -R, --extra-rm           to also delete not responding config files
     -s, --quiet              use stdout only to print working links (quiet)
     -t, --test               to only test the HTTP_PROXY itself
    -tn, --no-test            create config files and ignore testing them
@@ -82,6 +83,9 @@ while test $# -gt 0; do
             shift 2;;
         -r | --rm)
             _rm_config_file=1
+            shift;;
+        -R | --extra-rm)
+            _ext_rm_config_file=1
             shift;;
         -k | -ko | --keep | --keep-config)
             _keep_config_file=1
