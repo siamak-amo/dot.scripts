@@ -181,6 +181,7 @@ mk_ccpath(){
 }
 
 # $1 must be the link `URL` or config file path
+# $2 used for log prefix only in verbose mode
 log_result(){
     if [[ "OK." == "$_RES" ]]; then
         if [[ 1 == $_test_quiet ]]; then
@@ -194,16 +195,16 @@ log_result(){
         fi
     else
         if [[ 1 == $_verbose ]]; then
-             if [[ 1 == $_test_quiet ]]; then
+            if [[ 1 == $_test_quiet ]]; then
                 echo "$2 $1  --  $_RES" >&2
-            else
-                [[ 1 == $_print_path ]] && echo "$2 $1  --  $_RES"
+            elif [[ 1 == $_print_path ]]; then
+                echo "$2 $1  --  $_RES"
             fi
         else
             if [[ 1 == $_test_quiet ]]; then
                 echo "$1  --  $_RES" >&2
-            else
-                [[ 1 == $_print_path ]] && echo "$1  --  $_RES"
+            elif [[ 1 == $_print_path ]]; then
+                echo "$1  --  $_RES"
             fi
         fi
     fi
@@ -258,7 +259,7 @@ test_config_file(){
         run_v2 "$1"
         sleep 0.2s
         # *Do Not* use `$!` instead of `get_v2_pid`
-        # *Do Not* get pid before `sleep`
+        # *Do Not* get the pid before the `sleep` command
         # for error handling purposes, we need to make sure
         # that v2 client is still running and hasn't exited
         get_v2_pid
