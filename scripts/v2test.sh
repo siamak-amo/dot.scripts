@@ -195,6 +195,7 @@ log_result(){
 
 # if $1 is set, will keep generated json config files
 test_links_stdin(){
+    [[ 1 == $_verbose ]] && echo " - using $PREFIX as the output path"
     while IFS=$'\n' read -r _ln; do
         mk_ccpath "$_ln"
         echo "$_ln" | $MKCONF > $TMP_FILE
@@ -209,6 +210,7 @@ test_links_stdin(){
                    [[ 1 == $_keep_config_file || "OK." == "$_RES" ]]
             then
                 cp "$TMP_FILE" "$CCPATH"
+                [[ 1 == $_verbose ]] && echo "$CCPATH was created."
                 unset CCPATH
             fi
         fi
