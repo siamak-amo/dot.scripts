@@ -101,10 +101,8 @@ while test $# -gt 0; do
             _verbose=1
             shift;;
         -t | --test)
-            test_api
-            echo "Status: $_RES"
-            [[ "OK." == "$_RES" ]] && echo "IP: $_ip"
-            exit 0;;
+            _only_test_api=1
+            shift;;
         -h | --help)
             usage
             exit 0;;
@@ -313,6 +311,13 @@ test_config_file(){
 #------
 # main
 #------
+if [[ 1 = $_only_test_api ]]; then
+    test_api
+    echo "Status: $_RES"
+    [[ "OK." == "$_RES" ]] && echo "IP: $_ip"
+    exit 0
+fi
+
 get_v2_pid
 if [[ -n "$V2_PID" ]]; then
     echo "$_V2 is Already Running," \
