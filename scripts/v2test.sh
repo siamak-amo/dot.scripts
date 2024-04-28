@@ -234,6 +234,7 @@ test_links_stdin(){
         if [[ 1 == $_no_test ]]; then
             mk_ccpath "$_ln"
             echo "$_ln" | $MKCONF > $CCPATH
+            [[ 1 == $_verbose ]] && echo "$CCPATH was created."
             continue
         fi
 
