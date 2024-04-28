@@ -201,9 +201,9 @@ log_result(){
             [[ 1 == $_print_path ]] && echo "$1"
         else
             if [[ 1 == $_verbose ]];then
-            else
-                [[ 1 == $_print_path ]] && echo "$1  --  $_RES"
                 echo "$2 $1  --  [IP: $_ip] $_RES"
+            elif [[ 1 == $_print_path ]]; then
+                echo "$1  --  $_RES"
             fi
         fi
     else
