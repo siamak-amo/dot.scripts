@@ -49,6 +49,9 @@ OPTIONS:
     -V, --v2ray              to set v2ray client command
     -x, --proxy              for testing config files, should be set to the same
                              address that is used in the \`inbounds\` section
+    -g, --rule               to add routing rules (Ex. -g geoip:ir)
+                             corresponding file (geoio.dat) should be available
+                             in the root of your v2ray client program
     -k, --keep               to keep generated config files anyway
     -r, --rm                 to delete faulty config files
     -R, --extra-rm           to also delete not responding config files
