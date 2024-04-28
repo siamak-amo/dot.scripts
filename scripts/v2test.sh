@@ -273,6 +273,21 @@ get_v2_pid(){
     V2_PID=$(ps h -C $_V2 -o pid | grep "[0-9]*" -o)
 }
 
+# wait for v2ray's HTTP proxy to response
+wait_for_v2(){
+    # max retry (10*0.3 = 3s)
+    retry=$((10))
+    while [[ 0 -le $retry ]]; do
+        # break the loop if HTTP_PROXY is listening
+        (exec 7<>/dev/tcp/${HTTP_PROXY/://}) 2>/dev/null && break
+        retry=$(( $retry - 1 ))
+        sleep 0.3s
+    done
+    # close fd 7
+    exec 7>&-
+    exec 7<&-
+}
+
 # $1 is the config.json path
 run_v2(){
     case "$_V2" in
@@ -286,7 +301,7 @@ run_v2(){
 # $1 is the file path
 test_config_file__H(){
     run_v2 "$1"
-    sleep 0.2s
+    wait_for_v2
     # *Do Not* use `$!` instead of `get_v2_pid`
     # *Do Not* get the pid before the `sleep` command
     # for error handling purposes, we need to make sure
