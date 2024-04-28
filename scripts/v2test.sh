@@ -30,7 +30,7 @@
 function cleanup {
     if [[ -n "$V2_PID" ]] && \
            [[ -n "$(ps h -p $V2_PID -o comm)" ]]; then
-        kill $V2_PID
+        kill $V2_PID 2>/dev/null
         [[ 1 = $_verbose ]] && \
             echo "cleanup: $V2 child process (PID: $V2_PID) was killed."
     fi
