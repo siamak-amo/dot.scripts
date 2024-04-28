@@ -81,6 +81,14 @@ while test $# -gt 0; do
         -V | -V2 | -v2 | --v2 | --V2 | --v2ray)
             _V2=$2
             shift 2;;
+        -g | --g | --geo | --rule | --geo-rule)
+            # vs2conf script uses _v2_rules_ip variable
+            if [[ -z "$_v2_rules_ip" ]]; then
+                export _v2_rules_ip="\"$2\""
+            else
+                export _v2_rules_ip="$_v2_rules_ip, \"$2\""
+            fi
+            shift 2;;
         -r | --rm)
             _rm_config_file=1
             shift;;
