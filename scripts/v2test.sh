@@ -303,7 +303,7 @@ test_config_file__H(){
     run_v2 "$1"
     wait_for_v2
     # *Do Not* use `$!` instead of `get_v2_pid`
-    # *Do Not* get the pid before the `sleep` command
+    # *Do Not* get the pid before the `wait_for_v2` function
     # for error handling purposes, we need to make sure
     # that v2 client is still running and hasn't exited
     get_v2_pid
