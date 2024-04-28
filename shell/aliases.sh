@@ -28,3 +28,7 @@ alias ffmeta='function _ffmeta(){ ffmpeg -i $1 -map_metadata -1 -c:v copy -c:a c
 # to convert to voice, usage: ffogg file.webm     -> output: file.ogg
 #                             ffogg file.webm mkv -> output: file.mkv
 alias ffogg='function _ffogg(){ ffmpeg -i $1 -vn ${1%.*}$([ -z "$2" ] && echo ".ogg" || echo ".$2") }; _ffogg'
+
+##### PS #####
+alias psm='ps -A --format=pid,pcpu,pmem,comm --sort=-pmem,-pcpu | head'
+alias pss='ps -A --format=pid,pcpu,pmem,comm --sort=-pcpu,-pmem | head'
