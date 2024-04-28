@@ -23,10 +23,12 @@ alias gsh="git push"
 alias gll="git pull"
 
 ##### FFmpeg #####
-# to eliminate metadata, usage: ffmeta file.ogg out.ogg
+# to eliminate metadata
+#  usage: ffmeta file.ogg out.ogg
 alias ffmeta='function _ffmeta(){ ffmpeg -i $1 -map_metadata -1 -c:v copy -c:a copy $2 }; _ffmeta'
-# to convert to voice, usage: ffogg file.webm     -> output: file.ogg
-#                             ffogg file.webm mkv -> output: file.mkv
+# voice conversion (no video)
+#  usage: ffogg file.mp3      -> output: file.ogg
+#         ffogg file.mp3 webm -> output: file.webm
 alias ffogg='function _ffogg(){ ffmpeg -i $1 -vn ${1%.*}$([ -z "$2" ] && echo ".ogg" || echo ".$2") }; _ffogg'
 
 ##### PS #####
