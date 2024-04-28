@@ -169,7 +169,18 @@ EOF2
         "outboundTag": "proxy",
         "port": "53",
         "type": "field"
+      }\
+$(if [[ -n "$_v2_rules_ip" ]]; then cat <<EOF2
+,
+      {
+        "outboundTag": "direct",
+        "ip": [
+          $_v2_rules_ip
+        ],
+        "type": "field"
       }
+EOF2
+        fi)
     ]
   }
 }
