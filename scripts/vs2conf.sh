@@ -9,6 +9,8 @@
 #
 #  Usage:    v2config [URL]  (or use stdin)
 #
+#  - set _v2_rules_ip='A:B' to add rules to the `routing` section
+#    Ex. _v2_rules_ip='"geoip:private", "..."'
 #
 # edit the template below (in the flush_json_config function)
 #  to make your desired configuration.
