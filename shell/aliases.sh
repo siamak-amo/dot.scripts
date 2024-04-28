@@ -19,8 +19,8 @@ alias gaa="git add -a"
 alias gc="git commit"
 alias gcm="git commit -m"
 alias gcl="git clone"
-alias gpush="git push"
-alias gpull="git pull"
+alias gsh="git push"
+alias gll="git pull"
 
 ##### FFmpeg #####
 # to eliminate metadata, usage: ffmeta file.ogg out.ogg
