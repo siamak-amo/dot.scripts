@@ -16,6 +16,18 @@ TMP_PART_FILE="/tmp/bash_cc.part"
 MAX_PART=10
 TIMEOUT="timeout 10s"
 
+while test $# -gt 0; do
+    case $1 in
+        -v | --ver | --verb | --verbos | --verbose)
+            _verbose=1
+            shift;;
+        -x | --proxy | --http-proxy)
+            HTTP_PROXY="$2"
+            shift 2;;
+    esac
+done
+
+# normalize
 [[ -z "$HTTP_PROXY" ]] && CURL="$TIMEOUT $(which curl) -sk" \
         || CURL="$TIMEOUT $(which curl) -sk --proxy $HTTP_PROXY"
 
