@@ -23,6 +23,7 @@ alias gsh="git push"
 alias gll="git pull"
 
 ##### FFmpeg #####
+# ** to call these aliases in loops, always use `do; ...; done` format **
 # to eliminate metadata
 #  usage: ffmeta file.ogg out.ogg
 alias ffmeta='function _ffmeta(){ ffmpeg -i $1 -map_metadata -1 -c:v copy $2 }; _ffmeta'
