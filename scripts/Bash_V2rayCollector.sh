@@ -32,6 +32,9 @@ while test $# -gt 0; do
         -x | --proxy | --http-proxy)
             HTTP_PROXY="$2"
             shift 2;;
+        -a | --append)
+            _append=1
+            shift;;
         --)
             shift
             _CHAN="$@"
