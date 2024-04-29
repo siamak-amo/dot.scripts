@@ -54,9 +54,6 @@ while test $# -gt 0; do
     esac
 done
 
-# normalize
-[[ -z "$HTTP_PROXY" ]] && CURL="$TIMEOUT $(which curl) -sk" \
-        || CURL="$TIMEOUT $(which curl) -sk --proxy $HTTP_PROXY"
 
 CHANNELS="\
 https://t.me/s/Awlix_ir
@@ -141,6 +138,13 @@ https://t.me/s/vpn_proxy_custom
 https://t.me/s/WeePeeN
 https://t.me/s/YtTe3la"
 
+# normalize
+if [[ -z "$HTTP_PROXY" ]]; then
+    CURL="$TIMEOUT $(which curl) -sk"
+else
+    CURL="$TIMEOUT $(which curl) -sk --proxy $HTTP_PROXY"
+fi
+
 if [[ -n "$_CHAN" ]]; then
     if [[ 1 == $_append ]]; then
         CHANNELS="$CHANNELS $_CHAN"
@@ -153,7 +157,7 @@ for _ln in $CHANNELS; do
     truncate -s 0 $TMP_FILE
 
     [[ 1 == $_verbose ]] && echo -n "downloading channel @${_ln##*/} ..."  >&2
-    echo $CURL $_ln -o $TMP_FILE
+    $CURL $_ln -o $TMP_FILE
     [[ 1 == $_verbose ]] && echo "done" >&2
 
     if [[ ! "$?" == "0" ]]; then
