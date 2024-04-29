@@ -24,6 +24,20 @@ while test $# -gt 0; do
         -x | --proxy | --http-proxy)
             HTTP_PROXY="$2"
             shift 2;;
+        --)
+            shift
+            _CHAN="$@"
+            ;;
+        -c | --chan | --channel)
+            normalize_telchan $2
+
+            _CHAN="$_CHAN $_chan_href"
+            shift 2;;
+        *)
+            normalize_telchan $1
+
+            _CHAN="$_CHAN $_chan_href"
+            shift;;
     esac
 done
 
@@ -114,12 +128,19 @@ https://t.me/s/vpn_proxy_custom
 https://t.me/s/WeePeeN
 https://t.me/s/YtTe3la"
 
+if [[ -n "$_CHAN" ]]; then
+    if [[ 1 == $_append ]]; then
+        CHANNELS="$CHANNELS $_CHAN"
+    else
+        CHANNELS="$_CHAN"
+    fi
+fi
 
 for _ln in $CHANNELS; do
     truncate -s 0 $TMP_FILE
 
     [[ 1 == $_verbose ]] && echo -n "downloading channel @${_ln##*/} ..."  >&2
-    $CURL $_ln -o $TMP_FILE
+    echo $CURL $_ln -o $TMP_FILE
     [[ 1 == $_verbose ]] && echo "done" >&2
 
     if [[ ! "$?" == "0" ]]; then
