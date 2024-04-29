@@ -25,7 +25,7 @@ alias gll="git pull"
 ##### FFmpeg #####
 # to eliminate metadata
 #  usage: ffmeta file.ogg out.ogg
-alias ffmeta='function _ffmeta(){ ffmpeg -i $1 -map_metadata -1 -c:v copy -c:a copy $2 }; _ffmeta'
+alias ffmeta='function _ffmeta(){ ffmpeg -i $1 -map_metadata -1 -c:v copy $2 }; _ffmeta'
 # voice conversion (no video)
 #  usage: ffogg file.mp3      -> output: file.ogg
 #         ffogg file.mp3 webm -> output: file.webm
