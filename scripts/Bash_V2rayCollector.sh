@@ -16,6 +16,21 @@ TMP_PART_FILE="/tmp/bash_cc.part"
 MAX_PART=10
 TIMEOUT="timeout 10s"
 
+usage(){
+    cat <<EOF
+Bash_V2rayCollector [OPTIONS] [telegram channels]
+
+OPTIONS:
+        -v, --verbose                   verbose mode
+        -x, --proxy                     to set the HTTP_PROXY variable
+        -c, --channel (OPTIONAL)        to pass a telegram channel name or link
+                                        link format: https://t.me/s/xxx
+                                        name format: @xxx
+        -a, --appned                    to append channels passed by '-c' to the
+                                        default channel list and not to override it
+EOF
+}
+
 normalize_telchan(){
     if [[ "${1:0:1}" == '@' ]]; then
         _chan_href=$(echo "https://t.me/s/${1:1}")
@@ -28,6 +43,9 @@ normalize_telchan(){
 
 while test $# -gt 0; do
     case $1 in
+        -h | --help)
+            usage
+            exit 0;;
         -v | --ver | --verb | --verbos | --verbose)
             _verbose=1
             shift;;
