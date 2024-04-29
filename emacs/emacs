@@ -423,7 +423,7 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
 
-;;; setup backup files path to the ~/.emacs.saves and /tmp/emacs
+;;; setup backup path to ~/.emacs.saves and /tmp/emacs
 (setq backup-by-copying t)
 (setq backup-directory-alist
       `(("." . "~/.emacs.saves")))
