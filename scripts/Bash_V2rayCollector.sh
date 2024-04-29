@@ -16,6 +16,14 @@ TMP_PART_FILE="/tmp/bash_cc.part"
 MAX_PART=10
 TIMEOUT="timeout 10s"
 
+normalize_telchan(){
+    if [[ "${1:0:1}" == '@' ]]; then
+        _chan_href=$(echo "https://t.me/s/${1:1}")
+    else
+        _chan_href=$(echo $1)
+    fi
+}
+
 while test $# -gt 0; do
     case $1 in
         -v | --ver | --verb | --verbos | --verbose)
