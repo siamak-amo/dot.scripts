@@ -32,7 +32,7 @@ alias ffmeta='function _ffmeta(){ ffmpeg -i $1 -map_metadata -1 -c:v copy $2 }; 
 #         ffogg file.mp3 webm -> output: file.webm
 alias ffogg='function _ffogg(){ ffmpeg -i $1 -vn ${1%.*}$([ -z "$2" ] && echo ".ogg" || echo ".$2") }; _ffogg'
 # make the input audio file free! (metadata elimination and converting to ogg format)
-#  usage:  fffree file.mp3    -> output: file.ogg
+#  usage: fffree file.mp3     -> output: file.ogg
 alias fffree='function _fffree(){_p="/tmp/FF_FREE_OUT.${1##*.}" && ffmeta "$1" "$_p" && ffogg "$_p" && rm -f "$_p" && mv "/tmp/FF_FREE_OUT.ogg" "${1%.*}.ogg"}; _fffree'
 
 ##### PS #####
