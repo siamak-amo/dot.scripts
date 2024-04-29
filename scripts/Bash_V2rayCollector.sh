@@ -165,7 +165,7 @@ fi
 
 if [[ -n "$_CHAN" ]]; then
     if [[ 1 == $_append ]]; then
-        CHANNELS="$CHANNELS $_CHAN"
+        CHANNELS="$_CHAN $CHANNELS"
     else
         CHANNELS="$_CHAN"
     fi
