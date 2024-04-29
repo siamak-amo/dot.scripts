@@ -19,8 +19,10 @@ TIMEOUT="timeout 10s"
 normalize_telchan(){
     if [[ "${1:0:1}" == '@' ]]; then
         _chan_href=$(echo "https://t.me/s/${1:1}")
-    else
+    elif [[ "${1:0:15}" == "https://t.me/s/" ]]; then
         _chan_href=$(echo $1)
+    else
+        _chan_href="" # ignore it
     fi
 }
 
