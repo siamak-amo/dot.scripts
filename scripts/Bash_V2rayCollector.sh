@@ -117,8 +117,11 @@ https://t.me/s/YtTe3la"
 
 for _ln in $CHANNELS; do
     truncate -s 0 $TMP_FILE
-    $CURL $_ln -o $TMP_FILE 2>&2
-    
+
+    [[ 1 == $_verbose ]] && echo -n "downloading channel @${_ln##*/} ..."  >&2
+    $CURL $_ln -o $TMP_FILE
+    [[ 1 == $_verbose ]] && echo "done" >&2
+
     if [[ ! "$?" == "0" ]]; then
         echo "Error -- Could not download $_ln" >&2
     else
