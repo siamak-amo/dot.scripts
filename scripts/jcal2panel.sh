@@ -32,5 +32,5 @@ case $MODE in
         printf "%s  [%s]  " "$_j" "$_d"
         ;;
     *)
-        printf "???";;
+        printf "Not Implemented.\n" >&2;;
 esac
