@@ -304,7 +304,38 @@
 (use-package org-present
   :ensure t
   :config
-  (require 'org-present))
+  (require 'org-present)
+  (eval-after-load "org-present"
+    '(progn
+       (add-hook 'org-present-mode-hook
+                 (lambda ()  ;; setting
+                   (org-present-big)
+                   (display-line-numbers-mode -1)
+                   (org-display-inline-images)
+                   (org-present-hide-cursor)
+                   (visual-line-mode 1)
+                   (setq-local face-remapping-alist
+                               '((default (:height 1.5) variable-pitch)
+                                 (header-line (:height 4.0) variable-pitch)
+                                 (org-document-title (:height 1.75) org-document-title)
+                                 (org-code (:height 1.55) org-code)
+                                 (org-verbatim (:height 1.55) org-verbatim)
+                                 (org-block (:height 1.25) org-block)
+                                 (org-block-begin-line (:height 0.7) org-block)))
+                   (let* ((max-text-width 110)
+                          (margin (max 0 (/ (- (window-width) max-text-width) 2))))
+                     (set-window-margins nil margin margin))))
+       (add-hook 'org-present-mode-quit-hook
+                 (lambda ()  ;; resetting
+                   (set-window-margins nil 0 0)
+                   (org-present-small)
+                   (display-line-numbers-mode 1)
+                   (org-remove-inline-images)
+                   (org-present-show-cursor)
+                   (setq-local face-remapping-alist '((default variable-pitch default)))
+                   (visual-line-mode 0)))))
+  :bind (("C-c p" . org-present-prev)
+         ("C-c n" . org-present-next)))
 ;;; mpd client
 (use-package mpdel
   :ensure t
