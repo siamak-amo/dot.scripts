@@ -6,8 +6,17 @@
 #   - MODE 0:  [۳۱ خرداد]
 #   - MODE 1:  چهارشنبه ۳۱ خرداد  [21 Jun]
 #
+while test $# -gt 0; do
+    case "$1" in
+        -m | --mod | --mode)
+            MODE=$2
+            shift 2;;
+        *)
+            exit 1
+    esac
+done
+
 [ -z "$MODE" ] && MODE=0
-#
 JDATE=$(which jdate)
 DATE=$(which date)
 
