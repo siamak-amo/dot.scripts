@@ -69,8 +69,8 @@ function mk_dl_links(){
                  grep "videoSourceUrl.*" -o | cut -d\" -f3)
 
     if [ -z $_vsurl ]; then
-        printf "Error, videoSourceUrl does not exist.\n" >&2
-        exit 1
+        echo "Error, videoSourceUrl does not exist." >&2
+        return 1
     fi
 
     _dl_links=$($CURL --compressed $_vsurl \
