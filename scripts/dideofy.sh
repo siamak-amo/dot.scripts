@@ -109,9 +109,8 @@ function mk_auto_dideo(){
         if [ -n $_c ]; then
              _dideo_url="https://dideo.tv/ch/yt/$_c"
         else
-            printf "\nError, invalid url,\n"                                  >&2
-            printf "give only a youtube video or playlist or channel link.\n" >&2
-            exit 2
+            echo "invalid link." >&2
+            return 1
         fi
     fi
 }
@@ -121,12 +120,8 @@ function mk_auto_dideo(){
 function mk_dideo_url(){
     
     if [ -z $_v ]; then
-        printf "\nError, your url doesn't contain a watch id,    \n" >&2
-        printf "?v=xxxxxxxxxxx  pattern was not found in the url.\n" >&2
-        printf "if it's a playlist link, use -l option.          \n" >&2
-        exit 1
-    else
-        _dideo_url="https://dideo.ir/v/yt/$_v"
+        echo "Error, your url doesn't contain a watch ID (?v=xxx)" >&2
+        return 2
     fi
 }
 
@@ -135,9 +130,8 @@ function mk_dideo_url(){
 function mk_list(){
 
     if [ -z $_l ]; then
-        printf "\nError, your url doesn't contain a list parameter,\n" >&2
-        printf "?list=xxx pattern was not found in the url.        \n" >&2
-        exit 1
+        echo "Error, your url doesn't contain a list parameter (?list=xxx)" >&2
+        return 2
     else
         _dideo_url="https://dideo.ir/v/yt?list=$_l"
     fi
