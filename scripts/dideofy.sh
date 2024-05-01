@@ -11,9 +11,8 @@
 TRURL=$(which trurl)
 CURL="$(which curl) -s"
 
-
-if [ -z $1 ] || [ $1 = "-h" -o $1 = "--help" ]; then
-    cat << EOF
+usage(){
+    cat <<EOF
 usage: dideofy [URL] [OPTIONS]
 dideofy makes dideo.ir links from youtube.com URL's
 
@@ -27,8 +26,38 @@ OPTIONS:
         -l, --playlist      use this option if URL is a
                             youtube playlist link
 EOF
-    exit 0
-fi
+}
+
+while test $# -gt 0; do
+    case "$1" in
+        -h | --help)
+            usage
+            exit 0;;
+        -d | -d1 | -d2)
+            _download=1
+            _dl_quality=${1:3:1}
+            shift;;
+        --dow | --down | --download)
+            _download=1
+            _dl_quality="$2"
+            shift 2;;
+        -l | --list | --playl | --playlist)
+            _is_playlist=1
+            shift;;
+        -a | --aut | --auto)
+            _auto_dideo=1
+            shift;;
+        -u | --url)
+            _url="$2"
+            shift 2;;
+        --)
+            _url="$@"
+            break;;
+        *)
+            _url="$1"
+            shift;;
+    esac
+done
 
 
 
