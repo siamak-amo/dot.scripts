@@ -116,13 +116,17 @@ function mk_auto_dideo(){
 }
 
 
-    _v=$($TRURL --url $_y --get '{query:v}')
 function mk_dideo_url(){
+    [[ -n "$_dideo_url" ]] && return 0
+
+    _v=$($TRURL --url "$_y" --get '{query:v}')
     
     if [ -z $_v ]; then
         echo "Error, your url doesn't contain a watch ID (?v=xxx)" >&2
         return 2
     fi
+
+    _dideo_url="https://dideo.ir/v/yt/$_v"
 }
 
 
