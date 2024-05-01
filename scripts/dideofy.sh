@@ -61,11 +61,11 @@ done
 
 
 
-    _vsurl=$($CURL -L $_dideo_url |\
 #-----------
 # functions
 #-----------
 function mk_dl_links(){
+    _vsurl=$($CURL -L "$_dideo_url" |\
                  grep "videoSourceUrl.*" -o | cut -d\" -f3)
 
     if [ -z $_vsurl ]; then
@@ -85,9 +85,9 @@ function mk_dl_links(){
 }
 
 
-    _v=$($TRURL --url $_y --get '{query:v}')
-    _l=$($TRURL --url $_y --get '{query:list}')
 function mk_auto_dideo(){
+    _v=$($TRURL --url "$_y" --get '{query:v}')
+    _l=$($TRURL --url "$_y" --get '{query:list}')
 
     
     [ -n $_v ] && _dideo_url="https://dideo.tv/v/yt/$_v"
@@ -126,8 +126,8 @@ function mk_dideo_url(){
 }
 
 
-    _l=$($TRURL --url $_y --get '{query:list}')
 function mk_list(){
+    _l=$($TRURL --url "$_y" --get '{query:list}')
 
     if [ -z $_l ]; then
         echo "Error, your url doesn't contain a list parameter (?list=xxx)" >&2
