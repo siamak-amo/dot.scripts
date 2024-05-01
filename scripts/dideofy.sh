@@ -69,16 +69,16 @@ function mk_dl_links(){
     _vsurl=$($CURL -L "$_dideo_url" |\
                  grep "videoSourceUrl.*" -o | cut -d\" -f3)
 
-    if [ -z $_vsurl ]; then
+    if [[ -z "$_vsurl" ]]; then
         echo "Error, videoSourceUrl does not exist." >&2
         return 1
     fi
 
-    _dl_links=$($CURL --compressed $_vsurl \
+    _dl_links=$($CURL --compressed "$_vsurl" \
                       --header 'User-Agent: Mozilla/5.0 (X11; Linux x86_64)' |\
                     grep "url\":\"[^\"]*" -o | cut -d\" -f3 | sed -E "s/[\]\//\//g")
 
-    if [ -z $1 ]; then
+    if [[ -z "$1" ]]; then
         _dl_links=$(echo $_dl_links | tr ' ' '\n')
     else
         _dl_links=$(echo $_dl_links | cut -d' ' -f$1)
@@ -96,13 +96,13 @@ function mk_auto_dideo(){
     
     if [[ -z "$_v" ]] & [[ -z "$_l" ]]; then
         # check for channel
-        [ -n $(echo $_y | grep "/channel/" -o) ] &&\
+        [[ -n $(echo $_y | grep "/channel/" -o) ]] &&\
             _c=$(echo $_y | grep "/channel/[^/]*" -o | grep "[^/]*$" -o)
         
-        [ -n $(echo $_y | grep "/c/" -o) ] &&\
+        [[ -n $(echo $_y | grep "/c/" -o) ]] &&\
             _c=$(echo $_y | grep "/c/[^/]*" -o | grep "[^/]*$" -o)
         
-        [ -n $(echo $_y | grep "/@.*" -o) ] &&\
+        [[ -n $(echo $_y | grep "/@.*" -o) ]] &&\
             _c=$(echo $_y | grep "/@[^/]*" -o | grep "[^/]*$" -o)
 
         if [[ -n "$_c" ]]; then
@@ -118,7 +118,7 @@ function mk_dideo_url(){
     [[ -n "$_dideo_url" ]] && return 0
 
     _v=$($TRURL --url "$_y" --get '{query:v}')
-    if [ -z $_v ]; then
+    if [[ -z "$_v" ]]; then
         echo "Error, your url doesn't contain a watch ID (?v=xxx)" >&2
         return 2
     fi
@@ -129,7 +129,7 @@ function mk_dideo_url(){
 function mk_list(){
     _l=$($TRURL --url "$_y" --get '{query:list}')
 
-    if [ -z $_l ]; then
+    if [[ -z "$_l" ]]; then
         echo "Error, your url doesn't contain a list parameter (?list=xxx)" >&2
         return 2
     else
@@ -199,7 +199,7 @@ function do_dideofy__H(){
 function do_dideofy(){
     _h=$($TRURL --url "$_url"  --get '{host}' | sed -e "s/^www\.//g")
 
-    if [ -z "$_h" ]; then
+    if [[ -z "$_h" ]]; then
         echo "invalid URL." >&2
         return 1
     else
@@ -214,7 +214,7 @@ function do_dideofy(){
 #------
 # main
 #------
-if [ -z "$_urls" ]; then
+if [[ -z "$_urls" ]]; then
     _auto_dideofy=1
     while IFS=$'\n' read -r _url; do
         case ${_url:0:1} in
