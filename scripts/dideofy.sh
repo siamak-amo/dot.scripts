@@ -62,7 +62,6 @@ while test $# -gt 0; do
 done
 
 
-
 #-----------
 # functions
 #-----------
@@ -86,17 +85,16 @@ function mk_dl_links(){
     fi
 }
 
-
 function mk_auto_dideo(){
     _v=$($TRURL --url "$_y" --get '{query:v}')
     _l=$($TRURL --url "$_y" --get '{query:list}')
 
     
-    [ -n $_v ] && _dideo_url="https://dideo.tv/v/yt/$_v"
-    [ -n $_l ] && _dideo_url="https://dideo.tv/v/yt?list=$_l"
+    [[ -n "$_v" ]] && _dideo_url="https://dideo.tv/v/yt/$_v"
+    [[ -n "$_l" ]] && _dideo_url="https://dideo.tv/v/yt?list=$_l"
 
     
-    if [ -z $_v ] & [ -z $_l ]; then
+    if [[ -z "$_v" ]] & [[ -z "$_l" ]]; then
         # check for channel
         [ -n $(echo $_y | grep "/channel/" -o) ] &&\
             _c=$(echo $_y | grep "/channel/[^/]*" -o | grep "[^/]*$" -o)
@@ -107,8 +105,7 @@ function mk_auto_dideo(){
         [ -n $(echo $_y | grep "/@.*" -o) ] &&\
             _c=$(echo $_y | grep "/@[^/]*" -o | grep "[^/]*$" -o)
 
-
-        if [ -n $_c ]; then
+        if [[ -n "$_c" ]]; then
              _dideo_url="https://dideo.tv/ch/yt/$_c"
         else
             echo "invalid link." >&2
@@ -117,12 +114,10 @@ function mk_auto_dideo(){
     fi
 }
 
-
 function mk_dideo_url(){
     [[ -n "$_dideo_url" ]] && return 0
 
     _v=$($TRURL --url "$_y" --get '{query:v}')
-    
     if [ -z $_v ]; then
         echo "Error, your url doesn't contain a watch ID (?v=xxx)" >&2
         return 2
@@ -130,7 +125,6 @@ function mk_dideo_url(){
 
     _dideo_url="https://dideo.ir/v/yt/$_v"
 }
-
 
 function mk_list(){
     _l=$($TRURL --url "$_y" --get '{query:list}')
@@ -169,7 +163,6 @@ function parse_url(){
             #_v=$(echo $1 | sed "s/.*\/\([^\/]\{11\}\)\/.*/\1/g")
             #_y="https://youtube.com/watch?v=$_v"
             _y=$_url
-
            ;;
 
         *)
@@ -178,7 +171,6 @@ function parse_url(){
             ;;
     esac
 }
-
 
 function do_dideofy__H(){
     if [[ 1 == $_is_playlist ]]; then
@@ -204,7 +196,6 @@ function do_dideofy__H(){
     unset _dideo_url
 }
 
-
 function do_dideofy(){
     _h=$($TRURL --url "$_url"  --get '{host}' | sed -e "s/^www\.//g")
 
@@ -213,7 +204,6 @@ function do_dideofy(){
         return 1
     else
         parse_url
-
         if [[ 0 == $? ]]; then
             do_dideofy__H
         fi
