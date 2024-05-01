@@ -61,11 +61,11 @@ done
 
 
 
-#----------------------
-#  functions
-#----------------------
-mk_dl_links(){
     _vsurl=$($CURL -L $_dideo_url |\
+#-----------
+# functions
+#-----------
+function mk_dl_links(){
                  grep "videoSourceUrl.*" -o | cut -d\" -f3)
 
     if [ -z $_vsurl ]; then
@@ -85,9 +85,9 @@ mk_dl_links(){
 }
 
 
-mk_auto_dideo(){
     _v=$($TRURL --url $_y --get '{query:v}')
     _l=$($TRURL --url $_y --get '{query:list}')
+function mk_auto_dideo(){
 
     
     [ -n $_v ] && _dideo_url="https://dideo.tv/v/yt/$_v"
@@ -117,8 +117,8 @@ mk_auto_dideo(){
 }
 
 
-mk_dideo_url(){
     _v=$($TRURL --url $_y --get '{query:v}')
+function mk_dideo_url(){
     
     if [ -z $_v ]; then
         printf "\nError, your url doesn't contain a watch id,    \n" >&2
@@ -131,8 +131,8 @@ mk_dideo_url(){
 }
 
 
-mk_list(){
     _l=$($TRURL --url $_y --get '{query:list}')
+function mk_list(){
 
     if [ -z $_l ]; then
         printf "\nError, your url doesn't contain a list parameter,\n" >&2
