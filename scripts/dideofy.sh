@@ -144,86 +144,97 @@ function mk_list(){
 }
 
 
-invalid_option(){
-    printf "\ndideofy: invalid option -- '%s'\n"     "$1" >&2
-    printf "Try 'dideofy --help' for more information.\n" >&2
-    exit 1
-}
-
-
-
-#----------------------
-#  main
-#----------------------
-_h=$($TRURL --url $1  --get '{host}' | sed -e "s/^www\.//g")
-
-if [ -z $_h ]; then
-    printf "\nError, invalid url.\n" >&2
-    exit 1
-else
-    case $_h in
+function parse_url(){
+ case $_h in
         "youtube.com")          # usual youtube link
-            _y=$1
+            _y=$_url
             ;;
 
         "youtu.be")             # needs normalization
-            _y="youtube.com/watch?v="$(echo $1 | grep "[^\/]*$" -o)
+            _y="youtube.com/watch?v="$(echo $_url | grep "[^\/]*$" -o)
             ;;
 
         "google.com")           # google search links
-            _y=$($TRURL --url $1 --json | \
+            _y=$($TRURL --url $_url --json | \
                      grep "value.*"  -o | \
                      grep "[^\"]*\.youtube\.com[^\"]*" -o)
             ;;
 
         "dideo.tv"|"dideo.ir")  # dideo
-            _dideo_url=$1
+            _dideo_url=$_url
 
             # _y and _v might be used in the future,
             # but for now, _y only needs to be not an empty string
             #
             #_v=$(echo $1 | sed "s/.*\/\([^\/]\{11\}\)\/.*/\1/g")
             #_y="https://youtube.com/watch?v=$_v"
-            _y=$1
+            _y=$_url
 
            ;;
 
         *)
-            printf "\nError, url is not supported.\n" >&2
-            exit 1
+            echo "Error, not supported URL." >&2
+            return 1
             ;;
     esac
-fi
+}
 
 
-if [ -z $_y ]; then
-    printf "\nError, url is not supported.\n" >&2
-    exit 1
-fi
+function do_dideofy__H(){
+    if [[ 1 == $_is_playlist ]]; then
+        # link is a playlist
+        mk_list
+        echo $_dideo_url
+        return 0
+    elif [[ 1 == $_auto_dideo ]]; then
+        mk_auto_dideo
+        echo $_dideo_url
+    fi
+
+    mk_dideo_url
+    if [ 0 == $? ]; then
+        # make download link
+        if [[ 1 == $_download ]]; then
+            mk_dl_links $_dl_quality
+            echo $_dl_links
+        else
+            echo $_dideo_url
+        fi
+    fi
+    unset _dideo_url
+}
 
 
-if [ -z $2 ]; then
-    [ -z $_dideo_url ] && mk_dideo_url
-    printf "%s\n" $_dideo_url
+function do_dideofy(){
+    _h=$($TRURL --url "$_url"  --get '{host}' | sed -e "s/^www\.//g")
+
+    if [ -z "$_h" ]; then
+        echo "invalid URL." >&2
+        return 1
+    else
+        parse_url
+
+        if [[ 0 == $? ]]; then
+            do_dideofy__H
+        fi
+    fi
+}
+
+
+#------
+# main
+#------
+if [ -z "$_url" ]; then
+    _auto_dideofy=1
+    while IFS=$'\n' read -r _url; do
+        case ${_url:0:1} in
+            "" | "#" | " ") # comment
+                continue;;
+            *)
+                do_dideofy;;
+        esac
+    done
 else
-    case $2 in
-        "-a")
-            [ -z $_dideo_url ] &&  mk_auto_dideo
-            printf "%s\n" $_dideo_url
-            ;;
-        
-        "-d"|"-d1"|"-d2")        # make download link
-            [ -z $_dideo_url ] && mk_dideo_url
-            mk_dl_links $(echo $2 | cut -c3)
-            printf "%s\n" $_dl_links
-            ;;
-
-        "-l"|"--playlist")       # link is a playlist
-            mk_list
-            printf "%s\n" $_dideo_url
-            ;;
-
-        *)
-            invalid_option $2
-    esac
+    do_dideofy
+    [[ 0 != $? ]] && exit 3
 fi
