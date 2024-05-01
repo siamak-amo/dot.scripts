@@ -218,7 +218,7 @@ if [[ -z "$_urls" ]]; then
     _auto_dideofy=1
     while IFS=$'\n' read -r _url; do
         case ${_url:0:1} in
-            "" | "#" | " ") # comment
+            "" | "#" | " " | $'\n' | $'\r' | $'\t') # comment
                 continue;;
             *)
                 do_dideofy;;
