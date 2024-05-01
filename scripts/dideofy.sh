@@ -13,13 +13,15 @@ CURL="$(which curl) -s"
 
 usage(){
     cat <<EOF
-usage: dideofy [URL] [OPTIONS]
+dideofy [URL] [OPTIONS]
 dideofy makes dideo.ir links from youtube.com URL's
 
 
 OPTIONS:
         -h, --help          show this page
-        -d, -d{n}           to make direct download links
+        -a, --auto          to automatically detect YouTube playlist links
+                            (default option in stdin mode)
+        -d, --download      to make direct download links
                               -d1 for the lowest  video quality
                               -d2 for the highest video quality
                               -d  for all qualities
