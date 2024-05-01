@@ -184,7 +184,7 @@ function do_dideofy__H(){
     fi
 
     mk_dideo_url
-    if [ 0 == $? ]; then
+    if [[ 0 == $? ]]; then
         # make download link
         if [[ 1 == $_download ]]; then
             mk_dl_links $_dl_quality
