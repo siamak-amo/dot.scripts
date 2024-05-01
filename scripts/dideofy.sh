@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #--------------------------------------------------------------------------
 #    dideofy is a simple script to make dideo.ir links from youtube links
 #  you can pass links like www.youtube.com/watch?v=xxxxxxxxxxx to it, Or
