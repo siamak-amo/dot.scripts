@@ -114,6 +114,7 @@ function mk_auto_dideo(){
     fi
 }
 
+# always unset the _dideo_url variable
 function mk_dideo_url(){
     [[ -n "$_dideo_url" ]] && return 0
 
