@@ -50,13 +50,13 @@ while test $# -gt 0; do
             _auto_dideo=1
             shift;;
         -u | --url)
-            _url="$2"
+            _urls="$_urls $2"
             shift 2;;
         --)
-            _url="$@"
+            _urls="$@"
             break;;
         *)
-            _url="$1"
+            _urls="$_urls $1"
             shift;;
     esac
 done
@@ -224,7 +224,7 @@ function do_dideofy(){
 #------
 # main
 #------
-if [ -z "$_url" ]; then
+if [ -z "$_urls" ]; then
     _auto_dideofy=1
     while IFS=$'\n' read -r _url; do
         case ${_url:0:1} in
@@ -235,6 +235,8 @@ if [ -z "$_url" ]; then
         esac
     done
 else
-    do_dideofy
-    [[ 0 != $? ]] && exit 3
+    for _url in $_urls; do
+        do_dideofy
+        [[ 0 != $? ]] && exit 3
+    done
 fi
