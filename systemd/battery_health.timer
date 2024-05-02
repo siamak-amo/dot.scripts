@@ -3,6 +3,8 @@ Description=Run battery health notification service weekly
 
 [Timer]
 OnCalendar=weekly
+OnUnitActiveSec=1week
+OnBootSec=5min
 Persistent=true
 
 [Install]
