@@ -2,6 +2,7 @@
 #
 # v2test
 # tests v2ray configuration files and links
+# v2test is a wrapper script for the `vsconf.sh` script
 #
 # EXAMPLES:
 #     to test config files (add -r to delete bad files):
