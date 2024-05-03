@@ -1,7 +1,7 @@
 # my shell functions
 # usage:
 #   add the following line to your ~/.[your shell]rc file
-#   `source /path/to/shellfunc.sh`
+#   `source /path/to/shellfuns.sh`
 
 #--------#
 # FFmpeg #
