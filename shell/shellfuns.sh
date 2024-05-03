@@ -16,8 +16,8 @@ function ffmeta(){
 
 # voice conversion (no video)
 # usage:
-#         ffogg file.mp3      -> output: file.ogg
-#         ffogg file.mp3 webm -> output: file.webm
+#         ffogg file.mp3        -> output: file.ogg
+#         ffogg file.mp3 webm   -> output: file.webm
 function ffogg(){
     local _formato=$([ -z "$2" ] && echo ".ogg" || echo ".$2")
     ffmpeg -i $1 -vn "${1%.*}$_formato"
@@ -26,7 +26,8 @@ function ffogg(){
 # make the input audio file free!
 # metadata elimination and converting to ogg format
 # usage:
-#         fffree file.mp3     -> output: file.ogg
+#         fffree file.mp3       -> output: file.ogg
+#         fffree file.mp3 webm  -> output: file.webm
 function fffree(){
     local _formato=$([ -z "$2" ] && echo ".ogg" || echo ".$2")
     local _tmpfile="/tmp/FF_FREE_OUT.${1##*.}"
