@@ -301,8 +301,8 @@ test_config_file__H(){
     wait_for_v2
     # *Do Not* use `$!` instead of `get_v2_pid`
     # *Do Not* get the pid before the `wait_for_v2` function
-    # for error handling purposes, we need to make sure
-    # that v2 client is still running and hasn't exited
+    # for error-handling purposes, we need to ensure that
+    # the v2 client is still running and hasn't exited
     get_v2_pid
 
     if [[ -z "$V2_PID" ]]; then
