@@ -273,7 +273,7 @@ get_v2_pid(){
 # wait for v2ray's HTTP proxy to response
 wait_for_v2(){
     # max retry (20*0.3 = 6s)
-    retry=$((20))
+    local retry=$((20))
     while [[ 0 -le $retry ]]; do
         # break the loop if HTTP_PROXY is listening
         (exec 7<>/dev/tcp/${HTTP_PROXY/://}) 2>/dev/null && break
