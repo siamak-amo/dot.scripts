@@ -19,7 +19,8 @@ function ffmeta(){
 #         ffogg file.mp3      -> output: file.ogg
 #         ffogg file.mp3 webm -> output: file.webm
 function ffogg(){
-    ffmpeg -i $1 -vn ${1%.*}$([ -z "$2" ] && echo ".ogg" || echo ".$2")
+    local _formato=$([ -z "$2" ] && echo ".ogg" || echo ".$2")
+    ffmpeg -i $1 -vn "${1%.*}$_formato"
 }
 
 # make the input audio file free!
@@ -27,11 +28,12 @@ function ffogg(){
 # usage:
 #         fffree file.mp3     -> output: file.ogg
 function fffree(){
+    local _formato=$([ -z "$2" ] && echo ".ogg" || echo ".$2")
     local _tmpfile="/tmp/FF_FREE_OUT.${1##*.}"
-    local _tmpogg="/tmp/FF_FREE_OUT.ogg"
+    local _tmpogg="/tmp/FF_FREE_OUT.$_formato"
 
     ffmeta "$1" "$_tmpfile" && ffogg "$_tmpfile"
     rm -f "$_tmpfile"
 
-    [[ -s "$_tmpogg" ]] && mv "$_tmpogg" "${1%.*}.ogg"
+    [[ -s "$_tmpogg" ]] && mv "$_tmpogg" "${1%.*}.$_formato"
 }
