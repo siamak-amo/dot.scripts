@@ -27,9 +27,11 @@ function ffogg(){
 # usage:
 #         fffree file.mp3     -> output: file.ogg
 function fffree(){
-    _p="/tmp/FF_FREE_OUT.${1##*.}" && \
-        ffmeta "$1" "$_p" && \
-        ffogg "$_p" && \
-        rm -f "$_p" && \
-        mv "/tmp/FF_FREE_OUT.ogg" "${1%.*}.ogg"
+    local _tmpfile="/tmp/FF_FREE_OUT.${1##*.}"
+    local _tmpogg="/tmp/FF_FREE_OUT.ogg"
+
+    ffmeta "$1" "$_tmpfile" && ffogg "$_tmpfile"
+    rm -f "$_tmpfile"
+
+    [[ -s "$_tmpogg" ]] && mv "$_tmpogg" "${1%.*}.ogg"
 }
