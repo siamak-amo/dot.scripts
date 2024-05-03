@@ -15,7 +15,7 @@ alias ping="timeout 20s ping -c4"
 ##### Git #####
 alias gs="git status"
 alias ga="git add"
-alias gaa="git add -a"
+alias gaa="git add -A"
 alias gc="git commit"
 alias gcm="git commit -m"
 alias gcl="git clone"
