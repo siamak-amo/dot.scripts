@@ -70,11 +70,7 @@ while test $# -gt 0; do
             _test_path="$_test_path $2"
             shift 2;;
         -T | --time | --timeout)
-            TOUT="${2//[^0-9]/}s"
-            if [[ "$TOUT" == 's' || "$TOUT" == '0s' ]]; then
-                echo "invalid timeout ($2) -- exiting." >&2
-                exit 1
-            fi
+            TOUT="0${2//[^0-9]/}s"
             shift 2;;
         -o | --pref | --prefix)
             PREFIX="$2"
