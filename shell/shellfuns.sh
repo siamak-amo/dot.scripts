@@ -23,8 +23,8 @@ function ffogg(){
     ffmpeg -i $1 -vn "${1%.*}$_formato"
 }
 
-# make the input audio file free!
-# metadata elimination and converting to ogg format
+# make input file's audio free!
+# metadata elimination and converting to ogg format (audio)
 # usage:
 #         fffree file.mp3       -> output: file.ogg
 #         fffree file.mp3 webm  -> output: file.webm
