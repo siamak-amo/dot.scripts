@@ -9,8 +9,8 @@
 #
 #  some of the configuration links from these channels
 #  are only valid for a few days or even hours,
-#  so it's convenient to schedule running of this script
-#
+#  so it's convenient to schedule running this script
+
 TMP_FILE="/tmp/bash_cc.html"
 TMP_PART_FILE="/tmp/bash_cc.part"
 MAX_PART=10
