@@ -1,7 +1,8 @@
 # copy this file and .timer file to `/usr/lib/systemd/user` then
 # make symbolic links from them to `~/.config/systemd/user`
-# and use them by:
+# - usage
 # `systemctl enable --user battery_health.timer`
+# - Do Not enable the service, only enable the timer unit
 #
 [Unit]
 Description=Display a message to discharge the laptop's battery
