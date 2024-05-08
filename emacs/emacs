@@ -496,6 +496,7 @@
 (global-set-key (kbd "C-0")  #'delete-window)
 ;; others
 (global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C-=") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
 (global-set-key (kbd "M-m") #'man)
 (global-set-key (kbd "M-]") 'increase-transparency)
