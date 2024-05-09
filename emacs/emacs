@@ -100,13 +100,13 @@
 			  :global-prefix "M-SPC")
   (dt/leader-keys
     ;; buffer management
-    "b" '(:ignore t :wk "buffer")
+    "b"  '(:ignore t :wk "buffer")
     "bb" '(switch-to-buffer :wk "Switch buffer")
     "bk" '(kill-this-buffer :wk "Kill this buffer")
     "bn" '(next-buffer :wk "Next buffer")
     "bp" '(previous-buffer :wk "Previous buffer")
     ;; revert / reload
-    "g" 'revert-buffer
+    "g"  'revert-buffer
     "hr" '(:ignore t :wk "Reload")
     "hrr" '((lambda () (interactive)
               (load-file "~/.emacs")
@@ -119,7 +119,7 @@
     "dw" '(wdired-change-to-wdired-mode :wk "Writable dired")
     "df" '(wdired-finish-edit :wk "Finish editing")
     ;; tabs / vterm
-     "t" '(:ignore t :wk "Tab / Vterm")
+    "t"  '(:ignore t :wk "Tab / Vterm")
     "tt" '(tab-new :wk "Tab new")
     "tc" '(tab-close :wk "Tab close")
     "tv" '(vterm-toggle :wk "Vterm toggle")
