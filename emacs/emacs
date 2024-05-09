@@ -118,10 +118,11 @@
     "dd" '(dired :wk "Open dired")
     "dw" '(wdired-change-to-wdired-mode :wk "Writable dired")
     "df" '(wdired-finish-edit :wk "Finish editing")
-    ;; vterm
-    "t" '(:ignore t :wk "Terminal / Toggle")
-    "tv" '(vterm :wk "Open vterm")
-    "tt" '(vterm-toggle :wk "Toggle vterm")
+    ;; tabs / vterm
+     "t" '(:ignore t :wk "Tab / Vterm")
+    "tt" '(tab-new :wk "Tab new")
+    "tc" '(tab-close :wk "Tab close")
+    "tv" '(vterm-toggle :wk "Vterm toggle")
     ;; fuzz
     "z"  '(:ignore t :wk "FUZZ")
     "zz" '(fzf :wk "Fuzz")
