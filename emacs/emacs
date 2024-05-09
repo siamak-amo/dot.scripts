@@ -132,8 +132,6 @@
     "zG" '(fzf-grep-in-dir :wk "Grep in directory")
     "zf" '(fzf-find-in-buffer :wk "Find in buffer")
     "zF" '(fzf-find-file-in-dir :wk "Find file")
-    ;; others
-    "b/" 'lgrep
     ))
 
 
