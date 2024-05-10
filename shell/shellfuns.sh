@@ -31,11 +31,11 @@ function ffogg(){
 function fffree(){
     local _formato=$([ -z "$2" ] && echo ".ogg" || echo ".$2")
     local _tmpfile="/tmp/FF_FREE_OUT.${1##*.}"
-    local _tmpogg="/tmp/FF_FREE_OUT.$_formato"
+    local _tmpogg="/tmp/FF_FREE_OUT$_formato"
 
     ffmpeg -i "$1" -vn -map_metadata -1 -c:v copy "$_tmpfile" &&\
         ffogg "$_tmpfile"
     rm -f "$_tmpfile"
 
-    [[ -s "$_tmpogg" ]] && mv "$_tmpogg" "${1%.*}.$_formato"
+    [[ -s "$_tmpogg" ]] && mv "$_tmpogg" "${1%.*}$_formato"
 }
