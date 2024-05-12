@@ -11,6 +11,7 @@ alias cp="cp -i"
 alias ymv="yes | mv"
 alias ycp="yes | cp"
 alias ping="timeout 20s ping -c4"
+alias cls="clear"
 
 ##### Git #####
 alias gs="git status"
