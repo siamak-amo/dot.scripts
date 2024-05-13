@@ -206,7 +206,7 @@ set_default_confs(){
     V2CONF_port=443
     V2CONF_enc="none"
     V2CONF_method="chacha20-poly1305"
-    V2CONF_net="ws"
+    V2CONF_net="tcp"
     V2CONF_fp="chrome"
     V2CONF_headerType="none"
 }
