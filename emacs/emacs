@@ -442,6 +442,15 @@
 (setq smerge-command-prefix "\C-cm")
 ;; hide Dired details
 (add-hook 'dired-mode-hook #'dired-hide-details-mode)
+;; <up> and <down> bindings in shell mode
+(add-hook 'shell-mode-hook
+          (lambda ()
+            (define-key shell-mode-map (kbd "<up>") 'comint-previous-input)
+            (define-key shell-mode-map (kbd "<down>") 'comint-next-input)))
+(add-hook 'inferior-python-mode-hook
+          (lambda ()
+            (define-key inferior-python-mode-map (kbd "<up>") 'comint-previous-input)
+            (define-key inferior-python-mode-map (kbd "<down>") 'comint-next-input)))
 ;;; end of my basic configs
 
 
