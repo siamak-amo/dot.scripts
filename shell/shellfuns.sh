@@ -44,11 +44,11 @@ function fffree(){
 # utils #
 #-------#
 
-#  word lookup
+#  word lookup regex
 #  usage:
-#          wlookup 'si' 'i' 'lar'    ->  '^si.*i.*lar$'
-#          wlookup 'simil' '.*'      ->  '^simil.*'
-function wlookup(){
+#          wregex 'si' 'i' 'lar'    ->  '^si.*i.*lar$'
+#          wregex 'simil' '.*'      ->  '^simil.*'
+function wregex(){
     local REG=""
     [[ ".*" != "$1" ]] && REG="^$1"
     shift
@@ -64,8 +64,8 @@ function wlookup(){
 }
 
 # word grep
-# does grep by wlookup's regex on /usr/share/dict/words
-# parameters are the same as wlookup
+# does grep by wregex's regex on /usr/share/dict/words
+# parameters are the same as wregex
 function wgrep(){
-    echo grep "$(wlookup "$@")" /usr/share/dict/words
+    echo grep "$(wregex "$@")" /usr/share/dict/words
 }
