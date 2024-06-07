@@ -62,3 +62,7 @@ function wlookup(){
         echo "$REG.*"
     fi
 }
+
+function wgrep(){
+    echo grep "$(wlookup "$@")" /usr/share/dict/words
+}
