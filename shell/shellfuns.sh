@@ -67,5 +67,5 @@ function wregex(){
 # does grep by wregex's regex on /usr/share/dict/words
 # parameters are the same as wregex
 function wgrep(){
-    echo grep "$(wregex "$@")" /usr/share/dict/words
+    grep "$(wregex "$@")" /usr/share/dict/words
 }
