@@ -39,6 +39,15 @@ function fffree(){
 
     [[ -s "$_tmpogg" ]] && mv "$_tmpogg" "${1%.*}$_formato"
 }
+
+#-------#
+# utils #
+#-------#
+
+#  word lookup
+#  usage:
+#          wlookup 'si' 'i' 'lar'    ->  '^si.*i.*lar$'
+#          wlookup 'simil' '.*'      ->  '^simil.*'
 function wlookup(){
     local REG="^$1"
     shift
