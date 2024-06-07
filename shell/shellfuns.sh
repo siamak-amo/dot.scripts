@@ -63,6 +63,9 @@ function wlookup(){
     fi
 }
 
+# word grep
+# does grep by wlookup's regex on /usr/share/dict/words
+# parameters are the same as wlookup
 function wgrep(){
     echo grep "$(wlookup "$@")" /usr/share/dict/words
 }
