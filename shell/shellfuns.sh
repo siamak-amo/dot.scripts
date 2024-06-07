@@ -49,7 +49,8 @@ function fffree(){
 #          wlookup 'si' 'i' 'lar'    ->  '^si.*i.*lar$'
 #          wlookup 'simil' '.*'      ->  '^simil.*'
 function wlookup(){
-    local REG="^$1"
+    local REG=""
+    [[ ".*" != "$1" ]] && REG="^$1"
     shift
     for _p in $@; do
         [[ ".*" != "$_p" ]] && REG="$REG.*$_p"
