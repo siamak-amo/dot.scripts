@@ -39,3 +39,16 @@ function fffree(){
 
     [[ -s "$_tmpogg" ]] && mv "$_tmpogg" "${1%.*}$_formato"
 }
+function wlookup(){
+    local REG="^$1"
+    shift
+    for _p in $@; do
+        [[ ".*" != "$_p" ]] && REG="$REG.*$_p"
+    done
+
+    if [[ ".*" != "$_p" ]]; then
+        echo "$REG\$"
+    else
+        echo "$REG.*"
+    fi
+}
