@@ -5,6 +5,7 @@
 #   `source /path/to/aliases.sh`
 #
 ##### General #####
+alias s="ls"
 alias sl="ls"
 alias mv="mv -i"
 alias cp="cp -i"
