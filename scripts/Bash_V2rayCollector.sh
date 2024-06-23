@@ -1,15 +1,30 @@
 #!/bin/bash
-#
-# `Bash_V2rayCollector` script
-#  Bash V2ray configuration file collector
+# Bash_V2rayCollector.sh
+# This file is part of my dot.scripts project
+
+# This script is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either
+# version 3 of the License, or (at your option) any later version.
+
+# This script is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see <https://www.gnu.org/licenses/>.
+
+# This is `Bash_V2rayCollector` script
+# Bash V2ray configuration file collector
 #
 #  this script downloads v2ray config links from
 #  telegram channels in the CHANNELS variable below
-#  the output will be in text format
+#  the output is in text format
 #
 #  some of the configuration links from these channels
 #  are only valid for a few days or even hours,
-#  so it's convenient to schedule running this script
+#  so it's convenient to run this script according to a set schedule
 
 TMP_FILE="/tmp/bash_cc.html"
 TMP_PART_FILE="/tmp/bash_cc.part"

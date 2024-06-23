@@ -1,6 +1,21 @@
 #!/bin/bash
-#
-# v2test
+# v2test.sh
+# This file is part of my dot.scripts project
+
+# This script is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either
+# version 3 of the License, or (at your option) any later version.
+
+# This script is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see <https://www.gnu.org/licenses/>.
+
+# This is v2test script
 # tests v2ray configuration files and links
 # v2test is a wrapper script for the `vsconf.sh` script
 #
