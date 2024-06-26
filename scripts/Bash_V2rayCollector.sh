@@ -1,6 +1,6 @@
 #!/bin/bash
 # Bash_V2rayCollector.sh
-# This file is part of my dot.scripts project
+# This file is part of my dot.scripts project <https://gitlab.com/SI.AMO/>
 
 # This script is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
