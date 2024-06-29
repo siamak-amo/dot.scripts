@@ -14,6 +14,13 @@ alias ycp="yes | cp"
 alias ping="timeout 20s ping -c4"
 alias cls="clear"
 
+##### Proxy #####
+[[ -n "$HTTP_PROXY" ]] && __HT_PROXY=$HTTP_PROXY || \
+           __HT_PROXY="http://127.0.0.1:10809"
+
+alias curlx="curl -x $__HT_PROXY"
+alias yt-dlpx="yt-dlp --proxy $__HT_PROXY"
+
 ##### Git #####
 alias gs="git status"
 alias ga="git add"
