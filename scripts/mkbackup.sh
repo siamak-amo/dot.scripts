@@ -15,21 +15,21 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <https://www.gnu.org/licenses/>.
 
-#   This is mkbackup script
-#   a simple utility to make backup
-#   by default will make separate backups:
-#     backup of / excluding /opt /var /home
-#     and then 3 backups of /opt /var /home separately.
-#   you can set PARTS="" to disable this feature
-#   and make a single backup of the root file system.
+#  This is mkbackup script
+#  a simple utility to make backup
+#  by default makes separate backups:
+#    backup of `/` excluding /opt, /var, /home
+#    and then 3 other backups of /opt, /var and /home separately
+#  you can use --parts to change this behavior
+#  to make a single backup, pass: --parts ''
 # 
-#   Examples:
-#     - to store backups in /mnt
-#     $ mkbackup -o /mnt
-#     - to run tar commands directly without nice
-#     $ mkbackup --no-nice   OR   $ NICEN=1 mkbackup
-#     - to run with nice -n 16
-#     $ mkbackup --level 16  OR   $ _nice_level=16 mkbackup
+#  Examples:
+#    - to store backups in /mnt
+#    $ mkbackup -o /mnt
+#    - to run tar commands directly without nice
+#    $ mkbackup --no-nice   OR   $ NICEN=1 mkbackup
+#    - to run with nice -n 16
+#    $ mkbackup --level 16  OR   $ _nice_level=16 mkbackup
 #
 
 usage(){
