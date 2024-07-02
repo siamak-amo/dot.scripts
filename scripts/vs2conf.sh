@@ -150,6 +150,9 @@ EOF2
           "header": {
             "type": "$V2CONF_headerType"
           }
+        },
+        "tlsSettings": {
+          "allowInsecure": true
         }
       },
         "wsSettings": {
