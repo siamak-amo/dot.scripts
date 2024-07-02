@@ -74,6 +74,8 @@ OPTIONS:
     -s, --quiet              use stdout only to print working links (quiet)
     -t, --test               to only test the HTTP_PROXY itself
    -tn, --no-test            create config files and ignore testing them
+  -sni, --servername         to manually add a sni header to the tlsSettings section
+                             it may get overridden by the input
 
 EOF
 }
@@ -103,6 +105,9 @@ while test $# -gt 0; do
             else
                 export _v2_rules_ip="$_v2_rules_ip, \"$2\""
             fi
+            shift 2;;
+        -sni | --servername)
+            export V2CONF_sni="$2"
             shift 2;;
         -r | --rm)
             _rm_config_file=1
