@@ -140,7 +140,7 @@ EOF2
           ],
           "fingerprint": "$V2CONF_fp",
           "publicKey": "$V2CONF_pbk",
-          "serverName": "$V2CONF_sn",
+          "serverName": "$V2CONF_sni",
           "shortId": "$V2CONF_sid",
           "show": false,
           "spiderX": ""
