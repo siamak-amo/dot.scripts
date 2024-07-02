@@ -134,7 +134,7 @@ EOF2
       "streamSettings": {
         "network": "$V2CONF_net",
         "realitySettings": {
-          "allowInsecure": false,
+          "allowInsecure": true,
           "alpn": [
             "$V2CONF_alpn"
           ],
