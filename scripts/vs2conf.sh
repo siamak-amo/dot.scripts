@@ -153,6 +153,7 @@ EOF2
         },
         "tlsSettings": {
           "allowInsecure": true
+          $([[ -n "$V2CONF_sni" ]] && echo ",\"servername\": \"$V2CONF_sni\"")
         }
       },
         "wsSettings": {
