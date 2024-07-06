@@ -30,3 +30,9 @@ This configuration uses evil-mode (vi shortcuts for emacs), so most vi shortcuts
 4. others  
    - `<f9>` for checking the spell (under the cursor one)
    - `<f8>` for enabling flyspell-mode (spell checking)
+
+### Themes I use
+1. <https://github.com/doomemacs/themes.git>
+2. <https://github.com/emacs-jp/replace-colorthemes.git>
+3. <https://github.com/owainlewis/emacs-color-themes.git>
+4. <https://github.com/rexim/gruber-darker-theme.git>
