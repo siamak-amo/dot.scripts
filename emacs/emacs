@@ -1,3 +1,4 @@
+;; copy this file to ~/.emacs
 ;; load elpeca package and disable default package manager
 (load "~/.emacs.d/init.el")
 (setq package-enable-at-startup nil)
@@ -475,7 +476,7 @@
 (global-set-key (kbd "<f6>") #'recompile)
 (global-set-key (kbd "<f8>") #'flyspell-mode)
 (global-set-key (kbd "<f9>") #'ispell-word)
-;; managing buffers
+;; managing buffers / tabs
 (global-set-key (kbd "C-<end>")   #'switch-to-next-buffer)
 (global-set-key (kbd "C-<home>")  #'switch-to-prev-buffer)
 (global-set-key (kbd "C-<next>")  #'tab-bar-switch-to-next-tab)
