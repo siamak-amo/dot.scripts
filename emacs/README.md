@@ -14,10 +14,10 @@
 This configuration uses evil-mode (vi shortcuts for emacs), so most vi shortcuts are available.
 
 1. navigation  
-   - `SPC-bb` for listing up buffers to choose
-   - `SPC-bk` and `CTRL-k` to kill the current buffer
    - `CTRL-PageUp` and `CTRL_PageDown` to switch to the next and previous tab
    - `CTRL-Home` and `CTRL-End` to switch between buffers
+   - `SPC-bb` and `Alt-b` for listing up buffers to choose
+   - `SPC-bk` and `CTRL-k` and `Super-k` to kill the current buffer
    - `SPC-bn` and `SPC-bp` for switch to the next and previous buffers
    - `SPC-br` and `SPC-g` for reloading the current buffer (Dired buffer)
    - `SPC-dw` to make Dired buffer writable and `SPC-df` to finish
@@ -28,7 +28,7 @@ This configuration uses evil-mode (vi shortcuts for emacs), so most vi shortcuts
    - in go-mode `C-c 6` and `<f5>` for running gofmt (formats your code)
    - in latex-mode `C-c C-c` to compile latex file to pdf
 4. others  
-   - `<f9>` for checking the spell (under the cursor one)
+   - `<f9>` for spell checking (the word under the cursor)
    - `<f8>` for enabling flyspell-mode (spell checking)
 
 ### Themes I use
