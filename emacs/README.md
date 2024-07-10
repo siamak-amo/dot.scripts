@@ -14,10 +14,10 @@
 This configuration uses evil-mode (vi shortcuts for emacs), so most vi shortcuts are available.
 
 1. navigation  
-   - `CTRL-PageUp` and `CTRL_PageDown` to switch to the next and previous buffers
-   - `CTRL-Home` and `CTRL-End` to switch between tabs
    - `SPC-bb` for listing up buffers to choose
    - `SPC-bk` and `CTRL-k` to kill the current buffer
+   - `CTRL-PageUp` and `CTRL_PageDown` to switch to the next and previous tab
+   - `CTRL-Home` and `CTRL-End` to switch between buffers
    - `SPC-bn` and `SPC-bp` for switch to the next and previous buffers
    - `SPC-br` and `SPC-g` for reloading the current buffer (Dired buffer)
    - `SPC-dw` to make Dired buffer writable and `SPC-df` to finish
