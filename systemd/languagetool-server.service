@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/java -cp /path/to/languagetool-server.jar org.languagetool.server.HTTPServer --port 8081 --allow-origin "'*'" --config /path/to/languagetool.properties >/dev/null
+ExecStart=/usr/bin/java -cp /path/to/languagetool-server.jar org.languagetool.server.HTTPServer --port 8081 --allow-origin "'*'" --config /path/to/languagetool.properties
 Restart=no
 
 [Install]
