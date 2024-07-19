@@ -1,0 +1,11 @@
+[Unit]
+Description=LanguageTool Server
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/java -cp /path/to/languagetool-server.jar org.languagetool.server.HTTPServer --port 8081 --allow-origin "'*'" --config /path/to/languagetool.properties >/dev/null
+Restart=no
+
+[Install]
+WantedBy=multi-user.target
