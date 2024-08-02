@@ -133,6 +133,7 @@ EOF2
         },
       "streamSettings": {
         "network": "$V2CONF_net",
+        "security": "$V2CONF_sec",
         "realitySettings": {
           "allowInsecure": true,
           "alpn": [
@@ -145,7 +146,6 @@ EOF2
           "show": false,
           "spiderX": ""
         },
-        "security": "$V2CONF_sec",
         "tcpSettings": {
           "header": {
             "type": "$V2CONF_headerType"
