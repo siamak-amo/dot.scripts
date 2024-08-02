@@ -154,15 +154,15 @@ EOF2
         "tlsSettings": {
           "allowInsecure": true
           $([[ -n "$V2CONF_sni" ]] && echo ",\"servername\": \"$V2CONF_sni\"")
-        }
-      },
+        },
         "wsSettings": {
           "connectionReuse": true,
           "path": "$V2CONF_path",
           "headers": {
             "Host": "$V2CONF_host"
           }
-        },
+        }
+      },
       "tag": "proxy"
     },
     {
