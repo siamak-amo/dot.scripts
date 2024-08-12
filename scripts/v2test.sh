@@ -26,6 +26,8 @@
 #   $ v2test --v2ray v2ray
 #     to create config files without testing them
 #   $ cat links.txt | v2test --no-test
+#     to find working URL's
+#   $ cat links.txt | v2test -r --quiet >> working_links.txt
 #
 #
 # this script uses your HTTP_PROXY shell variable,
