@@ -66,20 +66,25 @@ OPTIONS:
     -T, --timeout            to specify testing timeout
     -o, --prefix             to specify prefix to save output json files
     -V, --v2ray              to set v2ray client command
+    -t, --test               to only test the HTTP_PROXY itself
+   -tn, --no-test            create config files and ignore testing them
+
     -x, --proxy              for testing config files, should be set to the same
                              address that is used in the \`inbounds\` section
+
+    -k, --keep               to keep generated config files anyway
+    -r, --rm                 to delete broken config files while testing json files,
+                             and to prevent creating json files while testing URL's
+    -R, --extra-rm           to also delete not responding config files
+
+    -s, --quiet              use stdout only to print working links
+                             and print warnings and errors on stedrr
+
+  -sni, --servername         to manually add a sni header to the tlsSettings section
+                             it may get overridden by the input
     -g, --rule               to add routing rules (Ex. -g geoip:ir)
                              corresponding file (geoio.dat) should be available
                              in the root of your v2ray client program
-    -k, --keep               to keep generated config files anyway
-    -r, --rm                 to delete faulty config files
-    -R, --extra-rm           to also delete not responding config files
-    -s, --quiet              use stdout only to print working links
-                             and print warnings and errors on stedrr
-    -t, --test               to only test the HTTP_PROXY itself
-   -tn, --no-test            create config files and ignore testing them
-  -sni, --servername         to manually add a sni header to the tlsSettings section
-                             it may get overridden by the input
 
 EOF
 }
