@@ -77,8 +77,8 @@ OPTIONS:
                              and to prevent creating json files while testing URL's
     -R, --extra-rm           to also delete not responding config files
 
-    -s, --quiet              use stdout only to print working links
-                             and print warnings and errors on stedrr
+    -s, --quiet              to print working URL's in raw format (unformatted),
+                             and use stderr for warnings and errors
 
   -sni, --servername         to manually add a sni header to the tlsSettings section
                              it may get overridden by the input
