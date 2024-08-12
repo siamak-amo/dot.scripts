@@ -364,12 +364,14 @@ if [[ 1 = $_only_test_api ]]; then
     exit 0
 fi
 
-if [[ -n "$V2_PID" ]]; then
-    echo "$_V2 is Already Running," \
-         "first kill the current running $_V2 instance." >&2
-    exit 1
-fi
+for __v in v2ray v2ray-ng; do
     get_v2_pid $__v
+    if [[ -n "$V2_PID" ]]; then
+        echo "One instance of v2ray is Already Running," \
+             "first kill possess $__v (PID: $V2_PID)" >&2
+        exit 1
+    fi
+done
 
 if [[ -z "$_test_path" ]]; then  # use stdin
     test_links_stdin
