@@ -215,7 +215,7 @@ mk_ccpath(){
 }
 
 # $1 must be the link `URL` or config file path
-# $2 used for log prefix only in verbose mode
+# $2 is log prefix (only in verbose mode)
 log_result(){
     if [[ "OK." == "$_RES" ]]; then
         if [[ 1 == $_test_quiet ]]; then
@@ -245,7 +245,7 @@ log_result(){
 }
 
 test_links_stdin(){
-    # check path exists
+    # check the path exists
     if [[ -n "$PREFIX" && ! -s "$PREFIX" ]]; then
         echo "'$PREFIX': No such file or directory." >&2
         exit 1
@@ -262,7 +262,7 @@ test_links_stdin(){
             '#'|' '|''|$'\n'|$'\t'|$'\r') continue;;
         esac
 
-        # only create config file without testing
+        # only create config file (without testing)
         if [[ 1 == $_no_test ]]; then
             mk_ccpath "$_ln"
             echo "$_ln" | $MKCONF > $CCPATH
@@ -290,13 +290,13 @@ test_links_stdin(){
     done
 }
 
-# $1:   name of executable
-# sets: V2_PID variable to pid of $1
+# $1: name of executable (normally $_V2)
+# provides V2_PID variable, pid of $1
 get_v2_pid(){
     V2_PID=$(ps h -C "$1" -o pid | grep "[0-9]*" -o)
 }
 
-# wait for v2ray's HTTP proxy to response
+# wait for v2ray's HTTP proxy's response
 wait_for_v2(){
     # max retry (20*0.3 = 6s)
     local retry=$((20))
