@@ -73,7 +73,7 @@ OPTIONS:
                              address that is used in the \`inbounds\` section
 
     -k, --keep               to keep generated config files anyway
-    -r, --rm                 to delete broken config files while testing json files,
+    -r, --rm, -kn            to delete broken config files while testing json files,
                              and to prevent creating json files while testing URL's
     -R, --extra-rm           to also delete not responding config files
 
@@ -118,7 +118,7 @@ while test $# -gt 0; do
         -sni | --servername)
             export V2CONF_sni="$2"
             shift 2;;
-        -r | --rm)
+        -r | --rm | --r | --kn | --nk | -kn | -nk)
             _rm_config_file=1
             shift;;
         -R | --extra-rm)
