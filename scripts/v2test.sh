@@ -120,7 +120,7 @@ while test $# -gt 0; do
             _keep_config_file=1
             shift;;
         -s | --silent | --quiet)
-            _print_path=0
+            _print_path=1
             _test_quiet=1
             shift;;
         -tn | --no-test | --test-no)
