@@ -198,13 +198,13 @@ for _ln in $CHANNELS; do
         echo "Error -- Could not download $_ln" >&2
     else
         if [[ ! -s $TMP_FILE ]]; then
-            echo "Warning -- $_ln got empty response" >&2
+            echo "Warning ${_ln##*/} -- Empty Response" >&2
         else
             grep "\(ss\|vless\|vmess\|trojan\)://[^\"<]*" $TMP_FILE -o |\
                 grep -v "…" >> $TMP_PART_FILE
 
             if [[ ! -s $TMP_PART_FILE ]]; then
-                echo "Warning -- $_ln has no v2ray configuration link" >&2
+                echo "Warning ${_ln##*/} -- No v2ray URL" >&2
             else
                 tail -n $MAX_PART $TMP_PART_FILE | sort -u
             fi
