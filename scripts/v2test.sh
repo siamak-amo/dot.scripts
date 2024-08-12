@@ -45,7 +45,8 @@
 #
 function cleanup {
     if [[ -n "$V2_PID" ]] && \
-           [[ -n "$(ps h -p $V2_PID -o comm)" ]]; then
+           [[ -n "$(ps h -p $V2_PID -o comm)" ]] && \
+           [[ -z "$_running_v2_is_not_mine" ]]; then
         kill $V2_PID 2>/dev/null
         [[ 1 = $_verbose ]] && \
             echo "cleanup: $V2 child process (PID: $V2_PID) was killed."
@@ -367,6 +368,7 @@ fi
 for __v in v2ray v2ray-ng; do
     get_v2_pid $__v
     if [[ -n "$V2_PID" ]]; then
+        _running_v2_is_not_mine=1
         echo "One instance of v2ray is Already Running," \
              "first kill possess $__v (PID: $V2_PID)" >&2
         exit 1
