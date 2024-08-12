@@ -286,8 +286,10 @@ test_links_stdin(){
     done
 }
 
+# $1:   name of executable
+# sets: V2_PID variable to pid of $1
 get_v2_pid(){
-    V2_PID=$(ps h -C $_V2 -o pid | grep "[0-9]*" -o)
+    V2_PID=$(ps h -C "$1" -o pid | grep "[0-9]*" -o)
 }
 
 # wait for v2ray's HTTP proxy to response
@@ -323,7 +325,7 @@ test_config_file__H(){
     # *Do Not* get the pid before the `wait_for_v2` function
     # for error-handling purposes, we need to ensure that
     # the v2 client is still running and hasn't exited
-    get_v2_pid
+    get_v2_pid $_V2
 
     if [[ -z "$V2_PID" ]]; then
         _RES="Error."
@@ -362,12 +364,12 @@ if [[ 1 = $_only_test_api ]]; then
     exit 0
 fi
 
-get_v2_pid
 if [[ -n "$V2_PID" ]]; then
     echo "$_V2 is Already Running," \
          "first kill the current running $_V2 instance." >&2
     exit 1
 fi
+    get_v2_pid $__v
 
 if [[ -z "$_test_path" ]]; then  # use stdin
     test_links_stdin
