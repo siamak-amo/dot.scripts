@@ -20,7 +20,7 @@
 # v2test is a wrapper script for the `vsconf.sh` script
 #
 # EXAMPLES:
-#     to test config files (add -r to delete bad files):
+#     to test config files (add -r to delete broken ones):
 #   $ v2test --config /path/to/files -r --timeout 42s
 #     to change v2ray client command (v2ray instead of v2ray-ng)
 #   $ v2test --v2ray v2ray
@@ -74,7 +74,8 @@ OPTIONS:
     -k, --keep               to keep generated config files anyway
     -r, --rm                 to delete faulty config files
     -R, --extra-rm           to also delete not responding config files
-    -s, --quiet              use stdout only to print working links (quiet)
+    -s, --quiet              use stdout only to print working links
+                             and print warnings and errors on stedrr
     -t, --test               to only test the HTTP_PROXY itself
    -tn, --no-test            create config files and ignore testing them
   -sni, --servername         to manually add a sni header to the tlsSettings section
