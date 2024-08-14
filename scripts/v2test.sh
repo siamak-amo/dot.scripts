@@ -65,17 +65,18 @@ OPTIONS:
     -c, --config [Optional]  to specify path to config files
     -T, --timeout            to specify testing timeout
     -o, --prefix             to specify prefix to save output json files
-    -V, --v2ray              to set v2ray client command
+    -V, --v2ray              change v2ray client executable (-V v2ray-ng)
     -t, --test               to only test the HTTP_PROXY itself
-   -tn, --no-test            create config files and ignore testing them
+   -tn, --no-test            create output files without testing them
 
-    -x, --proxy              for testing config files, should be set to the same
-                             address that is used in the \`inbounds\` section
+    -x, --proxy              to change HTTP proxy, should be the same value
+                             that is used in the \`inbounds\` section of
+                             the configuration file which is to be tested
 
     -k, --keep               to keep generated config files anyway
     -r, --rm, -kn            to delete broken config files while testing json files,
                              and to prevent creating json files while testing URL's
-    -R, --extra-rm           to also delete not responding config files
+    -R, --extra-rm           to also delete not-responding configuration files
 
     -s, --quiet              to print working URL's in raw format (unformatted),
                              and use stderr for warnings and errors
