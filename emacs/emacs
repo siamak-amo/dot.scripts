@@ -290,12 +290,21 @@
 (use-package go-mode
   :ensure t
   :hook ((go-mode . lsp-deferred)
-         (go-mode . company-mode))
+         (go-mode . company-mode)
+         (go-mode . my-go-mode-setup))
   :bind (:map go-mode-map
               ("<f5>" . gofmt)
               ("C-c 6" . gofmt))
   :config
   (require 'lsp-go)
+  (defun my-go-mode-setup ()
+    ;; Unbind the default keys
+    (define-key go-mode-map (kbd "C-.") nil)
+    (define-key go-mode-map (kbd "C-,") nil)
+
+    ;; Bind them to your desired functions
+    (define-key go-mode-map (kbd "C-.") 'godef-jump)
+    (define-key go-mode-map (kbd "C-,") 'pop-tag-mark))
   (setq lsp-go-analyses
         '((fieldalignment . t)
           (nilness . t)
