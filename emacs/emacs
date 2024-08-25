@@ -521,8 +521,19 @@
 (global-set-key (kbd "C-x C-i") #'image-dired)
 (global-set-key (kbd "M-n") #'dired-next-marked-file)
 (global-set-key (kbd "M-p") #'dired-prev-marked-file)
-(eval-after-load "dired" '(progn
-  (define-key dired-mode-map (kbd "<backspace>") 'dired-up-directory)))
+(eval-after-load "dired"
+  '(progn
+     ;; backspace  --> go one dir up
+     (define-key dired-mode-map (kbd "<backspace>") 'dired-up-directory)
+     ;; return  --> open files in other window, dirs in the current one
+     (define-key dired-mode-map (kbd "<return>")
+                 (lambda ()
+                   (interactive)
+                   (let ((file (dired-get-file-for-visit)))
+                     (if (file-directory-p file)
+                         (dired-find-alternate-file)
+                       (find-file-other-window file)))))
+     ))
 ;; split window
 (global-set-key (kbd "C-'")  #'split-window-right)
 (global-set-key (kbd "C-3")  #'split-window-right)
