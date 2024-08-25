@@ -525,6 +525,8 @@
   '(progn
      ;; backspace  --> go one dir up
      (define-key dired-mode-map (kbd "<backspace>") 'dired-up-directory)
+     ;; Ctrl-return  --> opens files and dirs in the current (dired) buffer
+     (define-key dired-mode-map (kbd "C-<return>") 'dired-find-file)
      ;; return  --> open files in other window, dirs in the current one
      (define-key dired-mode-map (kbd "<return>")
                  (lambda ()
