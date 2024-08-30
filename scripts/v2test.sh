@@ -164,6 +164,7 @@ done
 
 # defaults
 [ -z "$_V2" ] && _V2="v2ray-ng"
+_print_path=1
 V2=$(which $_V2)
 if [[ -z "$V2" ]]; then
     echo "command not found ($_V2) -- exiting." >&2
