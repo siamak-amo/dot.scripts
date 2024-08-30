@@ -12,9 +12,6 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 # See the GNU General Public License for more details.
 
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, see <https://www.gnu.org/licenses/>.
-
 # This is v2test script
 # to test v2ray configuration files and URL's
 # v2test is a wrapper script for the `vs2conf.sh` script
@@ -41,7 +38,7 @@
 # as the default value of the indoors HTTP proxy field.
 #
 # DEPENDENCIES:
-#  vs2conf script (available in this repo)
+#  vs2conf script (available in dot.scripts project)
 #  curl command
 #  v2ray-ng (default) or any other v2ray client (see --v2ray option)
 #

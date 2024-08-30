@@ -12,10 +12,6 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 # See the GNU General Public License for more details.
 
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, see <https://www.gnu.org/licenses/>.
-
-
 # This is Vs2conf script
 # converts vless, vmess, trojan, and ss URL's to
 # json configuration file for v2ray (v2ray-ng) VPN.
