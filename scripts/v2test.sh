@@ -222,13 +222,15 @@ mk_ccpath(){
 # $2 is log prefix (only in verbose mode)
 log_result(){
     if [[ "OK." == "$_RES" ]]; then
-        if [[ 1 == $_test_quiet ]]; then
-            [[ 1 == $_print_path ]] && echo "$1"
-        else
+        if [[ 1 == $_print_path ]]; then
             if [[ 1 == $_verbose ]];then
                 echo "$2 $1  --  [IP: $_ip] $_RES"
-            elif [[ 1 == $_print_path ]]; then
-                echo "$1  --  $_RES"
+            else
+                if [[ 1 == $_test_quiet ]]; then
+                    echo "$1"
+                else
+                    echo "$1  --  $_RES"
+                fi
             fi
         fi
     else
