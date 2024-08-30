@@ -38,7 +38,7 @@
 # as the default value of the indoors HTTP proxy field.
 #
 # DEPENDENCIES:
-#  vs2conf script (available in dot.scripts project)
+#  vs2conf script (available in the dot.scripts project)
 #  curl command
 #  v2ray-ng (default) or any other v2ray client (see --v2ray option)
 #
@@ -205,7 +205,7 @@ mk_ccpath(){
     # where: yyy is the first 16 bytes sha1 hash of $1
     #   and, xxx is either `v2` or `v2ng` (based on $_V2)
     #   or `V` for unknown v2ray client name $_V2
-    _na_sha1=$(echo $1 | sha1sum)
+    _na_sha1=$(echo "$1" | sha1sum)
     case $_V2 in
         "v2ray")
             _pref_na="v2";;
@@ -276,14 +276,17 @@ test_links_stdin(){
             continue
         fi
 
-        # create config file and test it
+        # create temporary config file and test it
         echo "$_ln" | $MKCONF > $TMP_FILE
         if [[ ! -s "$TMP_FILE" ]]; then
             echo "Config File Was not Created." >&2
         else
             test_config_file__H "$TMP_FILE"
             log_result "$_ln" "  "
-            
+
+            # this will provide a config file from the temporary file when:
+            #   `--rm` is not passed
+            #   the temporary config is not broken OR `--keep` is passed
             if [[ 1 != $_rm_config_file ]] && \
                    [[ 1 == $_keep_config_file || "OK." == "$_RES" ]]
             then
