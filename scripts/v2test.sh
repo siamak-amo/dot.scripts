@@ -305,7 +305,7 @@ get_v2_pid(){
     V2_PID=$(ps h -C "$1" -o pid | grep "[0-9]*" -o)
 }
 
-# wait for v2ray's HTTP proxy's response
+# waiting for the HTTP proxy port to open
 wait_for_v2(){
     # max retry (20*0.3 = 6s)
     local retry=$((20))
@@ -320,7 +320,6 @@ wait_for_v2(){
     exec 7<&-
 }
 
-# $1 is the config.json path
 run_v2(){
     case "$_V2" in
         v2ray)
@@ -330,7 +329,7 @@ run_v2(){
     esac
 }
 
-# $1 is the file path
+# $1 is path to config.json file
 test_config_file__H(){
     run_v2 "$1"
     wait_for_v2
