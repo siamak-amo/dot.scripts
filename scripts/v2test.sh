@@ -13,7 +13,7 @@
 # See the GNU General Public License for more details.
 
 # This is v2test script
-# to test v2ray configuration files and URL's
+# a testing tool for v2ray configuration files and URL's
 # v2test is a wrapper script for the `vs2conf.sh` script
 #
 # EXAMPLES:
