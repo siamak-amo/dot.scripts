@@ -73,7 +73,7 @@ OPTIONS:
     -k, --keep               to keep generated config files anyway
     -r, --rm, -kn            to delete broken config files while testing with `-c`,
                              and to prevent creating config files while testing
-                             URL's from the stdin (without `-c`)
+                             URLs from the stdin (without `-c`)
     -R, --extra-rm           to also delete not-responding configuration files
 
     -s, --quiet              to print working URL's in raw format (unformatted),
@@ -285,7 +285,7 @@ test_links_stdin(){
             test_config_file__H "$TMP_FILE"
             log_result "$_ln" "  "
 
-            # this will provide a config file from the temporary file when:
+            # this will output the temporary config file only when:
             #   `--rm` is not passed
             #   the temporary config is not broken OR `--keep` is passed
             if [[ 1 != $_rm_config_file ]] && \
@@ -300,7 +300,7 @@ test_links_stdin(){
     done
 }
 
-# $1: name of executable (normally $_V2)
+# $1: name of v2ray client executable (normally $_V2)
 # provides V2_PID variable, pid of $1
 get_v2_pid(){
     V2_PID=$(ps h -C "$1" -o pid | grep "[0-9]*" -o)
@@ -330,7 +330,7 @@ run_v2(){
     esac
 }
 
-# $1 is path to config.json file
+# usage:  test_config_file__H /path/to/config.json
 test_config_file__H(){
     run_v2 "$1"
     wait_for_v2
