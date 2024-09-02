@@ -59,7 +59,7 @@ v2test [OPTIONS] [/path/to/file.json] [/path/to/dir]
 
 
 OPTIONS:
-    -c, --config [Optional]  to specify path to config files
+    -c, --config             to specify path to config files
     -T, --timeout            to specify testing timeout
     -o, --prefix             to specify prefix to save output json files
     -V, --v2ray              change v2ray client executable (-V v2ray-ng)
@@ -71,8 +71,9 @@ OPTIONS:
                              the configuration file which is to be tested
 
     -k, --keep               to keep generated config files anyway
-    -r, --rm, -kn            to delete broken config files while testing json files,
-                             and to prevent creating json files while testing URL's
+    -r, --rm, -kn            to delete broken config files while testing with `-c`,
+                             and to prevent creating config files while testing
+                             URL's from the stdin (without `-c`)
     -R, --extra-rm           to also delete not-responding configuration files
 
     -s, --quiet              to print working URL's in raw format (unformatted),
