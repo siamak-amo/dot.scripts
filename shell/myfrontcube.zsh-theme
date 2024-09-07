@@ -4,7 +4,7 @@
 print -P 'Last login: %D{%a %d %B %Y - %H:%M:%S} on %y\n'
 
 RPROMPT='$(git_prompt_info) $(ruby_prompt_info)'
-PROMPT='%n@%M$(_C="$?"; [[ "$_C" != "0" && "$_C" != "130" ]] && echo "[%{$fg[red]%}$_C%{$reset_color%}]")  %{$fg_bold[gray]%}%~% %{$reset_color%}
+PROMPT='%n@%M$(_C="$?"; [[ "$_C" != "0" && "$_C" != "130" ]] && echo "[%{$fg[red]%}$_C%{$reset_color%}]")  %{$fg_bold[$([ -w $PWD ] && echo gray || echo red)]%}%~% %{$reset_color%}
 %{$fg[blue]%}/# %{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[green]%}[git:"
