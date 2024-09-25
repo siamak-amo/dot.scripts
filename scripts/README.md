@@ -14,10 +14,9 @@
 
   you can deactivate `pyenv` by running: `source chpy -d`
 
-  ** WARNING ** This script works by changing your `$PATH` variable:
-
+  ** WARNING ** This script works by changing your `$PATH` variable;
     it adds: `$PYENV_ROOT/shims` to the BEGINNING of the PATH variable,
-    so this can to vulnerability with granted write permission to `$PYENV_ROOT/shims`
+    so this can lead to vulnerability with granted write access to `$PYENV_ROOT/shims`
 
 
 * cowsay  
