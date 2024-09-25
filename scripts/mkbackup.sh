@@ -44,6 +44,7 @@ OPTIONS:
     -X, --exclude             pass it's argument directly to the tar
                               like: `tar --exclude PATTERN` (see man tar)
     -z, --gzip                to make compressed tar files (tar.gz)
+    --                        extra tar options
 
 EOF
 }
@@ -99,11 +100,14 @@ while test $# -gt 0; do
             PARTS=" "
             shift 1
             ;;
-        *)
-            echo "invalid option -- '$1'," >&2
-            echo "Try '--help' for more information." >&2
-            exit 1
+
+        --)
+            # we will directly deliver the rest of options to tar
+            shift 1
+            _tar_extra_opts="$@"
             ;;
+        *)
+            shift 1;;
     esac
 done
 
@@ -175,7 +179,7 @@ do_backup(){
       [[ $CD = 1 ]] && _src_path="-C $part ." || _src_path=$part
   fi
 
-  $TAR -$TFLAGS $_fname $TOPTS $_EX $_src_path && echo -e "done.\n"
+  $TAR -$TFLAGS $_fname $TOPTS $_EX $_src_path $_tar_extra_opts && echo -e "done.\n"
 }
 
 #------
