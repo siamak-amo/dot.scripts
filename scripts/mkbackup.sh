@@ -190,7 +190,7 @@ do_backup(){
       [[ $CD = 1 ]] && _src_path="-C $part ." || _src_path=$part
   fi
 
-  $TAR -$TFLAGS $_fname $TOPTS $_EX $_src_path $_tar_extra_opts && echo -e "done.\n"
+  $TAR $_tar_extra_opts $_EX -$TFLAGS $_fname $TOPTS $_src_path && echo -e "done.\n"
 }
 
 #------
