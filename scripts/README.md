@@ -1,52 +1,77 @@
 # My Scripts
+
+# My Scripts
 ### here you can read about my scripts and how to use them.
 
 * chpy  
-  this sript works with `pyenv` program, at fist you might set your global python version by running `pyenv global 3.xxx`, and then by running `source chpy` your python environment will change to what have you set before (activation), which means your `pip` and `python` commands now get run by python `3.xxx` (your shell prompt will change indicating that).
-  and also your `pip ` packages will get installed in the `$PYENV_ROOT/versions/3.xxx` directory.
-  you can deactivate `pyenv` by running `source chpy -d`.
+  This sript is a wrapper for the `pyenv` program, so you need to install it first
 
-  ** WARNING ** This program works by changing your `$PATH`variable by adding `$PYENV_ROOT/shims` to its beginning, so this could lead to vulnerability if someone has write access to `$PYENV_ROOT/shims`.
+  first of all set your global python version by running `pyenv global 3.xxx`,
+  and then by running `source chpy`, your python environment will change
+  to what you have set before (activation), which means
+  your `pip` and `python` commands now come from `pyenv` configuration;
+  your shell prompt (PS1) will change indicating that.
+  also your `pip` packages now get installed in `$PYENV_ROOT/versions/3.xxx`
+
+  you can deactivate `pyenv` by running: `source chpy -d`
+
+  ** WARNING ** This script works by changing your `$PATH` variable:
+
+    it adds: `$PYENV_ROOT/shims` to the BEGINNING of the PATH variable,
+    so this can to vulnerability with granted write permission to `$PYENV_ROOT/shims`
+
 
 * cowsay  
-  `cowsay` is a minimal `sh` replacement script for real `cowsay` program, 
-  you can either run `cowsay "some string here"` or pipe to it `xxx | cowsay`.
+  `cowsay` is a minimal SHELL replacement script for the real `cowsay` program,
+  you can either run: `cowsay "some string here"` or use stdin: `echo -e "xxx" | cowsay`
+
 
 * mkbackup  
-  make backup, is my backup script, you can dry run it (just echo what it's going to do) by `mkbackup -n`.
-  
-  you can exclude files and directories by editing the `EXCLUDES` variable 
+  make backup, my backup script
+
+  It makes configurable tarball backup(s) of the entire filesystem
+  You can exclude files and directories by editing the `EXCLUDES` variable 
   or using `--exclude` option (the same as the `tar --exclude PATTERN`),
   and also break your backup parts by declaring them in `PARTS` variable or using `--parts` option,
-  for instance, if you pass `--parts "/home /var"` you will get 3 backup files `ROOT-xxx.tar,  HOME-xxx.tar,  VAR-xxx.tar`.
-  
-  also by setting `TFLAGS=cpfz` or using `-z` option, the output will be in gzip compressed format.
+  for instance, if you pass `--parts "/home /var"` you will get 3 backup files: 
+  `ROOT-xxx.tar,  HOME-xxx.tar,  VAR-xxx.tar` and
+  by setting `TFLAGS=cpfz` or using `-z` option, the output will be in gzip compressed format
+
+  To only see generated tar commands use `-n` (dry run)
+  and to include other tar options use: `--` and then any tar option(s)
+
 
 * dideofy  
-  dideo.ir is YouTube cache website (that makes it possible to watch 'some' YouTube videos from Iran without using VPN), I use this script to convert YouTube links (either direct links or links from Google search) to compatible dideo.ir links.
-  
+  dideo.ir wrapper script, this script converts YouTube links including
+  direct links (to videos and playlists), URLs from Google search to compatible dideo.ir links
+
+
   also by adding `-d1` or `-d2` (d1 for lower quality, d2 for 720p quality), you will get a direct download link, which I usually use like `mpv $(dideofy [LINK] -d2)`.
   
 * jcal2panel  
-  I always use the `jcal` program (it's a Jalali calendar), this script uses the `jdate` (similar to the `date` command) and outputs Jalali and Gregorian date in a compact format which I usually use in my desktop panels.
+  This script uses `jdate` program and outputs Jalali and Gregorian date
+  in a compact format which I usually use in my desktop panels
 
-* ldict  
-  simply is a wrapper around the `dict` command to use `less -S` instead of messing with your terminal.
+  see <https://www.nongnu.org/jcal/> for more information about jcal, jdate and libjalali,
+  or see my modified version (jtool) <https://gitlab.com/SI.AMO/jtool>
+
 
 * chdns  
-  in this simple script, you can define some DNS servers by names like `ns1, ns2, ...` then by running `chdns -ns1`, chdns will write corresponding `nameserver ns1` to your `/etc/resolve.conf` file.
+  Using chdns, you can define some DNS servers like `ns1, ns2, ...`,
+  then by running `chdns -ns1`, chdns will update your `/etc/resolve.conf` file
+  by the corresponding DNS server (`ns1` in this case)
 
-* oggify  
-  oggify is a simple script to change file extensions, I named oggify when it was so simple to only change file extensions to `.ogg`
-  
-  I use it like `for f in $(ls *.mp3); do  ffmpeg -i $f $(echo $f | oggify);  done` to convert all mp3 files to ogg format.
 
 * ln2ml  
-  this script can be used to reformat files that include links separated by newlines, to a proper HTML format.
+  This script can be used to reformat files that consist of links (on each line)
+  to a proper HTML format which you can copy the links to your clipboard
+  by clicking on them
+
 
 * vs2conf  
-  this script gives you v2ray configuration file, based on URLs like vmess://xxx.
-  vmess, vless, ss, and trojan protocols are supported.
+  This script gives you v2ray configuration file, based on URLs like vmess://xxx
+  vmess, vless, ss, and trojan protocols are supported
+
 
 * v2test  
   I use this script to make tested v2ray config files and also to test existing config files:
@@ -57,14 +82,18 @@
   ```
   add `-s` and `2>/dev/null` to only get working links (simple link in each line)
 
+
 * Bash_V2rayCollector  
-  this script downloads v2ray config links from several telegram channels.
+  This script downloads v2ray config links from several telegram channels.
   you need to use another proxy if telegram is blocked in your region:
   `HTTP_PROXY="IP:port" Bash_V2rayCollector >> links`
   and then you may kill the current proxy and use the `v2test` script to generate JSON config files.
 
-there are other tiny simple scripts not documented here (mostly because of their simplicity and limited usage)
-like `ghassets`, `calTopPanel`, `conck`, `setresol`
+
+### Others
+There are some other tiny simple scripts not documented here
+(mostly because of their simplicity and limited usage)
+like: `ghassets`, `calTopPanel`, `conck`, `setresol`, `oggify`
 
 
 ### Deploy
