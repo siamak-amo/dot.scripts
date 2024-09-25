@@ -45,7 +45,8 @@
   direct links (to videos and playlists), URLs from Google search to compatible dideo.ir links
 
 
-  also by adding `-d1` or `-d2` (d1 for lower quality, d2 for 720p quality), you will get a direct download link, which I usually use like `mpv $(dideofy [LINK] -d2)`.
+  by adding `-d1` or `-d2` (d1 for the lower quality and d2 for 720p),
+  gives a direct download link, which can be used like: `mpv $(dideofy [LINK] -d2)`
   
 * jcal2panel  
   This script uses `jdate` program and outputs Jalali and Gregorian date
