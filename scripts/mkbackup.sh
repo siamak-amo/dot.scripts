@@ -41,7 +41,8 @@ OPTIONS:
     -l, --nice-level          to specify nice -n level
     --parts                   to specify separated backup parts
     -s, --solid               to backup in a single file
-    -e, --exclude             to exclude (file/dir) from backup
+    -X, --exclude             pass it's argument directly to the tar
+                              like: `tar --exclude PATTERN` (see man tar)
     -z, --gzip                to make compressed tar files (tar.gz)
 
 EOF
@@ -150,9 +151,7 @@ fi
 # prepare excludes
 # to be excluded from the root filesystem
 _excludes=$(echo " "$PARTS" "$EXCLUDES | sed -e 's/ \// --exclude \//g')
-# to be excluded from the other parts
-_pexcludes=$(echo " "$PEXCLUDES | sed -e 's/ \// --exclude \//g')
-
+# prepare the tar file's extension
 [[ -z "$_gzip" ]] && _ext="tar" || _ext="tar.gz"
 
 #-----------
