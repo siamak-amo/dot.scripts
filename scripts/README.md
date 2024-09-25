@@ -98,13 +98,15 @@ like: `ghassets`, `calTopPanel`, `conck`, `setresol`, `oggify`
 ---
 
 ### Deploy
-as a standard, if any of these scripts depend on another one, it was done by referring to
-the script name (without .sh), so creating links from some of `.sh` files to a location 
-in your PATH, such as `~/.local/bin/`, is necessary, Alternatively modify the scripts as needed.
+As a standard, if any of these scripts depends on another one,
+it was done by referring to the other's name (without .sh)
 
-example:
+It is convenient to create symbolic links (without `.sh`)
+from these scripts into some plase (like `~/.local/bin/`)
+included in your PATH variable:
 ``` bash
 for script in $(ls *sh -1); do
     ln -s "$PWD/$script" ~/.local/bin/${script:0:-3}
 done
 ```
+Alternatively modify the scripts as needed to use absolute path (not recommended)
