@@ -99,9 +99,9 @@ like: `ghassets`, `calTopPanel`, `conck`, `setresol`, `oggify`
 
 ### Deploy
 As a standard, if any of these scripts depends on another one,
-it was done by referring to the other's name (without .sh)
+it was done by referring to the other's name (without `.sh` at the end)
 
-It is convenient to create symbolic links (without `.sh`)
+It is convenient to create symbolic links
 from these scripts into some plase (like `~/.local/bin/`)
 included in your PATH variable:
 ``` bash
