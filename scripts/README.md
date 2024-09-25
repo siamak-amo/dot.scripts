@@ -1,7 +1,6 @@
 # My Scripts
 
-# My Scripts
-### here you can read about my scripts and how to use them.
+# Scripts
 
 * chpy  
   This sript is a wrapper for the `pyenv` program, so you need to install it first
@@ -89,12 +88,14 @@
   `HTTP_PROXY="IP:port" Bash_V2rayCollector >> links`
   and then you may kill the current proxy and use the `v2test` script to generate JSON config files.
 
+---
 
 ### Others
 There are some other tiny simple scripts not documented here
 (mostly because of their simplicity and limited usage)
 like: `ghassets`, `calTopPanel`, `conck`, `setresol`, `oggify`
 
+---
 
 ### Deploy
 as a standard, if any of these scripts depend on another one, it was done by referring to
