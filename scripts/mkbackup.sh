@@ -59,7 +59,8 @@ EOF
 }
 
 set -e
-while test $# -gt 0; do
+EOO=0 # end of options
+while test $# -gt 0  -a  $EOO -eq 0; do
     case "$1" in
         -n | --dry | --dry-run)
             _dry_run=1
@@ -112,7 +113,8 @@ while test $# -gt 0; do
 
         --)
             # we will directly deliver the rest of options to tar
-            shift 1
+            shift 1;
+            EOO=1 # End of Options
             _tar_extra_opts="$@"
             ;;
         *)
