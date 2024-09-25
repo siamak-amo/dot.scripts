@@ -118,7 +118,9 @@ while test $# -gt 0  -a  $EOO -eq 0; do
             _tar_extra_opts="$@"
             ;;
         *)
-            shift 1;;
+            echo -e "mkbackup: invalid option -- '$1'"\
+                    "\nTry '--help' for more information."
+            exit 1
     esac
 done
 
