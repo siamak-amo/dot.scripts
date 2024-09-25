@@ -31,7 +31,7 @@
 
 usage(){
   cat <<EOF
-mkbackup [OPTIONS]
+mkbackup [OPTIONS] [ARGS]
 
 OPTIONS:
     -n                        dry run
@@ -46,6 +46,15 @@ OPTIONS:
     -z, --gzip                to make compressed tar files (tar.gz)
     --                        extra tar options
 
+ARGS:
+    -o /mnt/backups            tar files path
+    -p '/home /boot /opt'      makes 3 separate backups + root fs
+                               HOME.tar, BOOT.tar, OPT.tar and ROOT.tar
+    -X .cache -X tmp           ignores .cache and tmp file / dir name
+                               patterns EVERYWHERE
+    -- [ANY TAR OPTION(s)]     this will add the rest of the options
+                               to the tar command itself, for example:
+                                `-- --exclude-caches -v ...`
 EOF
 }
 
