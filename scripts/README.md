@@ -68,8 +68,9 @@
 
 
 * vs2conf  
-  This script gives you v2ray configuration file, based on URLs like vmess://xxx
-  vmess, vless, ss, and trojan protocols are supported
+  This script gives you v2ray configuration file, based on URLs like `vmess://xxx#name`
+
+  Supported protocols: vmess, vless, ss(shadow socks) and trojan
 
 
 * v2test  
