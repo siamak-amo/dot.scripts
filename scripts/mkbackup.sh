@@ -163,8 +163,7 @@ else
 fi
 [[ -n "$_dry_run" ]] && TAR="echo $TAR"
 
-# prepare excludes
-# to be excluded from the root filesystem
+# to be excluded from the root filesystem (includes PARTS)
 _excludes=$(echo " "$PARTS" "$EXCLUDES | sed -e 's/ \// --exclude \//g')
 # prepare the tar file's extension
 [[ -z "$_gzip" ]] && _ext="tar" || _ext="tar.gz"
@@ -190,7 +189,8 @@ do_backup(){
       [[ $CD = 1 ]] && _src_path="-C $part ." || _src_path=$part
   fi
 
-  $TAR $_tar_extra_opts $_EX -$TFLAGS $_fname $TOPTS $_src_path && echo -e "done.\n"
+  $TAR $_tar_extra_opts $_EX -$TFLAGS $_fname $TOPTS $_src_path && \
+      echo "done."
 }
 
 #------
@@ -204,7 +204,7 @@ do
     read -p "$_fname already exists, overwrite it (y/N)? " _cho
     case "$_cho" in
         y|Y ) do_backup;;
-        * ) echo -e "ignored.\n";;
+        * ) echo "ignored.";;
     esac
   else
     do_backup
