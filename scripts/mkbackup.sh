@@ -78,9 +78,10 @@ while test $# -gt 0; do
             _gzip=1
             shift
             ;;
-        -e | --exc | --exclude | --extra_exclude)
-            [[ -s "$2" ]] && PEXCLUDES="$PEXCLUDES $(realpath $2)" ||\
-                    echo "Warning, '$2' No such file or directory." >&2
+        -X | --exc | --exclude | --exclude-from)
+            [[ -n "$2" ]] && PEXCLUDES="$PEXCLUDES $2"
+            # _pexcludes: `--exclude VAL1 --exclude VAL2 ...`
+            _pexcludes="$_pexcludes --exclude $2"
             shift 2
             ;;
         --part | --parts)
