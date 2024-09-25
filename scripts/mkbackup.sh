@@ -54,7 +54,7 @@ ARGS:
                                patterns EVERYWHERE
     -- [ANY TAR OPTION(s)]     this will add the rest of the options
                                to the tar command itself, for example:
-                                `-- --exclude-caches -v ...`
+                                `-- --exclude-backups -v ...`
 EOF
 }
 
