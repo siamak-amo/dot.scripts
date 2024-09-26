@@ -11,6 +11,9 @@
 # shecan.ir DNS
 185.51.200.2    ns1.shecan.ir shecan1
 178.22.122.100  ns2.shecan.ir shecan2
+185.55.226.26   ns1.begzar.ir begzar1
+185.55.225.25   ns2.begzar.ir begzar2
+
 
 # gateway
 #
