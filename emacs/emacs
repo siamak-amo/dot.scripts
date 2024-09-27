@@ -50,6 +50,16 @@
 
 ;;; evil mode (vi mode)
 (use-package evil
+  :hook
+  (c-mode . set-c-comments)
+  (c-mode . (lambda ()
+              (print "TAG initialized")
+              (define-key evil-normal-state-map (kbd "M-.") 'find-tag)
+              (define-key evil-normal-state-map (kbd "M-,") 'xref-pop-marker-stack)))
+  :config
+  (defun set-c-comments ()
+    (setq comment-start "// "
+          comment-end ""))
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
@@ -425,16 +435,6 @@
 (set-face-attribute 'font-lock-keyword-face nil
 		    :slant 'italic)
 (setq column-number-mode t)
-;; use // for comment in c-mode
-(defun set-c-comments ()
-  (setq comment-start "// "
-        comment-end ""))
-(add-hook 'c-mode-hook 'set-c-comments)
-;; TAG support in c-mode
-(add-hook `c-mode-hook (lambda () (
-  (define-key evil-normal-state-map (kbd "M-.") 'find-tag)
-  (define-key evil-normal-state-map (kbd "M-,") 'xref-pop-marker-stack))))
-
 (when window-system (set-fontset-font "fontset-default" '(#x600 . #x6ff) "arimo"))
 ;; disable line number
 (add-hook 'pdf-view-mode-hook #'(lambda () (interactive) (display-line-numbers-mode -1)))
