@@ -3,6 +3,7 @@
 # Usage:
 #   add the folloing line to your ~/.[your shell]rc
 #   `source /path/to/aliases.sh`
+#   *AFTER* `source /path/to/shellfuns.sh` if you have it
 #
 ##### General #####
 alias s="ls"
@@ -13,6 +14,11 @@ alias ymv="yes | mv"
 alias ycp="yes | cp"
 alias ping="timeout 20s ping -c4"
 alias cls="clear"
+
+# unlinks alias, usage: `unlink [links]...`
+if type unlinks 2>&1 1>/dev/null; then
+    alias unlink="unlinks"
+fi
 
 ##### Proxy #####
 [[ -n "$HTTP_PROXY" ]] && __HTTP_PROXY=$HTTP_PROXY || \

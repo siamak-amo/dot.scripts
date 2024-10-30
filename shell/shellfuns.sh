@@ -44,6 +44,13 @@ function fffree(){
 # utils #
 #-------#
 
+# unlink wrapper
+function unlinks(){
+    for ln in $@; do
+        /usr/bin/unlink "$ln"
+    done
+}
+
 #  word lookup regex
 #  usage:
 #          wregex 'si' 'i' 'lar'    ->  '^si.*i.*lar$'
