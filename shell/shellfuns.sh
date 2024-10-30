@@ -14,7 +14,7 @@ function ffmeta(){
     ffmpeg -i $1 -map_metadata -1 -c:v copy $2
 }
 
-# voice conversion (no video)
+# voice format conversion (no video)
 # usage:
 #         ffogg file.mp3        -> output: file.ogg
 #         ffogg file.mp3 webm   -> output: file.webm
@@ -23,8 +23,8 @@ function ffogg(){
     ffmpeg -i $1 -vn "${1%.*}$_formato"
 }
 
-# make input file's audio free!
-# metadata elimination and converting to ogg format (audio)
+# making input file's audio free!
+# metadata elimination and converting to the ogg format (audio)
 # usage:
 #         fffree file.mp3       -> output: file.ogg
 #         fffree file.mp3 webm  -> output: file.webm
