@@ -38,6 +38,7 @@ alias gcl1="git clone --depth 1"
 alias gstash="git stash"
 alias gsh="git push"
 alias gll="git pull"
+alias giff="git diff"
 
 ##### PS #####
 alias psm='ps -A --format=pid,pcpu,pmem,comm --sort=-pmem,-pcpu | head'
