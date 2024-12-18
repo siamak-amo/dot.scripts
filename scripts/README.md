@@ -76,11 +76,16 @@
 * v2test  
   I use this script to make tested v2ray config files and also to test existing config files:
   ```{bash}
-  cat /path/to/links.text | v2test 2>/dev/null        # to make verified config files
-  v2test -c /path/to/*.json                           # to test config files
-  cat /path/to/links.text | v2test -tn                # to skip testing and convert all links
+   - to get working URL's and create equivalent json configuration files based on them
+   $ cat links.all | v2test -T 4s -s 2>/dev/null | tee links.working
+   - to test config files, add -r or -R (extra remove) to delete broken ones
+   $ v2test -c /path/to/*.json -T 4s
+   - to convert all the input URL's to json without testing them
+   $ cat links.all | v2test -tn
+   - to only test the current running v2ray instance
+   $ v2test -t
   ```
-  add `-s` and `2>/dev/null` to only get working links (simple link in each line)
+
 
 
 * Bash_V2rayCollector  
