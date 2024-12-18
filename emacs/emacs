@@ -300,6 +300,14 @@
   :bind (("C-x g" . magit-status)
          ("C-x C-g" . magit-status))
   )
+(use-package git-gutter
+  :ensure t
+  :init
+  (global-git-gutter-mode +1)
+  :config
+  (setq git-gutter:update-interval 0)
+  (setq gutter:window-width 2)
+  )
 (use-package git-gutter-fringe
   :ensure t
   :config
