@@ -208,7 +208,6 @@
     "bn" '(next-buffer :wk "Next buffer")
     "bp" '(previous-buffer :wk "Previous buffer")
     ;; revert / reload
-    "g"  'revert-buffer
     "hr" '(:ignore t :wk "Reload")
     "hrr" '((lambda () (interactive)
               (load-file "~/.emacs")
@@ -242,6 +241,9 @@
     "ll" '(langtool-check :wk "langtool check")
     "ld" '(langtool-check-done :wk "langtool check done")
     "lm" '(langtool-show-message-at-point :wk "langtool show message")
+    ;; git
+    "g"  '(:ignore t :wk "Git")
+    "gg" '(git-gutter:update-all-windows :wk "Update All Windows")
     )
   )
 
