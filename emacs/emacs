@@ -208,12 +208,13 @@
     "bn" '(next-buffer :wk "Next buffer")
     "bp" '(previous-buffer :wk "Previous buffer")
     ;; revert / reload
-    "hr" '(:ignore t :wk "Reload")
-    "hrr" '((lambda () (interactive)
               (load-file "~/.emacs")
               (ignore (elpaca-process-queues)))
             :wk "Reload emacs config")
-    "br" '(revert-buffer :wk "Reload buffer")
+    "r"  '(:ignore t :wk "Reload")
+    "rr" 'revert-buffer
+    "re" '((lambda () (interactive)
+    "rb" '(revert-buffer :wk "Reload buffer")
     ;; dired
     "d" '(:ignore t :wk "Dired")
     "dd" '(dired :wk "Open dired")
