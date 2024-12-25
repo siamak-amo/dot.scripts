@@ -201,6 +201,9 @@
                           :prefix "SPC"
                           :global-prefix "M-SPC")
   (dt/leader-keys
+    ;; emacs
+    "e"  '(:ignore t :wk "Emacs")
+    "ee" '(save-buffers-kill-terminal :wk "Exit")
     ;; buffer management
     "b"  '(:ignore t :wk "buffer")
     "bb" '(switch-to-buffer :wk "Switch buffer")
