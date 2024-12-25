@@ -215,11 +215,12 @@
              (ignore (elpaca-process-queues)))
            :wk "Reload emacs config")
     "rb" '(revert-buffer :wk "Reload buffer")
-    ;; dired
-    "d"  '(:ignore t :wk "Dired")
-    "dd" '(dired :wk "Open dired")
-    "dw" '(wdired-change-to-wdired-mode :wk "Writable dired")
-    "df" '(wdired-finish-edit :wk "Finish editing")
+    ;; file and dir
+    "f"   '(:ignore t :wk "File / Dir")
+    "ff"  '(find-file :wk "Find file")
+    "fd"  '(dired :wk "Open dired")
+    "fdw" '(wdired-change-to-wdired-mode :wk "Writable dired")
+    "fdf" '(wdired-finish-edit :wk "Finish editing")
     ;; tabs / vterm / themes and face
     "t"  '(:ignore t :wk "Tab / Vterm")
     "tt" '(tab-new :wk "Tab new")
