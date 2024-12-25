@@ -218,7 +218,8 @@
     ;; file and dir
     "f"   '(:ignore t :wk "File / Dir")
     "ff"  '(find-file :wk "Find file")
-    "fd"  '(dired :wk "Open dired")
+    "fd"  '(:ignore t :wk "Dir")
+    "fdd" '(dired :wk "Open dired")
     "fdw" '(wdired-change-to-wdired-mode :wk "Writable dired")
     "fdf" '(wdired-finish-edit :wk "Finish editing")
     ;; tabs / vterm / themes and face
