@@ -250,6 +250,7 @@
     ;; git
     "g"  '(:ignore t :wk "Git")
     "gg" '(git-gutter:update-all-windows :wk "Update All Windows")
+    "gm" '(magit :wk "Magit")
     )
   )
 
