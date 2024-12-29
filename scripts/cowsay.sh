@@ -36,7 +36,7 @@ while test $# -gt 0; do
             ;;
         -l | -dl | --len | --length | --dialog-len | --dialog-length)
             DIALOG_LEN=$2
-            [[ $((DIALOG_LEN)) < 5 ]] && DIALOG_LEN=5
+            [[ $((DIALOG_LEN)) -lt 5 ]] && DIALOG_LEN="5"
             shift 2
             ;;
         -f)
