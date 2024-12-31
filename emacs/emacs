@@ -366,8 +366,8 @@
 (use-package vterm
   :ensure t
   :config
-  (define-key vterm-mode-map (kbd "C-c") 'vterm-send-C-c)
-  (define-key vterm-mode-map (kbd "C-d") 'vterm-send-C-d)
+  (define-key vterm-mode-map (kbd "C-c")
+              (lambda () (interactive) (vterm-send-key (kbd "C-c"))))
   (define-key vterm-mode-map (kbd "C-<home>")  nil)
   (define-key vterm-mode-map (kbd "C-<end>")   nil)
   (define-key vterm-mode-map (kbd "C-<next>")  nil)
