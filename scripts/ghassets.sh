@@ -10,9 +10,10 @@
 #           $ ghassets -l https://github.com/[USER]/[REPO]/releases/tag/[BUILD TAG]
 #
 #
+[ -z "$TMPDIR" ] && TMPDIR="/tmp"
 if ! [ $1 = "-l" ]; then
     _repo_ln="$(echo $1 | sed -E "s/\.git$//g")/releases"
-    _tmp_file="/tmp/gh_$(date +"%H%M%s_%d%m%y").html"
+    _tmp_file="$TMPDIR/gh_$(date +"%H%M%s_%d%m%y").html"
     
     curl -s $_repo_ln > $_tmp_file
     _release_line_number=$(grep -Eno "Latest" $_tmp_file |\

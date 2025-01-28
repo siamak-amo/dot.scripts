@@ -23,8 +23,9 @@
 #  are only valid for a few days or even hours,
 #  so it's convenient to run this script according to a set schedule
 
-TMP_FILE="/tmp/bash_cc.html"
-TMP_PART_FILE="/tmp/bash_cc.part"
+[ -z "$TMPDIR" ] && TMPDIR="/tmp"
+TMP_FILE="$TMPDIR/bash_cc.html"
+TMP_PART_FILE="$TMPDIR/bash_cc.part"
 MAX_PART=10
 TIMEOUT="timeout 10s"
 

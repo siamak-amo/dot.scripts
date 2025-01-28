@@ -6,8 +6,9 @@
 #
 V2TEST="$(which v2test)"
 BCC="$(which Bash_V2rayCollector)"
-TMP_LINKS_FILE="/tmp/v2att.links"
-TMP_JSON_PATH="/tmp/v2att"
+[ -z "$TMPDIR" ] && TMPDIR="/tmp"
+TMP_LINKS_FILE="$TMPDIR/v2att.links"
+TMP_JSON_PATH="$TMPDIR/v2att"
 
 # remove HTTP_PROXY if telegram is not blocked in your region
 HTTP_PROXY="127.0.0.1:10809" $BCC > $TMP_LINKS_FILE
