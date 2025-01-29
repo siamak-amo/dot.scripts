@@ -65,6 +65,12 @@
          (grep-command (format "grep -rn --exclude-dir=.git --exclude=TAGS '%s' %s"
                                search-string directory)))
     (compile grep-command)))
+(defun do_grep ()
+  (interactive)
+  (let* ((search-string (read-string "Search: "))
+         (grep-command (format "grep -rn --exclude-dir=.git --exclude=TAGS '%s' ."
+                               search-string)))
+    (compile grep-command)))
 ;; transparency
 (defun increase-transparency ()
   "Increase transparency of the frame by 5%."
@@ -230,7 +236,9 @@
     "g"  '(:ignore t :wk "Git & Grep")
     "gg" '(git-gutter:update-all-windows :wk "Update All Windows")
     "gm" '(magit :wk "Magit")
-    "gr" '(do_grep_in_dir :wk "Grep in Directory")
+    "gr"  '(:ignore t :wk "Grep")
+    "grr" '(do_grep_in_dir :wk "Grep in Directory")
+    "grc" '(do_grep :wk "Grep in the current dir")
     ;; revert / reload
     "r"  '(:ignore t :wk "Reload")
     "rr" 'revert-buffer
