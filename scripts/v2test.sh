@@ -98,7 +98,7 @@ while test $# -gt 0; do
             TOUT="0${2//[^0-9]/}s"
             shift 2;;
         -o | --pref | --prefix)
-            PREFIX="$2"
+            _PREFIX="$2"
             shift 2;;
         -x | --proxy)
             HTTP_PROXY="$2"
@@ -175,7 +175,7 @@ MKCONF=$(which vs2conf)
 TMP_FILE="$TMPDIR/.v2test_temp_config.json"
 
 [ -z "$TOUT" ] && TOUT="10s"
-[ -z "$PREFIX" ] && PREFIX="."
+[ -z "$_PREFIX" ] && _PREFIX="."
 [ -z "$HTTP_PROXY" ] && HTTP_PROXY="127.0.0.1:10809"
 TEST_API="https://api.ipify.org"
 
@@ -217,7 +217,7 @@ mk_ccpath(){
             _pref_na="V";;
     esac
 
-    CCPATH="$PREFIX/$_pref_na-${_na_sha1:0:16}.json"
+    CCPATH="$_PREFIX/$_pref_na-${_na_sha1:0:16}.json"
 }
 
 # $1 must be the link `URL` or config file path
@@ -254,12 +254,12 @@ log_result(){
 
 test_links_stdin(){
     # check the path exists
-    if [[ -n "$PREFIX" && ! -s "$PREFIX" ]]; then
-        echo "'$PREFIX': No such file or directory." >&2
+    if [[ -n "$_PREFIX" && ! -s "$_PREFIX" ]]; then
+        echo "'$_PREFIX': No such file or directory." >&2
         exit 1
     fi
     if [[ 1 == $_verbose ]]; then
-        echo " - using '$PREFIX' as the output path"
+        echo " - using '$_PREFIX' as the output path"
         _print_path=1
     fi
 
