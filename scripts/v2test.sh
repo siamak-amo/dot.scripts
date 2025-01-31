@@ -322,18 +322,21 @@ wait_for_v2(){
     exec 7<&-
 }
 
-run_v2(){
-    case "$_V2" in
-        v2ray)
-            $V2 -c "$1" >/dev/null & ;;
-        v2ray-ng)
-            $V2 run -c "$1" >/dev/null & ;;
-    esac
-}
+# apparently, the newer version of v2ray, uses the same
+# `<command> [arg]` as v2ray-ng, so there is no need for this function
+# run_v2(){
+#     case "$_V2" in
+#         v2ray)
+#             $V2 -c "$1" >/dev/null & ;;
+#         v2ray-ng)
+#             $V2 run -c "$1" >/dev/null & ;;
+#     esac
+# }
 
 # usage:  test_config_file__H /path/to/config.json
 test_config_file__H(){
-    run_v2 "$1"
+    $V2 run -c "$1" >/dev/null & ;;
+    # run_v2 "$1"
     wait_for_v2
     # *Do Not* use `$!` instead of `get_v2_pid`
     # *Do Not* get the pid before the `wait_for_v2` function
