@@ -304,7 +304,7 @@ test_links_stdin(){
 # $1: name of v2ray client executable (normally $_V2)
 # provides V2_PID variable, pid of $1
 get_v2_pid(){
-    V2_PID=$(ps h -C "$1" -o pid | grep "[0-9]*" -o)
+    V2_PID=$(pgrep -n "$1")
 }
 
 # waiting for the HTTP proxy port to open
