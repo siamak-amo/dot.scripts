@@ -385,15 +385,17 @@ if [[ 1 = $_only_test_api ]]; then
     exit 0
 fi
 
-for __v in v2ray v2ray-ng; do
-    get_v2_pid $__v
-    if [[ -n "$V2_PID" ]]; then
-        _running_v2_is_not_mine=1
-        echo "One instance of v2ray is Already Running," \
-             "first kill possess $__v (PID: $V2_PID)" >&2
-        exit 1
-    fi
-done
+if [[ -z "$_no_test" ]]; then
+    for __v in v2ray v2ray-ng; do
+        get_v2_pid $__v
+        if [[ -n "$V2_PID" ]]; then
+            _running_v2_is_not_mine=1
+            echo "One instance of v2ray is Already Running," \
+                 "first kill possess $__v (PID: $V2_PID)" >&2
+            exit 1
+        fi
+    done
+fi
 
 if [[ -z "$_test_path" ]]; then  # use stdin
     test_links_stdin
