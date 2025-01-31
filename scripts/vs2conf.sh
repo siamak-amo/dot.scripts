@@ -131,7 +131,7 @@ EOF2
         "network": "$V2CONF_net",
         "security": "$V2CONF_sec",
         "realitySettings": {
-          "allowInsecure": true,
+          "allowInsecure": $V2CONF_allowInsecure,
           "alpn": [
             "$V2CONF_alpn"
           ],
@@ -148,7 +148,7 @@ EOF2
           }
         },
         "tlsSettings": {
-          "allowInsecure": true
+          "allowInsecure": $V2CONF_allowInsecure
           $([[ -n "$V2CONF_sni" ]] && echo ",\"servername\": \"$V2CONF_sni\"")
         },
         "wsSettings": {
@@ -224,6 +224,7 @@ set_default_confs(){
     V2CONF_net="tcp"
     V2CONF_fp="chrome"
     V2CONF_headerType="none"
+    V2CONF_allowInsecure="true"
 }
 
 # normalize _key and _value
@@ -278,7 +279,7 @@ normalize_kv(){
             _key="path"
             ;;
         ""|"port"|"scheme"|"fragment"|"serviceName"|"mode"|"flow"|\
-            "headerType"|"v"|"ps"|"tls")
+            "headerType"|"v"|"ps"|"tls"|"allowInsecure")
             ;;
         *)
             # _key won't affect the final result
