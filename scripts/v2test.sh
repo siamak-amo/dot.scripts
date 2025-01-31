@@ -335,7 +335,7 @@ wait_for_v2(){
 
 # usage:  test_config_file__H /path/to/config.json
 test_config_file__H(){
-    $V2 run -c "$1" >/dev/null & ;;
+    $V2 run -c "$1" >/dev/null &
     # run_v2 "$1"
     wait_for_v2
     # *Do Not* use `$!` instead of `get_v2_pid`
