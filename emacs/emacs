@@ -56,7 +56,7 @@
   (let ((default-directory (file-name-directory buffer-file-name)))
     (if (y-or-n-p "for the current file only? ")
         (shell-command (format "etags %s" (file-name-nondirectory buffer-file-name)))
-      (shell-command "etags *.c *.h"))))
+      (shell-command "find . -name '*.h' -o -name '*.c' | xargs etags"))))
 ;; grep command support
 (defun do_grep_in_dir ()
   (interactive)
