@@ -16,7 +16,7 @@ alias ping="timeout 20s ping -c4"
 alias cls="clear"
 
 # unlinks alias, usage: `unlink [links]...`
-if type unlinks 2>&1 1>/dev/null; then
+if declare -f "unlinks" >/dev/null; then
     alias unlink="unlinks"
 fi
 
