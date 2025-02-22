@@ -455,8 +455,6 @@
                (define-key evil-normal-state-map (kbd "M-.") 'godef-jump)
                (define-key evil-normal-state-map (kbd "M-,") 'pop-tag-mark)
                ))
-  :bind (:map go-mode-map
-              ("C-c C-c" . gofmt))
   :config
   (require 'lsp-go)
   (require 'tree-widget)
@@ -467,6 +465,15 @@
           (unusedparams . t)))
   (add-to-list 'exec-path "$GOPATH/bin")
   (setq gofmt-command "goimports")
+  ;; interactive go doc command
+  (defun go-doc-int ()
+    (interactive)
+    (let ((symbol (read-string "Go documentation of: ")))
+      (shell-command (format "go doc %s" symbol))))
+
+  :bind (:map go-mode-map
+              ("C-c C-d" . go-doc-int)
+              ("C-c C-c" . gofmt))
   )
 ;;; End of LSP support
 
