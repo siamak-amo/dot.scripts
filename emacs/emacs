@@ -60,8 +60,8 @@
 ;; grep command support
 (defun do_grep_in_dir ()
   (interactive)
-  (let* ((search-string (read-string "Search: "))
-         (directory (read-directory-name "Directory: "))
+  (let* ((directory (read-directory-name "Directory: "))
+         (search-string (read-string "Search: "))
          (grep-command (format "grep -rn --exclude-dir=.git --exclude=TAGS '%s' %s"
                                search-string directory)))
     (compile grep-command)))
