@@ -101,6 +101,8 @@
           (lambda ()
             (define-key inferior-python-mode-map (kbd "<up>") 'comint-previous-input)
             (define-key inferior-python-mode-map (kbd "<down>") 'comint-next-input)))
+;; C-c to break in compilation mode
+(define-key compilation-mode-map (kbd "C-c") 'kill-compilation)
 ;; load custom themes
 (add-to-list 'load-path "~/.emacs.d/themes")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
