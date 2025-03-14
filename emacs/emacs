@@ -165,6 +165,11 @@
 (global-set-key (kbd "C-2")  #'split-window-below)
 (global-set-key (kbd "C-1")  #'delete-other-windows)
 (global-set-key (kbd "C-0")  #'delete-window)
+;; move to window (vi like)
+(global-set-key (kbd "M-l")  #'windmove-right)
+(global-set-key (kbd "M-h")  #'windmove-left)
+(global-set-key (kbd "M-k")  #'windmove-up)
+(global-set-key (kbd "M-j")  #'windmove-down)
 ;; zoom in/out
 (global-set-key (kbd "C-+")   'text-scale-increase)
 (global-set-key (kbd "C-=")   'text-scale-increase)
