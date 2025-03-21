@@ -17,7 +17,7 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq-default line-spacing 8)
-(setq indent-line-function 'insert-tab)
+;;(setq indent-line-function 'insert-tab)
 (setq-default TeX-engine 'xetex)
 (setq inhibit-startup-screen t)
 (menu-bar-mode 0)
@@ -147,11 +147,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;
 
 ;; <Fn>
-(global-set-key (kbd "<M-f5>") 'regenerate-tags)
-(global-set-key (kbd "<f5>") #'compile)
-(global-set-key (kbd "<f6>") #'recompile)
-(global-set-key (kbd "<f8>") #'flyspell-mode)
-(global-set-key (kbd "<f9>") #'ispell-word)
+(global-set-key (kbd "<M-f5>")     'regenerate-tags)
+(global-set-key (kbd "<f5>")      #'compile)
+(global-set-key (kbd "<f6>")      #'recompile)
+(global-set-key (kbd "<f8>")      #'flyspell-mode)
+(global-set-key (kbd "<f9>")      #'ispell-word)
 ;; managing buffers / tabs
 (global-set-key (kbd "C-<end>")   #'switch-to-next-buffer)
 (global-set-key (kbd "C-<home>")  #'switch-to-prev-buffer)
@@ -343,7 +343,7 @@
   (add-hook 'c-mode-hook #'auto-complete-mode)
   (defadvice auto-complete-mode (around enable-ac-modes activate)
     (unless (eq major-mode 'python-mode))
-  (ad-activate 'auto-complete-mode))
+    (ad-activate 'auto-complete-mode))
   )
 ;;; ivy mode
 (use-package ivy
@@ -527,7 +527,7 @@
 (use-package langtool
   :ensure t
   :config
-  (setq langtool-language-tool-jar "/path/to/languagetool-server.jar"
+  (setq langtool-language-tool-jar "/opt/share/languagetool/languagetool-server.jar"
         langtool-http-server-host "localhost"
         langtool-http-server-port 8081)
   )
@@ -582,20 +582,20 @@
          ("C-c n" . org-present-next))
   )
 ;; prettify symbols mode
-(use-package prettify-symbols
-  :ensure nil
-  ; :hook ((prog-mode . prettify-symbols-mode)
-  ;        (c-mode . prettify-symbols-mode))
-  :config
-  (setq prettify-symbols-alist
-        '(("->"     . ?→)
-          ("/="     . ?≠)
-          ("!="     . ?≠)
-          ("=="     . ?≡)
-          ("<="     . ?≤)
-          (">="     . ?≥)
-          ))
-  )
+;; (use-package prettify-symbols
+;;   :ensure nil
+;;   ; :hook ((prog-mode . prettify-symbols-mode)
+;;   ;        (c-mode . prettify-symbols-mode))
+;;   :config
+;;   (setq prettify-symbols-alist
+;;         '(("->"     . ?→)
+;;           ("/="     . ?≠)
+;;           ("!="     . ?≠)
+;;           ("=="     . ?≡)
+;;           ("<="     . ?≤)
+;;           (">="     . ?≥)
+;;           ))
+;;   )
 
 ;; Don't install anything. Defer execution of BODY
 (use-package emacs :ensure nil :config (setq ring-bell-function #'ignore))
