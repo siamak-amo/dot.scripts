@@ -333,18 +333,17 @@
   (setq company-idle-delay 0.1
         company-minimum-prefix-length 1)
   )
-;;; auto complete stuff
+;;; auto complete mode
 (use-package auto-complete
   :ensure t
-  :config
-  (require 'auto-complete)
-  (require 'auto-complete-config)
+  :init
   (ac-config-default)
-  (add-hook 'c-mode-hook #'auto-complete-mode)
-  (defadvice auto-complete-mode (around enable-ac-modes activate)
-    (unless (eq major-mode 'python-mode))
-    (ad-activate 'auto-complete-mode))
-  )
+  :config
+  (setq ac-use-menu-map t)
+  (setq ac-auto-start 2)
+  (setq ac-dwim t)
+  (global-auto-complete-mode t)
+)
 ;;; ivy mode
 (use-package ivy
   :ensure t
