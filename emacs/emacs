@@ -340,6 +340,7 @@
   (ac-config-default)
   :config
   (setq ac-use-menu-map t)
+  (setq ac-use-menu-map nil)
   (setq ac-auto-start 2)
   (setq ac-dwim t)
   (global-auto-complete-mode t)
