@@ -51,12 +51,14 @@
       (dictionary))))
 ;; regenerate TAGS
 (defun regenerate-tags ()
-  "Regenerate the TAGS file for C code."
   (interactive)
-  (let ((default-directory (file-name-directory buffer-file-name)))
-    (if (y-or-n-p "for the current file only? ")
-        (shell-command (format "etags %s" (file-name-nondirectory buffer-file-name)))
-      (shell-command "find . -name '*.h' -o -name '*.c' | xargs etags"))))
+  (let* ((file (or buffer-file-name (dired-get-file-for-visit)))
+         (default-directory (file-name-directory file)))
+    (if (eq major-mode 'dired-mode)
+        (shell-command "find . -name '*.h' -o -name '*.c' | xargs etags")
+        (if (y-or-n-p "Regenerate TAGS for the current file only? ")
+            (shell-command (format "etags %s" (file-name-nondirectory file)))
+            (shell-command "find . -name '*.h' -o -name '*.c' | xargs etags")))))
 ;; grep command support
 (defun do_grep_in_dir ()
   (interactive)
