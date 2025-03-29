@@ -468,11 +468,14 @@
   (setq lsp-completion-show-detail nil
         lsp-completion-show-kind nil)
   )
-(use-package flycheck :ensure t)
 (use-package lsp-ui
   :ensure t
   :after lsp-mode
   )
+
+;;; fly-check
+(use-package flycheck :ensure t)
+
 ;;; Python
 (setq python-shell-interpreter "python3")
 (use-package python-mode
