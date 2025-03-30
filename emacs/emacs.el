@@ -60,19 +60,20 @@
             (shell-command (format "etags %s" (file-name-nondirectory file)))
             (shell-command "find . -name '*.h' -o -name '*.c' | xargs etags")))))
 ;; grep command support
+(setq grep-cmd-comm "grep -rn -I --exclude-dir=.git --exclude=TAG")
 (defun do_grep_in_dir ()
   (interactive)
   (let* ((directory (read-directory-name "Directory: "))
          (search-string (read-string "Search: "))
-         (grep-command (format "grep -rn --exclude-dir=.git --exclude=TAGS '%s' %s"
-                               search-string directory)))
-    (compile grep-command)))
+         (grep-command (format "%s -- '%s' %s"
+                               grep-cmd-comm search-string directory)))
+    (grep grep-command)))
 (defun do_grep ()
   (interactive)
   (let* ((search-string (read-string "Search: "))
-         (grep-command (format "grep -rn --exclude-dir=.git --exclude=TAGS '%s' ."
-                               search-string)))
-    (compile grep-command)))
+         (grep-command (format "%s -- '%s' ."
+                               grep-cmd-comm search-string)))
+    (grep grep-command)))
 ;; windmove improvement
 (defun windmove-right2 ()
   (interactive)
