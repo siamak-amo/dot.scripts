@@ -226,6 +226,9 @@
 (elpaca elpaca-use-package
   (elpaca-use-package-mode))
 
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/") t)
+
 ;;; evil mode (vi mode)
 (use-package evil
   :ensure t
