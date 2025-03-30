@@ -132,6 +132,8 @@
 ;; C-c to break in compilation mode
 (eval-after-load 'compile
   '(define-key compilation-mode-map (kbd "C-c") 'kill-compilation))
+(eval-after-load 'grep
+  '(define-key grep-mode-map (kbd "C-c") 'kill-compilation))
 ;; load custom themes
 (add-to-list 'load-path "~/.emacs.d/themes")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
