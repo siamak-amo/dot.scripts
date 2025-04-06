@@ -315,8 +315,9 @@
     "zG" '(fzf-grep-in-dir :wk "Grep in directory")
     "zf" '(fzf-find-in-buffer :wk "Find in buffer Fuzz")
     "zF" '(fzf-find-file-in-dir :wk "Find file Fuzz")
-    ;; langtool
+    ;; langtool & ls
     "l"  '(:ignore t :wk "Langtool")
+    "ls"  '((lambda () (interactive) (dired default-directory)) :wk "dired .")
     "lc" '(langtool-check :wk "langtool check")
     "ll" '(langtool-check :wk "langtool check")
     "ld" '(langtool-check-done :wk "langtool check done")
