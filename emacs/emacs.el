@@ -61,7 +61,7 @@
             (shell-command "find . -name '*.h' -o -name '*.c' | xargs etags")))))
 ;; grep command support
 (setq grep-cmd-comm "grep -rn -I --exclude-dir=.git --exclude=TAG")
-(defun do_grep_in_dir ()
+(defun do-grep-in-dir ()
   (interactive)
   (let* ((directory (read-directory-name "Directory: "))
          (search-string (read-string "Search: "))
@@ -69,7 +69,7 @@
          (grep-command (format "%s -- '%s' '%s'"
                                grep-cmd-comm search-string directory)))
     (grep grep-command)))
-(defun do_grep ()
+(defun do-grep ()
   (interactive)
   (let* ((search-string (read-string "Search: "))
          (grep-command (format "%s -- '%s' ."
@@ -283,8 +283,8 @@
     "gg" '(git-gutter:update-all-windows :wk "Update All Windows")
     "gm" '(magit :wk "Magit")
     "gr"  '(:ignore t :wk "Grep")
-    "grr" '(do_grep_in_dir :wk "Grep in Directory")
-    "grc" '(do_grep :wk "Grep in the current dir")
+    "grr" '(do-grep-in-dir :wk "Grep in Directory")
+    "grc" '(do-grep :wk "Grep in the current dir")
     ;; revert / reload
     "r"  '(:ignore t :wk "Reload")
     "rr" 'revert-buffer
