@@ -65,7 +65,8 @@
   (interactive)
   (let* ((directory (read-directory-name "Directory: "))
          (search-string (read-string "Search: "))
-         (grep-command (format "%s -- '%s' %s"
+         (directory (file-relative-name directory default-directory))
+         (grep-command (format "%s -- '%s' '%s'"
                                grep-cmd-comm search-string directory)))
     (grep grep-command)))
 (defun do_grep ()
