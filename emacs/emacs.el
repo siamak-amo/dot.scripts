@@ -485,13 +485,16 @@
 (use-package flycheck :ensure t)
 
 ;;; Python
-(setq python-shell-interpreter "python3")
 (use-package python-mode
   :ensure t
   :hook ((python-mode . lsp-deferred)
          (python-mode . company-mode))
   :config
   (require 'lsp-python)
+  ;; (require 'lsp-python)
+  (setq python-indent-offset 4
+        python-shell-interpreter "python3"
+        )
   )
 ;;; GoLang
 (use-package go-mode
@@ -508,8 +511,8 @@
           (unusedwrite . t)
           (unusedparams . t)))
   (add-to-list 'exec-path "$GOPATH/bin")
+  (add-to-list 'exec-path (expand-file-name "bin" (getenv "GOPATH")))
   (setq gofmt-command "goimports")
-  ;; interactive go doc command
   (defun go-doc-int ()
     (interactive)
     (let ((symbol (thing-at-point 'symbol)))
@@ -521,7 +524,6 @@
               ("C-c C-d" . go-doc-int)
               ("C-c C-c" . gofmt))
   )
-;;; End of LSP support
 
 ;;; Some useful packages
 ;;; mpd client
@@ -534,6 +536,7 @@
 ;;; jupyter support
 (use-package ein :ensure t)
 (use-package multiple-cursors :ensure t)  ;;; I prefer using vi stuff
+;;; language tool support
 (use-package langtool
   :ensure t
   :config
