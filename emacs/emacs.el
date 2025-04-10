@@ -512,8 +512,9 @@
   ;; interactive go doc command
   (defun go-doc-int ()
     (interactive)
-    (let ((symbol (read-string "Go documentation of: ")))
-      (shell-command (format "go doc %s" symbol))))
+    (let ((symbol (thing-at-point 'symbol)))
+      (setq symbol (read-string "Go documentation of: " symbol))
+      (compilation-start (format "go doc %s" symbol))))
 
   :bind (:map go-mode-map
               ("M-." . godef-jump)
