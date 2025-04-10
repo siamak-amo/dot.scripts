@@ -499,11 +499,6 @@
   :hook
   (go-mode . lsp-deferred)
   (go-mode . subword-mode)
-  (before-save . gofmt-before-save)
-  (go-mode . (lambda ()
-               (define-key evil-normal-state-map (kbd "M-.") 'godef-jump)
-               (define-key evil-normal-state-map (kbd "M-,") 'pop-tag-mark)
-               ))
   :config
   (require 'lsp-go)
   (require 'tree-widget)
@@ -521,6 +516,7 @@
       (shell-command (format "go doc %s" symbol))))
 
   :bind (:map go-mode-map
+              ("M-." . godef-jump)
               ("C-c C-d" . go-doc-int)
               ("C-c C-c" . gofmt))
   )
