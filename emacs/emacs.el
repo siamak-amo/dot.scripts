@@ -464,22 +464,23 @@
   )
 
 ;;; LSP support
-;; lsp-mode
-(use-package lsp-mode
-  :ensure t
-  :bind (:map lsp-mode-map
-         ("C-c d" . lsp-describe-thing-at-point)
-         ("C-c a" . lsp-execute-code-action))
-  :config
-  (lsp-enable-which-key-integration t)
-  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
-  (setq lsp-completion-show-detail nil
-        lsp-completion-show-kind nil)
-  )
-(use-package lsp-ui
-  :ensure t
-  :after lsp-mode
-  )
+;;   -- DISABLED --
+;;
+;; (use-package lsp-mode
+;;   :ensure t
+;;   :bind (:map lsp-mode-map
+;;          ("C-c d" . lsp-describe-thing-at-point)
+;;          ("C-c a" . lsp-execute-code-action))
+;;   :config
+;;   (lsp-enable-which-key-integration t)
+;;   (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
+;;   (setq lsp-completion-show-detail nil
+;;         lsp-completion-show-kind nil)
+;;   )
+;; (use-package lsp-ui
+;;   :ensure t
+;;   :after lsp-mode
+;;   )
 
 ;;; fly-check
 (use-package flycheck :ensure t)
@@ -487,10 +488,12 @@
 ;;; Python
 (use-package python-mode
   :ensure t
-  :hook ((python-mode . lsp-deferred)
-         (python-mode . company-mode))
+  ;;    :hook
+  ;;        ((python-mode . lsp-deferred)
+  ;;        -- annoying --
+  ;;        (python-mode . company-mode)
+  ;;       )
   :config
-  (require 'lsp-python)
   ;; (require 'lsp-python)
   (setq python-indent-offset 4
         python-shell-interpreter "python3"
@@ -500,19 +503,19 @@
 (use-package go-mode
   :ensure t
   :hook
-  (go-mode . lsp-deferred)
+  ;; (go-mode . lsp-deferred)
   (go-mode . subword-mode)
   :config
-  (require 'lsp-go)
-  (require 'tree-widget)
-  (setq lsp-go-analyses
-        '((fieldalignment . t)
-          (nilness . t)
-          (unusedwrite . t)
-          (unusedparams . t)))
-  (add-to-list 'exec-path "$GOPATH/bin")
   (add-to-list 'exec-path (expand-file-name "bin" (getenv "GOPATH")))
   (setq gofmt-command "goimports")
+  ;; (require 'lsp-go)
+  (require 'tree-widget)
+  ;; (setq lsp-go-analyses
+  ;;       '((fieldalignment . t)
+  ;;         (nilness . t)
+  ;;         (unusedwrite . t)
+  ;;         (unusedparams . t)))
+  ;; Interactive go doc command
   (defun go-doc-int ()
     (interactive)
     (let ((symbol (thing-at-point 'symbol)))
