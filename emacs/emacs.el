@@ -126,10 +126,6 @@
           (lambda ()
             (define-key shell-mode-map (kbd "<up>") 'comint-previous-input)
             (define-key shell-mode-map (kbd "<down>") 'comint-next-input)))
-(add-hook 'inferior-python-mode-hook
-          (lambda ()
-            (define-key inferior-python-mode-map (kbd "<up>") 'comint-previous-input)
-            (define-key inferior-python-mode-map (kbd "<down>") 'comint-next-input)))
 ;; C-c to break in compilation mode
 (eval-after-load 'compile
   '(define-key compilation-mode-map (kbd "C-c") 'kill-compilation))
@@ -488,6 +484,9 @@
 ;;; Python
 (use-package python-mode
   :ensure t
+  :init
+  (setq python-indent-offset 4
+        python-shell-interpreter "python3")
   ;;    :hook
   ;;        ((python-mode . lsp-deferred)
   ;;        -- annoying --
@@ -495,9 +494,9 @@
   ;;       )
   :config
   ;; (require 'lsp-python)
-  (setq python-indent-offset 4
-        python-shell-interpreter "python3"
-        )
+  :bind (:map comint-mode-map
+              ("<up>" . comint-previous-input)
+              ("<down>" . comint-next-input))
   )
 ;;; GoLang
 (use-package go-mode
@@ -505,6 +504,8 @@
   :hook
   ;; (go-mode . lsp-deferred)
   (go-mode . subword-mode)
+  ;; gofmt before saving is supper annoying while using git
+  ;; (before-save . gofmt-before-save)
   :config
   (add-to-list 'exec-path (expand-file-name "bin" (getenv "GOPATH")))
   (setq gofmt-command "goimports")
