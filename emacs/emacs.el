@@ -60,7 +60,7 @@
             (shell-command (format "etags %s" (file-name-nondirectory file)))
             (shell-command "find . -name '*.h' -o -name '*.c' | xargs etags")))))
 ;; grep command support
-(setq grep-cmd-comm "grep -rn -I --exclude-dir=.git --exclude=TAG")
+(setq grep-cmd-comm "grep -rn -I --exclude-dir=.git --exclude=TAGS")
 (defun do-grep-in-dir ()
   (interactive)
   (let* ((directory (read-directory-name "Directory: "))
