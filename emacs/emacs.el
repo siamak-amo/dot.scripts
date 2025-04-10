@@ -199,10 +199,10 @@
 (global-set-key (kbd "M-k")  #'windmove-up2)
 (global-set-key (kbd "M-j")  #'windmove-down2)
 ;; resize window
-(global-set-key (kbd "M-<left>")  (lambda () (interactive) (shrink-window-horizontally 1)))
-(global-set-key (kbd "M-<right>") (lambda () (interactive) (enlarge-window-horizontally 1)))
-(global-set-key (kbd "M-<up>")    (lambda () (interactive) (shrink-window 1)))
-(global-set-key (kbd "M-<down>")  (lambda () (interactive) (enlarge-window 1)))
+(global-set-key (kbd "M-<left>")  'shrink-window-horizontally)
+(global-set-key (kbd "M-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "M-<up>")    'shrink-window)
+(global-set-key (kbd "M-<down>")  'enlarge-window)
 ;; zoom in/out
 (global-set-key (kbd "C-+")   'text-scale-increase)
 (global-set-key (kbd "C-=")   'text-scale-increase)
