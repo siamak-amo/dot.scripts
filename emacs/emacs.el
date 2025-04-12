@@ -150,8 +150,8 @@
 
 ;; <Fn>
 (global-set-key (kbd "<M-f5>")     'regenerate-tags)
-(global-set-key (kbd "<f5>")      #'compile)
-(global-set-key (kbd "<f6>")      #'recompile)
+(global-set-key (kbd "<f5>")      #'recompile)
+(global-set-key (kbd "<f6>")      #'compile)
 (global-set-key (kbd "<f8>")      #'flyspell-mode)
 (global-set-key (kbd "<f9>")      #'ispell-word)
 ;; managing buffers / tabs
