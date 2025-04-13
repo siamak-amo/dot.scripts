@@ -163,7 +163,6 @@
 (global-set-key (kbd "M-p")       #'switch-to-prev-buffer)
 (global-set-key (kbd "C-k")        'kill-buffer)
 (global-set-key (kbd "s-k")        'kill-buffer)
-(global-set-key (kbd "M-o")        'other-window)
 ;; dired
 (global-set-key (kbd "M-b")       #'switch-to-buffer)
 (global-set-key (kbd "s-b")       #'switch-to-buffer)
@@ -460,6 +459,12 @@
                  (display-buffer-reuse-window display-buffer-at-bottom)
                  (reusable-frames . visible)
                  (window-height . 0.3)))
+  )
+(use-package ace-window
+  :ensure t
+  :bind (("M-o" . ace-window)
+         ("C-x o" . ace-window)
+         )
   )
 
 ;;; LSP support
