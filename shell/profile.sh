@@ -23,7 +23,7 @@ export GOPATH="$HOME/.local/go"
 export RUSTUP_HOME="$HOME/.rustup"
 export CARGO_HOME="/opt/share/cargo"
 # Pyenv
-export PYENV_ROOT="$HOME/.local/lib/pyenv"
+# export PYENV_ROOT="$HOME/.local/lib/pyenv"   -- depricated --
 # LaTex
 export TEXLIVE_ROOT="$HOME/.local/texlive/2023"
 # V2ray
