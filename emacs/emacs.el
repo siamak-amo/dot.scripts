@@ -503,6 +503,8 @@
   :config
   ;; (require 'lsp-python)
   :bind (:map comint-mode-map
+              ("C-c C-l" . comint-clear-buffer)
+              ("C-d" . comint-kill-input)
               ("<up>" . comint-previous-input)
               ("<down>" . comint-next-input))
   )
