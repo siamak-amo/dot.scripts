@@ -121,20 +121,6 @@
       (message "- Alpha %d%%" current-alpha))))
 ;; hide Dired details
 (add-hook 'dired-mode-hook #'dired-hide-details-mode)
-;; <up> and <down> bindings in shell mode
-(add-hook 'shell-mode-hook
-          (lambda ()
-            (define-key shell-mode-map (kbd "<up>") 'comint-previous-input)
-            (define-key shell-mode-map (kbd "<down>") 'comint-next-input)))
-;; mini-buffer bindings
-(define-key minibuffer-local-map (kbd "C-w") 'backward-kill-word)
-(define-key minibuffer-local-map (kbd "C-k") 'kill-line)
-(define-key minibuffer-local-map (kbd "C-u") 'delete-minibuffer-contents)
-;; C-c to break in compilation mode
-(eval-after-load 'compile
-  '(define-key compilation-mode-map (kbd "C-c") 'kill-compilation))
-(eval-after-load 'grep
-  '(define-key grep-mode-map (kbd "C-c") 'kill-compilation))
 ;; load custom themes
 (add-to-list 'load-path "~/.emacs.d/themes")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
@@ -171,21 +157,6 @@
 (global-set-key (kbd "M-b")       #'switch-to-buffer)
 (global-set-key (kbd "s-b")       #'switch-to-buffer)
 (global-set-key (kbd "C-x C-i")   #'image-dired)
-(eval-after-load "dired"
-  '(progn
-     ;; backspace  --> go one dir up
-     (define-key dired-mode-map (kbd "<backspace>") 'dired-up-directory)
-     ;; Ctrl-return  --> opens files and dirs in the current (dired) buffer
-     (define-key dired-mode-map (kbd "C-<return>") 'dired-find-file)
-     ;; return  --> open files in other window, dirs in the current one
-     (define-key dired-mode-map (kbd "<return>")
-                 (lambda ()
-                   (interactive)
-                   (let ((file (dired-get-file-for-visit)))
-                     (if (file-directory-p file)
-                         (dired-find-alternate-file)
-                       (find-file-other-window file)))))
-     ))
 ;; split window
 (global-set-key (kbd "M-;")  #'split-window-right)
 (global-set-key (kbd "M-'")  #'split-window-below)
@@ -217,6 +188,42 @@
 (global-set-key (kbd "M-]")   'increase-transparency)
 (global-set-key (kbd "M-[")   'decrease-transparency)
 (global-set-key (kbd "C-`")   'vterm-toggle)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; mode-specific bindings ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; shell mode
+(add-hook 'shell-mode-hook
+          (lambda ()
+            (define-key shell-mode-map (kbd "<up>") 'comint-previous-input)
+            (define-key shell-mode-map (kbd "<down>") 'comint-next-input)))
+;; mini-buffer mode
+(define-key minibuffer-local-map (kbd "C-w") 'backward-kill-word)
+(define-key minibuffer-local-map (kbd "C-k") 'kill-line)
+(define-key minibuffer-local-map (kbd "C-u") 'delete-minibuffer-contents)
+;; compilation mode
+(eval-after-load 'compile
+  '(define-key compilation-mode-map (kbd "C-c") 'kill-compilation))
+(eval-after-load 'grep
+  '(define-key grep-mode-map (kbd "C-c") 'kill-compilation))
+;; dired mode
+(eval-after-load "dired"
+  '(progn
+     ;; backspace  --> go one dir up
+     (define-key dired-mode-map (kbd "<backspace>") 'dired-up-directory)
+     ;; Ctrl-return  --> opens files and dirs in the current (dired) buffer
+     (define-key dired-mode-map (kbd "C-<return>") 'dired-find-file)
+     ;; return  --> open files in other window, dirs in the current one
+     (define-key dired-mode-map (kbd "<return>")
+                 (lambda ()
+                   (interactive)
+                   (let ((file (dired-get-file-for-visit)))
+                     (if (file-directory-p file)
+                         (dired-find-alternate-file)
+                       (find-file-other-window file)))))
+     ))
 
 
 ;;;;;;;;;;;;
