@@ -126,6 +126,10 @@
           (lambda ()
             (define-key shell-mode-map (kbd "<up>") 'comint-previous-input)
             (define-key shell-mode-map (kbd "<down>") 'comint-next-input)))
+;; mini-buffer bindings
+(define-key minibuffer-local-map (kbd "C-w") 'backward-kill-word)
+(define-key minibuffer-local-map (kbd "C-k") 'kill-line)
+(define-key minibuffer-local-map (kbd "C-u") 'delete-minibuffer-contents)
 ;; C-c to break in compilation mode
 (eval-after-load 'compile
   '(define-key compilation-mode-map (kbd "C-c") 'kill-compilation))
