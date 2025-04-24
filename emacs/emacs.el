@@ -3,9 +3,10 @@
 ;; to use proxy
 ;; (load-file "~/.emacs.d/proxy.el")
 
-;;;;;;;;;;;;;;;;;;;;;;;
-;; my custom configs ;;
-;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;
+;; elementary configs ;;
+;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; custom.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -17,7 +18,7 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq-default line-spacing 8)
-;;(setq indent-line-function 'insert-tab)
+;; (setq indent-line-function 'insert-tab)
 (setq-default TeX-engine 'xetex)
 (setq inhibit-startup-screen t)
 (menu-bar-mode 0)
@@ -158,36 +159,36 @@
 (global-set-key (kbd "s-b")       #'switch-to-buffer)
 (global-set-key (kbd "C-x C-i")   #'image-dired)
 ;; split window
-(global-set-key (kbd "M-;")  #'split-window-right)
-(global-set-key (kbd "M-'")  #'split-window-below)
-(global-set-key (kbd "M-2")  #'split-window-below)
-(global-set-key (kbd "M-3")  #'split-window-right)
+(global-set-key (kbd "M-;")       #'split-window-right)
+(global-set-key (kbd "M-'")       #'split-window-below)
+(global-set-key (kbd "M-2")       #'split-window-below)
+(global-set-key (kbd "M-3")       #'split-window-right)
 ;; delete & maximize window
-(global-set-key (kbd "M-0")  #'delete-window)
-(global-set-key (kbd "C-0")  #'delete-window)
-(global-set-key (kbd "M-1")  #'delete-other-windows)
-(global-set-key (kbd "C-1")  #'delete-other-windows)
+(global-set-key (kbd "M-0")       #'delete-window)
+(global-set-key (kbd "C-0")       #'delete-window)
+(global-set-key (kbd "M-1")       #'delete-other-windows)
+(global-set-key (kbd "C-1")       #'delete-other-windows)
 ;; move to window (vi like)
-(global-set-key (kbd "M-l")  #'windmove-right2)
-(global-set-key (kbd "M-h")  #'windmove-left2)
-(global-set-key (kbd "M-k")  #'windmove-up2)
-(global-set-key (kbd "M-j")  #'windmove-down2)
+(global-set-key (kbd "M-l")       #'windmove-right2)
+(global-set-key (kbd "M-h")       #'windmove-left2)
+(global-set-key (kbd "M-k")       #'windmove-up2)
+(global-set-key (kbd "M-j")       #'windmove-down2)
 ;; resize window
-(global-set-key (kbd "M-<left>")  'shrink-window-horizontally)
-(global-set-key (kbd "M-<right>") 'enlarge-window-horizontally)
-(global-set-key (kbd "M-<up>")    'shrink-window)
-(global-set-key (kbd "M-<down>")  'enlarge-window)
+(global-set-key (kbd "M-<left>")   'shrink-window-horizontally)
+(global-set-key (kbd "M-<right>")  'enlarge-window-horizontally)
+(global-set-key (kbd "M-<up>")     'shrink-window)
+(global-set-key (kbd "M-<down>")   'enlarge-window)
 ;; zoom in/out
-(global-set-key (kbd "C-+")   'text-scale-increase)
-(global-set-key (kbd "C-=")   'text-scale-increase)
-(global-set-key [C-mouse-4]   'text-scale-increase)
-(global-set-key [C-mouse-5]   'text-scale-decrease)
-(global-set-key (kbd "C--")   'text-scale-decrease)
+(global-set-key (kbd "C-+")        'text-scale-increase)
+(global-set-key (kbd "C-=")        'text-scale-increase)
+(global-set-key [C-mouse-4]        'text-scale-increase)
+(global-set-key [C-mouse-5]        'text-scale-decrease)
+(global-set-key (kbd "C--")        'text-scale-decrease)
 ;; others
-(global-set-key (kbd "M-m")  #'man)
-(global-set-key (kbd "M-]")   'increase-transparency)
-(global-set-key (kbd "M-[")   'decrease-transparency)
-(global-set-key (kbd "C-`")   'vterm-toggle)
+(global-set-key (kbd "M-m")       #'man)
+(global-set-key (kbd "M-]")        'increase-transparency)
+(global-set-key (kbd "M-[")        'decrease-transparency)
+(global-set-key (kbd "C-`")        'vterm-toggle)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -207,7 +208,7 @@
 (eval-after-load 'compile
   '(define-key compilation-mode-map (kbd "C-c") 'kill-compilation))
 (eval-after-load 'grep
-  '(define-key grep-mode-map (kbd "C-c") 'kill-compilation))
+  '(define-key grep-mode-map        (kbd "C-c") 'kill-compilation))
 ;; dired mode
 (eval-after-load "dired"
   '(progn
