@@ -292,6 +292,8 @@
     "g"  '(:ignore t :wk "Git & Grep")
     "gg" '(git-gutter:update-all-windows :wk "Update All Windows")
     "gm" '(magit :wk "Magit")
+    "gn" '(git-gutter:next-hunk :wk "Next Hunk")
+    "gn" '(git-gutter:previous-hunk :wk "Previous Hunk")
     "gr"  '(:ignore t :wk "Grep")
     "grr" '(do-grep-in-dir :wk "Grep in Directory")
     "grc" '(do-grep :wk "Grep in the current dir")
