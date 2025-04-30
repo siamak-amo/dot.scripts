@@ -328,6 +328,13 @@
     "zG" '(fzf-grep-in-dir :wk "Grep in directory")
     "zf" '(fzf-find-in-buffer :wk "Find in buffer Fuzz")
     "zF" '(fzf-find-file-in-dir :wk "Find file Fuzz")
+    ;; project
+    "p"  '(:ignore t :wk "Project")
+    "pp" '(project-switch-project :wk "Switch project")
+    "pf" '(project-find-file :wk "Find file")
+    "pb" '(project-switch-to-buffer :wk "Buffers")
+    "pd" '(project-dired :wk "Dired")
+    "pc" '(project-compile :wk "Compile")
     ;; langtool & ls
     "l"  '(:ignore t :wk "Langtool")
     "ls"  '((lambda () (interactive) (dired default-directory)) :wk "dired .")
