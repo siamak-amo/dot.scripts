@@ -33,10 +33,6 @@
 (set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
 (setq column-number-mode t)
 (when window-system (set-fontset-font "fontset-default" '(#x600 . #x6ff) "arimo"))
-;; disable line number
-(add-hook 'pdf-view-mode-hook #'(lambda () (interactive) (display-line-numbers-mode -1)))
-(add-hook 'image-dired-display-image-mode-hook (lambda () (display-line-numbers-mode -1)))
-(add-hook 'image-mode-hook #'(lambda () (interactive) (display-line-numbers-mode -1)))
 ;; pdf viewer
 (setq TeX-view-program-list '(("Okular" "okular %o")))
 (setq TeX-view-program-selection '((output-pdf "Okular")))
@@ -432,6 +428,9 @@
   :defer t
   :commands (pdf-loader-install)
   :mode "\\.pdf\\'"
+  :hook
+  (pdf-view-mode . (lambda ()
+                          (display-line-numbers-mode -1)))
   :bind (:map pdf-view-mode-map
               ("j" . pdf-view-next-line-or-next-page)
               ("k" . pdf-view-previous-line-or-previous-page)
@@ -559,7 +558,18 @@
               ("C-c C-d" . go-doc-int)
               ("C-c C-c" . gofmt))
   )
-
+;;; image configs
+(use-package iimage
+  :hook
+  (image-mode . (lambda ()
+                  (iimage-mode 1)
+                  (display-line-numbers-mode -1)
+                  (setq-local line-spacing 0.2))
+              )
+  :bind (:map iimage-mode-map
+              ("C-+" . image-increase-size)
+              ("C-=" . image-increase-size)
+              ("C--" . image-decrease-size)))
 ;;; Some useful packages
 ;;; mpd client
 (use-package mpdel
