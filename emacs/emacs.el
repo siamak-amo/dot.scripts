@@ -65,13 +65,13 @@
          (directory (file-relative-name directory default-directory))
          (grep-command (format "%s -- '%s' '%s'"
                                grep-cmd-comm search-string directory)))
-    (grep grep-command)))
+    (compilation-start grep-command)))
 (defun do-grep ()
   (interactive)
   (let* ((search-string (read-string "Search: "))
          (grep-command (format "%s -- '%s' ."
                                grep-cmd-comm search-string)))
-    (grep grep-command)))
+    (compilation-start grep-command)))
 ;; windmove improvement
 (defun windmove-right2 ()
   (interactive)
