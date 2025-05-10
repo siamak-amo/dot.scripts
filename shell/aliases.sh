@@ -43,3 +43,4 @@ alias giff="git diff"
 ##### PS #####
 alias psm='ps -A --format=pid,pcpu,pmem,comm --sort=-pmem,-pcpu | head'
 alias pss='ps -A --format=pid,pcpu,pmem,comm --sort=-pcpu,-pmem | head'
+alias psn='ps --format=pid,tty,time,pmem,pcpu,comm -C'
