@@ -184,8 +184,12 @@ TEST_API="https://api.ipify.org"
 # functions
 #-----------
 test_api(){
+    local start=$(date +%s.%N)
     _ip=$(timeout $TOUT $CURL $TEST_API --proxy $HTTP_PROXY)
+    local end=$(date +%s.%N)
+
     __api_exit=$?
+    _dt=$(echo "($end - $start)*1000" | bc)
 
     if [[ $__api_exit == 124 ]]; then # timeout
         _RES="Not Responding."
@@ -226,7 +230,7 @@ log_result(){
     if [[ "OK." == "$_RES" ]]; then
         if [[ 1 == $_print_path ]]; then
             if [[ 1 == $_verbose ]];then
-                echo "$2 $1  --  [IP: $_ip] $_RES"
+                echo "$2 $1  --  [IP: $_ip] (${_dt%%.*}ms) $_RES"
             else
                 if [[ 1 == $_test_quiet ]]; then
                     echo "$1"
