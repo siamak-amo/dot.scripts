@@ -111,7 +111,7 @@ while test $# -gt 0; do
             if [[ -z "$_v2_rules_ip" ]]; then
                 export _v2_rules_ip="\"$2\""
             else
-                export _v2_rules_ip="$_v2_rules_ip, \"$2\""
+                export _v2_rules_ip="$_v2_rules_ip \"$2\""
             fi
             shift 2;;
         -sni | --servername)

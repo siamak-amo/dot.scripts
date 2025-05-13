@@ -187,17 +187,18 @@ EOF2
         "port": "53",
         "type": "field"
       }\
-$(if [[ -n "$_v2_rules_ip" ]]; then cat <<EOF2
+$(if [[ -n "$_v2_rules_ip" ]]; then
+IFS=' '; for _rule in $_v2_rules_ip; do cat <<EOF2
 ,
       {
         "outboundTag": "direct",
         "ip": [
-          $_v2_rules_ip
+          $_rule
         ],
         "type": "field"
       }
 EOF2
-        fi)
+done; fi)
     ]
   }
 }
