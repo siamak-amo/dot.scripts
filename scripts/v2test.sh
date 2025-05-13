@@ -107,6 +107,8 @@ while test $# -gt 0; do
             _V2=$2
             shift 2;;
         -g | --g | --geo | --rule | --geo-rule)
+            # TODO: it's better to set _v2_rules_ip this way:
+            #       "key1:vv,key1:vv"  "key2:vv,key2:vv"
             # vs2conf script uses _v2_rules_ip variable
             if [[ -z "$_v2_rules_ip" ]]; then
                 export _v2_rules_ip="\"$2\""
@@ -161,7 +163,7 @@ while test $# -gt 0; do
 done
 
 # defaults
-[ -z "$_V2" ] && _V2="v2ray-ng"
+[ -z "$_V2" ] && _V2="v2ray"
 _print_path=1
 V2=$(which $_V2)
 if [[ -z "$V2" ]]; then
