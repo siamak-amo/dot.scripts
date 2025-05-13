@@ -385,7 +385,10 @@ test_config_file(){
 if [[ 1 = $_only_test_api ]]; then
     test_api
     echo "Status: $_RES"
-    [[ "OK." == "$_RES" ]] && echo "IP: $_ip"
+    if [[ "OK." == "$_RES" ]]; then
+        echo "IP: $_ip"
+        echo "Latency: ${_dt%%.*} ms"
+    fi
     exit 0
 fi
 
