@@ -317,13 +317,10 @@
     "tf" '(customize-face :wk "Customize face")
     ;; fuzz
     "z"  '(:ignore t :wk "FUZZ")
-    "zz" '(fzf :wk "Fuzz")
-    "zd" '(fzf-directory :wk "Directory Fuzz")
-    "zb" '(fzf-switch-buffer :wk "Switch buffer Fuzz")
-    "zg" '(fzf-grep :wk "Grep")
-    "zG" '(fzf-grep-in-dir :wk "Grep in directory")
-    "zf" '(fzf-find-in-buffer :wk "Find in buffer Fuzz")
+    "zz" '(fzf-find-in-buffer :wk "Find in buffer Fuzz")
+    "zf" '(fzf :wk "Fuzz")
     "zF" '(fzf-find-file-in-dir :wk "Find file Fuzz")
+    "zb" '(fzf-switch-buffer :wk "Switch buffer Fuzz")
     ;; project
     "p"  '(:ignore t :wk "Project")
     "pp" '(project-switch-project :wk "Switch project")
