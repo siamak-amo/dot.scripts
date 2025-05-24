@@ -41,7 +41,7 @@ function fffree(){
 }
 
 #-------#
-# utils #
+# Utils #
 #-------#
 
 # unlink wrapper
@@ -75,4 +75,83 @@ function wregex(){
 # parameters are the same as wregex
 function wgrep(){
     grep "$(wregex "$@")" /usr/share/dict/words
+}
+
+# word pronunciation
+# plays files at ~/.local/share/dict/sounds/x/xXXX
+function wsay(){
+    local W="$(echo $1 | tr 'A-Z' 'a-z')"
+    local BASE="$HOME/.local/share/dict/sounds/${W:0:1}"
+    local FN="$BASE/$(ls -1 "$BASE" | grep "$1\." | head -n1)"
+    if [[ "/" != "${FN: -1}" ]]; then
+        mplayer -volume 100 $FN >/dev/null 2>&1
+    else
+        echo "'$W' not found." >&2
+    fi
+}
+
+# default terminal based browser
+BROWSER="w3m"
+
+# SDcv support
+function sd()
+{
+    sdcv -n --json "$1" |\
+        jq -r '
+"<html><body><ul>" +
+(map(
+    "<li><strong>" + .dict + "</strong>: <ol>" +
+    (.definition | gsub("\n"; "<BR>") |
+    gsub(">([ ]*[0-9]+)[ :]*" ; "></li></p><p><li>")) +
+    "</ol></li>") | join("<BR><HR><BR>")) +
+"</ul></body></html>"'
+}
+
+function sdwww()
+{
+    local BROWSER_OPTS=("-T" "text/html" "-dump")
+    sd $1 |\
+        $BROWSER "${BROWSER_OPTS[@]}"
+}
+
+
+#-------#
+# V2ray #
+#-------#
+
+# $1 is file name of config.json in $V2_ETC/configs
+function chv2()
+{
+    local _def="$V2_ETC/default.json"
+    local _new="$V2_ETC/configs/$1"
+
+    if [[ -z "$1" ]]; then
+        echo "chv2 usage:  chv2 [file_name.json]" >&2
+    elif [[ -s "$_new" && -n "$1" ]]; then
+        [[ -h "$_def" ]] && unlink $_def
+        ln -s $_new $_def
+        echo "sudo systemctl restart autov2.service"
+    else
+        echo "$_new -- file not found" >&2
+    fi
+}
+
+function do_Bash_V2rayCollector()
+{
+    local _fn="$HOME/Stuff/vpn/v2ray/assets/links/links_$(date +%d_%b_%Y).txt"
+    echo " * $_fn"
+    Bash_V2rayCollector --proxy "127.0.0.1:10809" >> $_fn
+}
+
+function do_v2test()
+{
+    local v2ln_path="$V2_ROOT/assets/links"
+    local v2json_path="$V2_ROOT/configs.working"
+
+    local last_v2ln=$(find "$v2ln_path" -type f -name "links_*" -exec ls -t {} + | head -n1)
+    echo "using $last_v2ln"
+
+    cat "$last_v2ln" |\
+        v2test --timeout 4s --quiet --prefix "$v2json_path" |\
+        tee $v2json_path/links
 }
