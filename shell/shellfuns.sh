@@ -130,7 +130,7 @@ function chv2()
     elif [[ -s "$_new" && -n "$1" ]]; then
         [[ -h "$_def" ]] && unlink $_def
         ln -s $_new $_def
-        echo "sudo systemctl restart autov2.service"
+        echo "sudo systemctl restart v2ray.service"
     else
         echo "$_new -- file not found" >&2
     fi
