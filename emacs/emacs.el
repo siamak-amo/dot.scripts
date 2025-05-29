@@ -153,6 +153,7 @@
 (global-set-key (kbd "s-k")        'kill-buffer)
 ;; dired
 (global-set-key (kbd "C-x C-i")   #'image-dired)
+(global-set-key (kbd "C-b")       #'switch-to-buffer)
 ;; split window
 (global-set-key (kbd "M-;")       #'split-window-right)
 (global-set-key (kbd "M-'")       #'split-window-below)
@@ -255,10 +256,6 @@
   (add-hook 'prog-mode-hook #'hs-minor-mode)
   (add-hook 'prog-mode-hook #'electric-indent-local-mode)
   (evil-mode)
-  :bind (("C-b" . 'switch-to-buffer)
-         ("M-f" . 'forward-word)
-         ("M-b" . 'backward-word)
-  )
   )
 (use-package evil-collection
   :ensure t
