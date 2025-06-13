@@ -228,6 +228,10 @@ set_default_confs(){
     V2CONF_allowInsecure="true"
 }
 
+warnln(){
+    echo -e "vs2conf:" $1 >&2
+}
+
 # normalize _key and _value
 # some of the _key names come from the trurl program
 # and some others come directly from input vmess URL,
@@ -284,7 +288,7 @@ normalize_kv(){
             ;;
         *)
             # _key won't affect the final result
-            printf "Warning -- unrecognized key '%s' was ignored.\n" $_key >&2
+            warnln "Warning: unrecognized key '$_key' was ignored."
             ;;
     esac
     # the pattern _val=`xxx=@comment0...` has been observed
@@ -301,7 +305,7 @@ parse_url_tsv(){
         # normalize the _key and the _val
         normalize_kv
         if [ -z "$_key" ]; then
-            echo "Warning -- got an empty key for value \`$_val\`" >&2
+            warnln "Warning: got an empty key for value \`$_val\`" >&2
         else
             export V2CONF_$_key="$_val"
             [ -n "$DEBUG" ] && printf "Debug -- %-20s was set to %s\n"\
@@ -374,7 +378,7 @@ parse(){
             flush_json_config
             ;;
         *)
-            printf "vs2conf: invalid protocol -- '%s'\n" ${URL%%:*} >&2
+            warnln "Invalid protocol '${URL%%:*}'"
             ;;
     esac
     unset_confs

@@ -184,6 +184,10 @@ if [[ -n "$_CHAN" ]]; then
     fi
 fi
 
+warnln(){
+    echo -e "Bash_V2rayCollector:" $1 >&2
+}
+
 for _ln in $CHANNELS; do
     truncate -s 0 $TMP_FILE
 
@@ -193,16 +197,16 @@ for _ln in $CHANNELS; do
     [[ 1 == $_verbose ]] && echo "done" >&2
 
     if [[ ! "$_curl_ecode" == "0" ]]; then
-        echo "Error -- Could not download $_ln" >&2
+        warnln "Error: Could not download $_ln"
     else
         if [[ ! -s $TMP_FILE ]]; then
-            echo "Warning ${_ln##*/} -- Empty Response" >&2
+            warln "Warning: ${_ln##*/} got empty response"
         else
             grep "\(ss\|vless\|vmess\|trojan\)://[^\"<]*" $TMP_FILE -o |\
                 grep -v "…" >> $TMP_PART_FILE
 
             if [[ ! -s $TMP_PART_FILE ]]; then
-                echo "Warning ${_ln##*/} -- No v2ray URL" >&2
+                warnln "Warning: ${_ln##*/} has no v2ray link"
             else
                 tail -n $MAX_PART $TMP_PART_FILE | sort -u
             fi

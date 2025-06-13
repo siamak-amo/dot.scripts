@@ -88,6 +88,10 @@ OPTIONS:
 EOF
 }
 
+warnln(){
+    echo -e "v2test.sh:" $1 >&2
+}
+
 while test $# -gt 0; do
     case $1 in
         -c | --conf | --config)
@@ -151,8 +155,9 @@ while test $# -gt 0; do
             break;;
         *)
             if [[ "${1:0:1}" == '-' ]]; then
-                echo "invalid option ($1) -- exiting." >&2
-                echo "Try '--help' for more information." >&2
+                warnln "\
+Invalid option ($1) -- exiting.\n\
+Try '--help' for more information."
                 exit 1
             else
                 _print_path=1
@@ -167,7 +172,7 @@ done
 _print_path=1
 V2=$(which $_V2)
 if [[ -z "$V2" ]]; then
-    echo "command not found ($_V2) -- exiting." >&2
+    warnln "Command not found ($_V2) -- exiting."
     exit 2
 fi
 
@@ -261,7 +266,7 @@ log_result(){
 test_links_stdin(){
     # check the path exists
     if [[ -n "$_PREFIX" && ! -s "$_PREFIX" ]]; then
-        echo "'$_PREFIX': No such file or directory." >&2
+        warnln "'$_PREFIX': No such file or directory."
         exit 1
     fi
     if [[ 1 == $_verbose ]]; then
@@ -280,14 +285,14 @@ test_links_stdin(){
         if [[ 1 == $_no_test ]]; then
             mk_ccpath "$_ln"
             echo "$_ln" | $MKCONF > $CCPATH
-            [[ 1 == $_verbose ]] && echo "$CCPATH was created."
+            [[ 1 == $_verbose ]] && warnln "$CCPATH was created."
             continue
         fi
 
         # create temporary config file and test it
         echo "$_ln" | $MKCONF > $TMP_FILE
         if [[ ! -s "$TMP_FILE" ]]; then
-            echo "Config File Was not Created." >&2
+            warnln "Configuration file was not created."
         else
             test_config_file__H "$TMP_FILE"
             log_result "$_ln" "  "
@@ -396,8 +401,9 @@ if [[ -z "$_no_test" ]]; then
         get_v2_pid $__v
         if [[ -n "$V2_PID" ]]; then
             _running_v2_is_not_mine=1
-            echo "One instance of v2ray is Already Running," \
-                 "first kill possess $__v (PID: $V2_PID)" >&2
+            warnln "ERROR: \
+One instance of v2ray is Already Running,\nfirst kill the \
+possess $__v (PID: $V2_PID), and then run this script."
             exit 1
         fi
     done
@@ -407,7 +413,7 @@ if [[ -z "$_test_path" ]]; then  # use stdin
     test_links_stdin
 else
     if [[ 1 == $_no_test ]]; then
-        echo "nothing to do -- exiting."
+        warnln "Warning: Nothing to do, exiting."
         exit 0
     fi
     for _path in $_test_path; do
@@ -420,7 +426,7 @@ else
                 test_config_file $_json_cfg
             done
         else
-            echo "cannot use path '$_path' -- ignoring." >&2
+            warnln "'$_path': No such file or directory."
         fi
     done
 fi
