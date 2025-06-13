@@ -241,13 +241,16 @@
   :ensure t
   :hook
   (c-mode . set-c-comments)
-  (c-mode . (lambda ()
-              (define-key evil-normal-state-map (kbd "M-.") 'find-tag)
-              (define-key evil-normal-state-map (kbd "M-,") 'xref-pop-marker-stack)))
+  ;; (c-mode . (lambda ()
+  ;;             (define-key evil-normal-state-map (kbd "M-.") 'find-tag)
+  ;;             (define-key evil-normal-state-map (kbd "M-,") 'xref-pop-marker-stack)))
   :config
   (defun set-c-comments ()
     (setq comment-start "// "
           comment-end ""))
+  (evil-define-key 'normal 'global
+    (kbd "M-.") 'xref-find-definitions
+    (kbd "M-,") 'xref-pop-marker-stack)
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
@@ -328,6 +331,7 @@
     "pb" '(project-switch-to-buffer :wk "Buffers")
     "pd" '(project-dired :wk "Dired")
     "pc" '(project-compile :wk "Compile")
+    "px" '(gxref-set-project-dir :wk "Xref set dir")
     ;; langtool & ls
     "l"  '(:ignore t :wk "Langtool")
     "ls"  '((lambda () (interactive) (dired default-directory)) :wk "dired .")
@@ -367,6 +371,14 @@
   (setq ac-dwim t)
   (global-auto-complete-mode t)
 )
+;; gxref
+(use-package gxref
+  :ensure t
+  :config
+  (add-to-list 'xref-backend-functions 'gxref-xref-backend)
+  :bind (("M-." . xref-find-def)
+         ("M-," . xref-pop))
+  )
 ;;; ivy mode
 (use-package ivy
   :ensure t
