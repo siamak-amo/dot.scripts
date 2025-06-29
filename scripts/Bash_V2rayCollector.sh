@@ -200,7 +200,7 @@ for _ln in $CHANNELS; do
         warnln "Error: Could not download $_ln"
     else
         if [[ ! -s $TMP_FILE ]]; then
-            warln "Warning: ${_ln##*/} got empty response"
+            warnln "Warning: ${_ln##*/} got empty response"
         else
             grep "\(ss\|vless\|vmess\|trojan\)://[^\"<]*" $TMP_FILE -o |\
                 grep -v "…" >> $TMP_PART_FILE
