@@ -603,14 +603,14 @@
   :ensure t
   :bind ("C-c d" . docker)
   )
-;; modern org mode
-(use-package org-modern
-  :ensure t
-  :config
-  (require 'org-modern)
-  (add-hook 'org-mode-hook #'org-modern-mode)
-  (add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
-  )
+;; modern org mode (not quite good)
+;(use-package org-modern
+;  :ensure t
+;  :config
+;  (require 'org-modern)
+;  (add-hook 'org-mode-hook #'org-modern-mode)
+;  (add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
+;  )
 ;; org presentation mode
 (use-package org-present
   :ensure t
