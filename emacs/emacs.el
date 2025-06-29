@@ -313,8 +313,10 @@
     "fdf" '(wdired-finish-edit :wk "Finish editing")
     ;; tabs / vterm / themes and face
     "t"  '(:ignore t :wk "Tab / Vterm")
-    "tt" '(tab-new :wk "Tab new")
-    "tc" '(tab-close :wk "Tab close")
+    "tt" '(tab-new :wk "New tab")
+    "tc" '(tab-close :wk "Close tab")
+    "tn" '(tab-next :wk "Next tab")
+    "tp" '(tab-previous :wk "Previous tab")
     "tv" '(vterm-toggle :wk "Vterm toggle")
     "th" '(customize-themes :wk "Customize themes")
     "tf" '(customize-face :wk "Customize face")
