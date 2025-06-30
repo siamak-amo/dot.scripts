@@ -1,4 +1,5 @@
 ;; copy this file to ~/.emacs
+;; Tested on: GNU Emacs 29.4 (build 1, x86_64-pc-linux-gnu, ...)
 
 ;; to use proxy
 ;; (load-file "~/.emacs.d/proxy.el")
@@ -18,7 +19,6 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq-default line-spacing 8)
-;; (setq indent-line-function 'insert-tab)
 (setq-default TeX-engine 'xetex)
 (setq inhibit-startup-screen t)
 (menu-bar-mode 0)
@@ -241,9 +241,6 @@
   :ensure t
   :hook
   (c-mode . set-c-comments)
-  ;; (c-mode . (lambda ()
-  ;;             (define-key evil-normal-state-map (kbd "M-.") 'find-tag)
-  ;;             (define-key evil-normal-state-map (kbd "M-,") 'xref-pop-marker-stack)))
   :config
   (defun set-c-comments ()
     (setq comment-start "// "
@@ -256,14 +253,20 @@
         (evil-delete (region-beginning) (region-end))
       (kill-word -1)))
 
-  (evil-define-key 'insert 'global
-    (kbd "C-w") 'delete-selected-or-word)
+  ;; evil bindings
   (evil-define-key 'visual 'global
-    (kbd "C-w") 'evil-delete)
+    (kbd "C-w") 'evil-delete
+    )
+  (evil-define-key 'insert 'global
+    (kbd "C-w") 'delete-selected-or-word
+    (kbd "M-.") 'xref-find-definitions
+    (kbd "M-,") 'xref-pop-marker-stack
+    )
   (evil-define-key 'normal 'global
     (kbd "C-w") 'evil-delete
     (kbd "M-.") 'xref-find-definitions
-    (kbd "M-,") 'xref-pop-marker-stack)
+    (kbd "M-,") 'xref-pop-marker-stack
+    )
 
   :init
   (setq evil-want-integration t)
