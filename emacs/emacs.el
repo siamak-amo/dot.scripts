@@ -249,8 +249,11 @@
     (setq comment-start "// "
           comment-end ""))
   (evil-define-key 'normal 'global
+    (kbd "C-w") 'evil-delete
     (kbd "M-.") 'xref-find-definitions
     (kbd "M-,") 'xref-pop-marker-stack)
+  (evil-define-key 'visual 'global
+    (kbd "C-w") 'evil-delete)
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
