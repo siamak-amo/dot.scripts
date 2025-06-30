@@ -323,23 +323,14 @@
     "ff"  '(find-file :wk "Find file")
     "fd"  '(:ignore t :wk "Dir")
     "fdd" '(dired :wk "Open dired")
-    "fdw" '(wdired-change-to-wdired-mode :wk "Writable dired")
-    "fdf" '(wdired-finish-edit :wk "Finish editing")
-    ;; tabs / vterm / themes and face
-    "t"  '(:ignore t :wk "Tab / Vterm")
+    ;; tabs / customize-xxx
+    "t"  '(:ignore t :wk "Tab & Customize")
     "tt" '(tab-new :wk "New tab")
     "tc" '(tab-close :wk "Close tab")
     "tn" '(tab-next :wk "Next tab")
     "tp" '(tab-previous :wk "Previous tab")
-    "tv" '(vterm-toggle :wk "Vterm toggle")
     "th" '(customize-themes :wk "Customize themes")
     "tf" '(customize-face :wk "Customize face")
-    ;; fuzz
-    "z"  '(:ignore t :wk "FUZZ")
-    "zz" '(fzf-find-in-buffer :wk "Find in buffer Fuzz")
-    "zf" '(fzf :wk "Fuzz")
-    "zF" '(fzf-find-file-in-dir :wk "Find file Fuzz")
-    "zb" '(fzf-switch-buffer :wk "Switch buffer Fuzz")
     ;; project
     "p"  '(:ignore t :wk "Project")
     "pp" '(project-switch-project :wk "Switch project")
@@ -466,17 +457,18 @@
   :config (add-to-list 'revert-without-query ".pdf")
   )
 ;;; fuzzy searching support
-(use-package fzf
-  :ensure t
-  :config
-  (require 'fzf)
-  (setq fzf/args "-x --print-query --margin=1,0 --no-hscroll"
-        fzf/executable "fzf"
-        fzf/git-grep-args "--exclude-dir='.git;.svn' -i --line-number %s"
-        fzf/grep-command "grep --exclude-dir='.git;.svn' -nrH"
-        fzf/position-bottom t
-        fzf/window-height 15)
-  )
+;  -- DISABLED --
+; (use-package fzf
+;   :ensure t
+;   :config
+;   (require 'fzf)
+;   (setq fzf/args "-x --print-query --margin=1,0 --no-hscroll"
+;         fzf/executable "fzf"
+;         fzf/git-grep-args "--exclude-dir='.git;.svn' -i --line-number %s"
+;         fzf/grep-command "grep --exclude-dir='.git;.svn' -nrH"
+;         fzf/position-bottom t
+;         fzf/window-height 15)
+;   )
 ;;; a proper terminal support
 (use-package vterm
   :ensure t
