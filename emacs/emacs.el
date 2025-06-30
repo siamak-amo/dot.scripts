@@ -248,12 +248,23 @@
   (defun set-c-comments ()
     (setq comment-start "// "
           comment-end ""))
+
+  (defun delete-selected-or-word ()
+    "Delete the selected region if active, otherwise delete one word."
+    (interactive)
+    (if (use-region-p)
+        (evil-delete (region-beginning) (region-end))
+      (kill-word -1)))
+
+  (evil-define-key 'insert 'global
+    (kbd "C-w") 'delete-selected-or-word)
+  (evil-define-key 'visual 'global
+    (kbd "C-w") 'evil-delete)
   (evil-define-key 'normal 'global
     (kbd "C-w") 'evil-delete
     (kbd "M-.") 'xref-find-definitions
     (kbd "M-,") 'xref-pop-marker-stack)
-  (evil-define-key 'visual 'global
-    (kbd "C-w") 'evil-delete)
+
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
