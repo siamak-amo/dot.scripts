@@ -38,6 +38,8 @@ alias gcl1="git clone --depth 1"
 alias gstash="git stash"
 alias gsh="git push"
 alias gll="git pull"
+alias gch="git checkout"
+alias gb="git branch"
 alias giff="git diff"
 
 ##### PS #####
