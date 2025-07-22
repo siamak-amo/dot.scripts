@@ -14,6 +14,7 @@ alias ymv="yes | mv"
 alias ycp="yes | cp"
 alias ping="timeout 20s ping -c4"
 alias cls="clear"
+alias systemctl="sudo systemctl"
 
 # unlinks alias, usage: `unlink [links]...`
 if declare -f "unlinks" >/dev/null; then
