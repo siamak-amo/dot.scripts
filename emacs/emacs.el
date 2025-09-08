@@ -349,7 +349,23 @@
     "ll" '(langtool-check :wk "langtool check")
     "ld" '(langtool-check-done :wk "langtool check done")
     "lm" '(langtool-show-message-at-point :wk "langtool show message")
-     )
+    ;; mpd
+    "m"  '(:ignore t :wk "MPD Client")
+    "ms" '(mpdmacs-play :wk "Play")
+    "mq" '(mpdmacs-stop :wk "Stop")
+    "mp" '(mpdmacs-toggle-pause :wk "Toggle pause")
+    "mn" '(mpdmacs-next :wk "Next song")
+    "mb" '(mpdmacs-previous :wk "Previous song")
+    "m=" '(mpdmacs-inc-volume :wk "Increase volume")
+    "m+" '(mpdmacs-inc-volume :wk "Increase volume")
+    "m-" '(mpdmacs-dec-volume :wk "Decrease volume")
+    "mv" '(mpdmacs-set-volume2 :wk "Set volume")
+    "mr" '(mpdmacs-toggle-random :wk "Toggle random")
+    "mm" '(:ignore t :wk "Playlist")
+    "mml" '(mpdmacs-load-playlist :wk "Load playlist")
+    "mmc" '(mpdmacs-clear :wk "Clear play queue")
+    "mmb" '(mpdmacs-show-current-song :wk "Current song buffer")
+    )
   )
 
 ;;; which key
@@ -597,6 +613,21 @@
   :config
   (require 'mpdel)
   (mpdel-mode)
+  )
+;;; mpdmacs
+(use-package mpdmacs
+  :ensure t
+  :config
+  (setq mpdmacs-host "localhost"
+        mpdmacs-port "6600"
+        mpdmacs-socket nil)
+  (defun mpdmacs-set-volume2 ()
+    (interactive)
+    (let* ((numbers (mapcar 'number-to-string (number-sequence 0 100)))
+           (number (completing-read
+                    "Volume: " numbers nil nil
+                    (number-to-string (mpdmacs-get-volume)))))
+      (mpdmacs-set-volume (string-to-number number))))
   )
 ;;; jupyter support
 (use-package ein :ensure t)
