@@ -116,6 +116,11 @@
       (setq current-alpha (- current-alpha 5))
       (set-frame-parameter nil 'alpha-background current-alpha)
       (message "- Alpha %d%%" current-alpha))))
+;; get the selected text region or the symbol under the cursor
+(defun get-region-or-symbol ()
+  (if (use-region-p)
+      (buffer-substring-no-properties (region-beginning) (region-end))
+    (thing-at-point 'symbol)))
 ;; hide Dired details
 (add-hook 'dired-mode-hook #'dired-hide-details-mode)
 ;; load custom themes
@@ -585,9 +590,15 @@
   ;; Interactive go doc command
   (defun go-doc-int ()
     (interactive)
-    (let ((symbol (thing-at-point 'symbol)))
+    (let ((symbol (get-region-or-symbol)))
       (setq symbol (read-string "Go documentation of: " symbol))
-      (compilation-start (format "go doc %s" symbol))))
+      (let ((output-buffer (get-buffer-create "*go-doc*")))
+        (with-current-buffer output-buffer
+          (erase-buffer)
+          (call-process "go" nil "*go-doc*" nil "doc" symbol)
+          (local-set-key (kbd "q") 'quit-window)
+          (display-buffer output-buffer)
+          ))))
 
   :bind (:map go-mode-map
               ("M-." . godef-jump)
