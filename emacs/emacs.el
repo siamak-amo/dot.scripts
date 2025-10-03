@@ -100,24 +100,18 @@
         (windmove-down)
       (other-window -1))))
 ;; transparency
-(defun increase-transparency ()
-  "Increase transparency of the frame by 5%."
+(defun update-transparency (delta)
   (interactive)
   (let ((current-alpha (or (frame-parameter nil 'alpha-background) 100)))
-    (if (> current-alpha 95)
-        (message "Maximum Alpha 100%%")
-      (setq current-alpha (+ current-alpha 5))
-      (set-frame-parameter nil 'alpha-background current-alpha)
-      (message "+ Alpha %d%%" current-alpha))))
-(defun decrease-transparency ()
-  "Decrease transparency of the frame by 10%."
-  (interactive)
-  (let ((current-alpha (or (frame-parameter nil 'alpha-background) 100)))
+    (setq current-alpha (+ current-alpha delta))
+    (if (> current-alpha 100)
+        (setq current-alpha 100))
     (if (< current-alpha 5)
-        (message "Minimum Alpha 0%%")
-      (setq current-alpha (- current-alpha 5))
-      (set-frame-parameter nil 'alpha-background current-alpha)
-      (message "- Alpha %d%%" current-alpha))))
+        (setq current-alpha 5))
+    (set-frame-parameter nil 'alpha-background current-alpha)
+    (message "Alpha: %d%%" current-alpha)
+    )
+  )
 ;; get the selected text region or the symbol under the cursor
 (defun get-region-or-symbol ()
   (if (use-region-p)
@@ -189,8 +183,10 @@
 (global-set-key (kbd "C--")        'text-scale-decrease)
 ;; others
 (global-set-key (kbd "M-m")       #'man)
-(global-set-key (kbd "M-]")        'increase-transparency)
-(global-set-key (kbd "M-[")        'decrease-transparency)
+(global-set-key (kbd "M-[")        (lambda () (interactive)
+                                     (update-transparency -5)))
+(global-set-key (kbd "M-]")        (lambda () (interactive)
+                                     (update-transparency 5)))
 (global-set-key (kbd "C-`")        'vterm-toggle)
 
 
