@@ -154,7 +154,6 @@
 (global-set-key (kbd "s-k")        'kill-buffer)
 ;; dired
 (global-set-key (kbd "C-x C-i")   #'image-dired)
-(global-set-key (kbd "C-b")       #'switch-to-buffer)
 ;; split window
 (global-set-key (kbd "M-;")       #'split-window-right)
 (global-set-key (kbd "M-'")       #'split-window-below)
@@ -264,11 +263,13 @@
     (kbd "C-w") 'delete-selected-or-word
     (kbd "M-.") 'xref-find-definitions
     (kbd "M-,") 'xref-pop-marker-stack
+    (kbd "C-b") #'switch-to-buffer
     )
   (evil-define-key 'normal 'global
     (kbd "C-w") 'evil-delete
     (kbd "M-.") 'xref-find-definitions
     (kbd "M-,") 'xref-pop-marker-stack
+    (kbd "C-b") #'switch-to-buffer
     )
 
   :init
