@@ -207,6 +207,16 @@
   '(define-key compilation-mode-map (kbd "C-c") 'kill-compilation))
 (eval-after-load 'grep
   '(define-key grep-mode-map        (kbd "C-c") 'kill-compilation))
+;;; compilation mode, auto go to end of buffer
+(add-hook 'compilation-finish-functions
+          (lambda (buffer exit-status)
+            (with-current-buffer buffer
+              (if (string= "finished\n" exit-status)
+                  (let ((compilation-window (get-buffer-window "*compilation*")))
+                    (with-selected-window compilation-window
+                      (goto-char (point-max))
+                      (recenter -1)
+                      ))))))
 ;; dired mode
 (eval-after-load "dired"
   '(progn
