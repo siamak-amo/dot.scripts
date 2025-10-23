@@ -152,6 +152,7 @@
 (global-set-key (kbd "M-p")       #'switch-to-prev-buffer)
 (global-set-key (kbd "C-k")        'kill-buffer)
 (global-set-key (kbd "s-k")        'kill-buffer)
+(global-set-key (kbd "C-b")        'switch-to-buffer)
 ;; dired
 (global-set-key (kbd "C-x C-i")   #'image-dired)
 ;; split window
