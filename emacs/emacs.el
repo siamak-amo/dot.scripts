@@ -390,17 +390,13 @@
   :config
   (which-key-mode)
   )
-(use-package company
-  :ensure t
-  :hook ((emacs-lisp-mode . (lambda()
-                              (setq-local company-backends '(company-elisp))))
-         (emacs-list-mode . company-mode))
-  :config
-  (company-keymap--unbind-quick-access company-active-map)
-  (company-tng-configure-default)
-  (setq company-idle-delay 0.1
-        company-minimum-prefix-length 1)
-  )
+;; (use-package company
+;;   :ensure t
+;;   :config
+;;   (setq company-auto-complete nil)
+;;   (setq company-idle-delay nil
+;;         company-minimum-prefix-length 0)
+;;   )
 ;; gxref
 (use-package gxref
   :ensure t
