@@ -188,6 +188,7 @@
 (global-set-key (kbd "M-]")        (lambda () (interactive)
                                      (update-transparency 5)))
 (global-set-key (kbd "C-`")        'vterm-toggle)
+(global-set-key (kbd "<tab>")     #'dabbrev-expand)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -400,18 +401,6 @@
   (setq company-idle-delay 0.1
         company-minimum-prefix-length 1)
   )
-;;; auto complete mode
-(use-package auto-complete
-  :ensure t
-  :init
-  (ac-config-default)
-  :config
-  (setq ac-use-menu-map t)
-  (setq ac-auto-show-menu nil)
-  (setq ac-auto-start 2)
-  (setq ac-dwim t)
-  (global-auto-complete-mode t)
-)
 ;; gxref
 (use-package gxref
   :ensure t
@@ -444,7 +433,8 @@
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status)
-         ("C-x C-g" . magit-status))
+         ("C-x C-g" . magit-status)
+         ("<tab>" . nil))
   )
 (use-package git-gutter
   :ensure t
