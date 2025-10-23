@@ -188,7 +188,6 @@
 (global-set-key (kbd "M-]")        (lambda () (interactive)
                                      (update-transparency 5)))
 (global-set-key (kbd "C-`")        'vterm-toggle)
-(global-set-key (kbd "<tab>")     #'dabbrev-expand)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -276,6 +275,7 @@
     (kbd "M-.") 'xref-find-definitions
     (kbd "M-,") 'xref-pop-marker-stack
     (kbd "C-b") #'switch-to-buffer
+    (kbd "<tab>") #'dabbrev-expand
     )
   (evil-define-key 'normal 'global
     (kbd "C-w") 'evil-delete
@@ -428,9 +428,9 @@
 (use-package transient :ensure t)
 (use-package magit
   :ensure t
+  :config
   :bind (("C-x g" . magit-status)
-         ("C-x C-g" . magit-status)
-         ("<tab>" . nil))
+         ("C-x C-g" . magit-status))
   )
 (use-package git-gutter
   :ensure t
