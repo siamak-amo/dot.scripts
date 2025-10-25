@@ -275,7 +275,6 @@
     (kbd "M-.") 'xref-find-definitions
     (kbd "M-,") 'xref-pop-marker-stack
     (kbd "C-b") #'switch-to-buffer
-    (kbd "<tab>") #'dabbrev-expand
     )
   (evil-define-key 'normal 'global
     (kbd "C-w") 'evil-delete
@@ -397,6 +396,13 @@
 ;;   (setq company-idle-delay nil
 ;;         company-minimum-prefix-length 0)
 ;;   )
+;; a minimal (not annoying) auto-complete
+(use-package auto-complete
+  :config
+  (setq ac-auto-start t
+        ac-auto-show-menu nil)
+  (global-auto-complete-mode t)
+  )
 ;; gxref
 (use-package gxref
   :ensure t
