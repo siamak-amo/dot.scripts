@@ -1,9 +1,5 @@
 ;; copy this file to ~/.emacs
-;; Tested on: GNU Emacs 29.4 (build 1, x86_64-pc-linux-gnu, ...)
-
-;; to use proxy
-;; (load-file "~/.emacs.d/proxy.el")
-
+;; Tested on: GNU Emacs 30.2 (x86_64-pc-linux-gnu)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;; elementary configs ;;
@@ -33,6 +29,10 @@
 (set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
 (setq column-number-mode t)
 (when window-system (set-fontset-font "fontset-default" '(#x600 . #x6ff) "arimo"))
+;; enable proxy function
+(defun proxy-on ()
+  (interactive)
+  (load-file "~/.emacs.d/proxy.el"))
 ;; pdf viewer
 (setq TeX-view-program-list '(("Okular" "okular %o")))
 (setq TeX-view-program-selection '((output-pdf "Okular")))
