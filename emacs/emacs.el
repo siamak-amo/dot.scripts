@@ -188,7 +188,7 @@
 (global-set-key (kbd "M-]")        (lambda () (interactive)
                                      (update-transparency 5)))
 (global-set-key (kbd "C-`")        'vterm-toggle)
-(global-set-key (kbd "M-y")        'evil-paste-after)
+(global-set-key (kbd "M-y")        'evil-paste-before)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
