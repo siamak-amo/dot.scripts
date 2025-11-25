@@ -150,9 +150,6 @@
 (global-set-key (kbd "C-<prior>") #'tab-bar-switch-to-prev-tab)
 (global-set-key (kbd "M-n")       #'switch-to-next-buffer)
 (global-set-key (kbd "M-p")       #'switch-to-prev-buffer)
-(global-set-key (kbd "C-k")        'kill-buffer)
-(global-set-key (kbd "s-k")        'kill-buffer)
-(global-set-key (kbd "C-b")        'switch-to-buffer)
 ;; dired
 (global-set-key (kbd "C-x C-i")   #'image-dired)
 ;; split window
@@ -188,7 +185,7 @@
 (global-set-key (kbd "M-]")        (lambda () (interactive)
                                      (update-transparency 5)))
 (global-set-key (kbd "C-`")        'vterm-toggle)
-(global-set-key (kbd "M-y")        'evil-paste-before)
+(global-set-key (kbd "M-y")        'yank)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -202,7 +199,6 @@
             (define-key shell-mode-map (kbd "<down>") 'comint-next-input)))
 ;; mini-buffer mode
 (define-key minibuffer-local-map (kbd "C-w") 'backward-kill-word)
-(define-key minibuffer-local-map (kbd "C-k") 'kill-line)
 (define-key minibuffer-local-map (kbd "C-u") 'delete-minibuffer-contents)
 ;; compilation mode
 (eval-after-load 'compile
@@ -275,15 +271,16 @@
     (kbd "C-w") 'delete-selected-or-word
     (kbd "M-.") 'xref-find-definitions
     (kbd "M-,") 'xref-pop-marker-stack
-    (kbd "C-b") #'switch-to-buffer
+    (kbd "C-k") #'kill-line
+    (kbd "C-e") #'end-of-line
+    (kbd "C-a") #'beginning-of-line
+    (kbd "C-y") #'yank
     )
   (evil-define-key 'normal 'global
     (kbd "C-w") 'evil-delete
     (kbd "M-.") 'xref-find-definitions
     (kbd "M-,") 'xref-pop-marker-stack
-    (kbd "C-b") #'switch-to-buffer
     )
-
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
