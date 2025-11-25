@@ -11,7 +11,6 @@
 ;; always y/n
 (defalias 'yes-or-no-p 'y-or-n-p)
 ;; my basic configs
-(set-face-attribute 'default nil :font "Monoid")
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq-default line-spacing 8)
