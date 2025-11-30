@@ -45,11 +45,6 @@
                             (format "Search (default %s): " word) nil nil word)))
           (dictionary-search custom-word))
       (dictionary))))
-;; clean compile (just like compile, but with empty mini-bufer)
-(defun ccompile ()
-    (interactive)
-    (let ((compile-command ""))
-      (compile (read-string "Compile: "))))
 ;; regenerate TAGS
 (defun regenerate-tags ()
   (interactive)
@@ -143,7 +138,7 @@
 ;; <Fn>
 (global-set-key (kbd "<M-f5>")     'regenerate-tags)
 (global-set-key (kbd "<f5>")      #'recompile)
-(global-set-key (kbd "<f6>")      'ccompile)
+(global-set-key (kbd "<f6>")      'compile)
 (global-set-key (kbd "M-<f6>")    #'async-shell-command)
 (global-set-key (kbd "<f8>")      #'flyspell-mode)
 (global-set-key (kbd "<f9>")      #'ispell-word)
