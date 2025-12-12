@@ -8,53 +8,11 @@
 ;; custom.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (add-hook 'elpaca-after-init-hook (lambda () (load custom-file 'noerror)))
-;; always y/n
 (defalias 'yes-or-no-p 'y-or-n-p)
-;; my basic configs
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
-(setq-default line-spacing 8)
-(setq-default TeX-engine 'xetex)
-(setq inhibit-startup-screen t)
-(menu-bar-mode 0)
-(global-display-line-numbers-mode 1)
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
-(which-function-mode 1)
-(electric-indent-mode -1)
-(setq-default mode-line-format (delq 'mode-line-modes mode-line-format))
-(setq confirm-kill-emacs 'y-or-n-p)
-(set-face-attribute 'font-lock-comment-face nil :slant 'italic)
-(set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
-(setq column-number-mode t)
-(when window-system (set-fontset-font "fontset-default" '(#x600 . #x6ff) "arimo"))
 ;; enable proxy function
 (defun proxy-on ()
   (interactive)
   (load-file "~/.emacs.d/proxy.el"))
-;; pdf viewer
-(setq TeX-view-program-list '(("Okular" "okular %o")))
-(setq TeX-view-program-selection '((output-pdf "Okular")))
-;; search in dictionary
-(defun search_dict ()
-  "Search for the word under the cursor in the dictionary."
-  (interactive)
-  (let ((word (thing-at-point 'word)))
-    (if word
-        (let ((custom-word (read-string
-                            (format "Search (default %s): " word) nil nil word)))
-          (dictionary-search custom-word))
-      (dictionary))))
-;; regenerate TAGS
-(defun regenerate-tags ()
-  (interactive)
-  (let* ((file (or buffer-file-name (dired-get-file-for-visit)))
-         (default-directory (file-name-directory file)))
-    (if (eq major-mode 'dired-mode)
-        (shell-command "find . -name '*.h' -o -name '*.c' | xargs etags")
-        (if (y-or-n-p "Regenerate TAGS for the current file only? ")
-            (shell-command (format "etags %s" (file-name-nondirectory file)))
-            (shell-command "find . -name '*.h' -o -name '*.c' | xargs etags")))))
 ;; grep command support
 (setq grep-cmd-comm "grep -rn -I --exclude-dir=.git --exclude=TAGS")
 (defun do-grep-in-dir ()
@@ -136,7 +94,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;
 
 ;; <Fn>
-(global-set-key (kbd "<M-f5>")     'regenerate-tags)
 (global-set-key (kbd "<f5>")      #'recompile)
 (global-set-key (kbd "<f6>")      'compile)
 (global-set-key (kbd "M-<f6>")    #'async-shell-command)
@@ -245,6 +202,33 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
 
+;; basic configs
+(use-package emacs
+  :ensure nil
+  :config
+  (menu-bar-mode 0)
+  (tool-bar-mode 0)
+  (scroll-bar-mode 0)
+  (which-function-mode 1)
+  (electric-indent-mode -1)
+  (setq column-number-mode t)
+  (global-display-line-numbers-mode 1)
+  (setq inhibit-startup-screen t)
+  (setq-default tab-width 4)
+  (setq-default line-spacing 5)
+  (setq-default indent-tabs-mode nil)
+  (setq-default mode-line-format (delq 'mode-line-modes mode-line-format))
+  (setq confirm-kill-emacs 'y-or-n-p)
+  (when window-system (set-fontset-font "fontset-default" '(#x600 . #x6ff) "arimo"))
+
+  ;; (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
+  ;; (set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
+  (custom-set-faces
+   '(default ((t (:font "IosevkaCustom" :height 130))))
+   '(tab-bar ((t (:height 110))))
+   )
+  )
+
 ;;; evil mode (vi mode)
 (use-package evil
   :ensure t
@@ -269,7 +253,7 @@
   (evil-define-key 'insert 'global
     (kbd "C-w") 'delete-selected-or-word
     (kbd "M-.") 'xref-find-definitions
-    (kbd "M-,") 'xref-pop-marker-stack
+    (kbd "M-,") 'xref-go-back
     (kbd "C-k") #'kill-line
     (kbd "C-e") #'end-of-line
     (kbd "C-a") #'beginning-of-line
@@ -405,8 +389,6 @@
   :ensure t
   :config
   (add-to-list 'xref-backend-functions 'gxref-xref-backend)
-  :bind (("M-." . xref-find-def)
-         ("M-," . xref-pop))
   )
 ;;; ivy mode
 (use-package ivy
