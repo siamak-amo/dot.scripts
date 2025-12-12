@@ -553,16 +553,18 @@
 ;;; GoLang
 (use-package go-mode
   :ensure t
-  :hook
-  ;; (go-mode . lsp-deferred)
-  (go-mode . subword-mode)
-  ;; gofmt before saving is supper annoying while using git
-  ;; (before-save . gofmt-before-save)
+  ;; :mode "\\.go\\'"
+  :hook (
+         (go-mode . subword-mode)
+         ;; (go-mode . eglot)
+         ;; (before-save . gofmt-before-save)
+         ;; (go-mode . lsp-deferred)
+   )
   :config
   (add-to-list 'exec-path (expand-file-name "bin" (getenv "GOPATH")))
-  (setq gofmt-command "goimports")
-  ;; (require 'lsp-go)
   (require 'tree-widget)
+  ;; (setq gofmt-command "goimports")
+  ;; (require 'lsp-go)
   ;; (setq lsp-go-analyses
   ;;       '((fieldalignment . t)
   ;;         (nilness . t)
