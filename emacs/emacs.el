@@ -390,6 +390,15 @@
   :config
   (add-to-list 'xref-backend-functions 'gxref-xref-backend)
   )
+;;; ido support
+(use-package smex
+  :ensure t
+  :config
+  ; (ido-mode 0)  ;; using ivy instead
+  (smex-initialize)
+  (global-set-key (kbd "<menu>") 'smex)
+  (global-set-key (kbd "M-x") 'smex)
+  )
 ;;; ivy mode
 (use-package ivy
   :ensure t
