@@ -228,6 +228,9 @@
    '(font-lock-keyword-face ((t (:bold t))))
    ;; smaller tab-bar
    '(tab-bar ((t (:height 110))))
+   ;; box around matched search strings
+   '(isearch ((t (:inverse-video nil :bold t
+                  :box (:color "yellow" :line-width 2 :style nil)))))
    )
   )
 
