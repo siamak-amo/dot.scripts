@@ -396,19 +396,29 @@
   (add-to-list 'xref-backend-functions 'gxref-xref-backend)
   )
 ;;; ido support
+(use-package ido
+  :config
+  (ido-mode)
+  (setq ido-everywhere t
+        ido-virtual-buffers t
+        ido-use-faces t
+        ido-default-buffer-method 'selected-window
+        ido-auto-merge-work-directories-length -1)
+  (use-package ido-vertical-mode :ensure t :requires ido :config (ido-vertical-mode))
+  )
+;;; smex support
 (use-package smex
   :ensure t
   :config
-  ; (ido-mode 0)  ;; using ivy instead
   (smex-initialize)
   (global-set-key (kbd "<menu>") 'smex)
   (global-set-key (kbd "M-x") 'smex)
   )
-;;; ivy mode
+;;; ivy mode  --Not Enabled--
 (use-package ivy
   :ensure t
   :config
-  (ivy-mode 1)
+  (ivy-mode 0)
   )
 ;;; drag-stuff package
 (use-package drag-stuff
