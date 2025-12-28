@@ -221,10 +221,12 @@
   (setq confirm-kill-emacs 'y-or-n-p)
   (when window-system (set-fontset-font "fontset-default" '(#x600 . #x6ff) "arimo"))
 
-  ;; (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
-  ;; (set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
   (custom-set-faces
+   ;; default font
    '(default ((t (:font "IosevkaCustom" :height 130))))
+   '(font-lock-comment-face ((t (:slant italic))))
+   '(font-lock-keyword-face ((t (:bold t))))
+   ;; smaller tab-bar
    '(tab-bar ((t (:height 110))))
    )
   )
