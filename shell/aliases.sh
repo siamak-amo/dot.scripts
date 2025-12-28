@@ -9,6 +9,7 @@
 alias s="ls"
 alias sl="ls"
 alias mv="mv -i"
+alias mc="mv"
 alias cp="cp -i"
 alias ymv="yes | mv"
 alias ycp="yes | cp"

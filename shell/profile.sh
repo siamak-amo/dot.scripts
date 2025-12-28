@@ -12,20 +12,22 @@ function __safe_add2path()
 # Common PATH configs
 __safe_add2path "/opt/bin"
 __safe_add2path "$HOME/bin"
+__safe_add2path "$HOME/Opt/bin"
+__safe_add2path "$HOME/Opt/lib/go/bin"
 __safe_add2path "$HOME/.local/bin"
 __safe_add2path "$HOME/.local/opt/bin"
 
 # My scripts
 SCRIPTS="$HOME/Scripts"
 # Go
-export GOPATH="$HOME/.local/go"
+export GOPATH="$HOME/Opt/lib/go"
 # Rust
-export RUSTUP_HOME="$HOME/.rustup"
-export CARGO_HOME="/opt/share/cargo"
+export RUSTUP_HOME="$HOME/Opt/share/rustup"
+export CARGO_HOME="$HOME/Opt/lib/cargo"
 # Pyenv
 # export PYENV_ROOT="$HOME/.local/lib/pyenv"   -- depricated --
 # LaTex
-export TEXLIVE_ROOT="$HOME/.local/texlive/2023"
+export TEXLIVE_ROOT="$HOME/Opt/sharetexlive/2023"
 # V2ray
 export V2_ROOT="$HOME/Stuff/vpn/v2ray"
 export V2_ETC="$HOME/.local/etc/v2ray"
