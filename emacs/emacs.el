@@ -402,9 +402,13 @@
   (setq ido-everywhere t
         ido-virtual-buffers t
         ido-use-faces t
+        ido-ubiquitous-mode t
         ido-default-buffer-method 'selected-window
+        ido-enable-flex-matching t
         ido-auto-merge-work-directories-length -1)
   (use-package ido-vertical-mode :ensure t :requires ido :config (ido-vertical-mode))
+  (when (fboundp 'ido-read-directory-name)
+    (defalias 'read-directory-name #'ido-read-directory-name))
   )
 ;;; smex support
 (use-package smex
@@ -418,7 +422,7 @@
 (use-package ivy
   :ensure t
   :config
-  (ivy-mode 0)
+  (ivy-mode 1)
   )
 ;;; drag-stuff package
 (use-package drag-stuff
