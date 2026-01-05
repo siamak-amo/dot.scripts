@@ -224,8 +224,8 @@
   (custom-set-faces
    ;; default font
    '(default ((t (:font "IosevkaCustom" :height 130))))
-   '(font-lock-comment-face ((t (:slant italic))))
-   '(font-lock-keyword-face ((t (:bold t))))
+   ;; '(font-lock-comment-face ((t (:slant italic))))
+   '(font-lock-keyword-face ((t (:bold t :weight bold))))
    ;; smaller tab-bar
    '(tab-bar ((t (:height 110))))
    ;; box around matched search strings
