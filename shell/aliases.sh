@@ -6,6 +6,7 @@
 #   *AFTER* `source /path/to/shellfuns.sh` if you have it
 #
 ##### General #####
+alias q="exit"
 alias s="ls"
 alias sl="ls"
 alias mv="mv -i"
