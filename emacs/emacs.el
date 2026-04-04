@@ -251,6 +251,13 @@
   (defun set-c-comments ()
     (setq comment-start "// "
           comment-end ""))
+  (defun new-empty-line ()
+    (interactive)
+    (unless (eq evil-want-fine-undo t)
+      (evil-start-undo-step))
+    (push (point) buffer-undo-list)
+    (evil-insert-newline-below)
+    (unwind-protect (evil-insert-state 1)))
 
   (defun delete-selected-or-word ()
     "Delete the selected region if active, otherwise delete one word."
@@ -271,11 +278,15 @@
     (kbd "C-e") #'end-of-line
     (kbd "C-a") #'beginning-of-line
     (kbd "C-y") #'yank
+    (kbd "C-o") 'new-empty-line
+    (kbd "C-d") 'evil-delete
     )
   (evil-define-key 'normal 'global
     (kbd "C-w") 'evil-delete
     (kbd "M-.") 'xref-find-definitions
     (kbd "M-,") 'xref-pop-marker-stack
+    (kbd "C-o") #'new-empty-line
+    (kbd "C-d") 'evil-delete
     )
   :init
   (setq evil-want-integration t)
