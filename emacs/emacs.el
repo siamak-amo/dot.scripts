@@ -161,6 +161,14 @@
   '(define-key compilation-mode-map (kbd "C-c") 'kill-compilation))
 (eval-after-load 'grep
   '(define-key grep-mode-map        (kbd "C-c") 'kill-compilation))
+;; compilation mode ANSI color
+;; taken from: <https://stackoverflow.com/a/20788581/12798281>
+(ignore-errors
+  (require 'ansi-color)
+  (defun my-colorize-compilation-buffer ()
+    (when (eq major-mode 'compilation-mode)
+      (ansi-color-apply-on-region compilation-filter-start (point-max))))
+  (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
 ;;; compilation mode, auto go to end of buffer
 (add-hook 'compilation-finish-functions
           (lambda (buffer exit-status)
