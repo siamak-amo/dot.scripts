@@ -123,6 +123,8 @@
 (global-set-key (kbd "M-h")       #'windmove-left2)
 (global-set-key (kbd "M-k")       #'windmove-up2)
 (global-set-key (kbd "M-j")       #'windmove-down2)
+(global-set-key (kbd "C-l")       #'scroll-up-line)
+(global-set-key (kbd "C-j")       #'scroll-down-line)
 ;; resize window
 (global-set-key (kbd "M-<left>")   'shrink-window-horizontally)
 (global-set-key (kbd "M-<right>")  'enlarge-window-horizontally)
