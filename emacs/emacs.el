@@ -289,6 +289,7 @@
     (kbd "M-,") 'xref-pop-marker-stack
     (kbd "C-o") #'new-empty-line
     (kbd "C-d") 'evil-delete
+    (kbd "C-e") 'end-of-line
     )
   :init
   (setq evil-want-integration t)
