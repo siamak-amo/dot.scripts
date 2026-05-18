@@ -261,27 +261,26 @@
       (kill-word -1)))
 
   ;; evil bindings
+  (evil-define-key '(normal insert) 'global
+    (kbd "M-.") 'xref-find-definitions
+    (kbd "M-,") 'xref-go-back
+    (kbd "C-n") 'tab-next
+    (kbd "C-p") 'tab-previous
+    (kbd "C-e") #'end-of-line
+    (kbd "C-d") 'evil-delete
+    (kbd "C-o") 'new-empty-line
+    )
   (evil-define-key 'visual 'global
     (kbd "C-w") 'evil-delete
     )
   (evil-define-key 'insert 'global
     (kbd "C-w") 'delete-selected-or-word
-    (kbd "M-.") 'xref-find-definitions
-    (kbd "M-,") 'xref-go-back
     (kbd "C-k") #'kill-line
-    (kbd "C-e") #'end-of-line
     (kbd "C-a") #'beginning-of-line
     (kbd "C-y") #'yank
-    (kbd "C-o") 'new-empty-line
-    (kbd "C-d") 'evil-delete
     )
   (evil-define-key 'normal 'global
     (kbd "C-w") 'evil-delete
-    (kbd "M-.") 'xref-find-definitions
-    (kbd "M-,") 'xref-pop-marker-stack
-    (kbd "C-o") #'new-empty-line
-    (kbd "C-d") 'evil-delete
-    (kbd "C-e") 'end-of-line
     )
   :init
   (setq evil-want-integration t)
