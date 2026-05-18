@@ -435,7 +435,7 @@
 (use-package ivy
   :ensure t
   :config
-  (ivy-mode 1)
+  (ivy-mode 0)
   )
 ;;; drag-stuff package
 (use-package drag-stuff
