@@ -93,6 +93,13 @@
 ;; custom shortcuts ;;
 ;;;;;;;;;;;;;;;;;;;;;;
 
+;; universal bindings
+(bind-key*      (kbd "M-n")       #'switch-to-next-buffer)   ;; tabs ;;
+(bind-key*      (kbd "M-p")       #'switch-to-prev-buffer)
+(bind-key*      (kbd "C-n")       #'tab-next)
+(bind-key*      (kbd "C-p")       #'tab-previous)
+(bind-key*      (kbd "C-e")       #'end-of-line)             ;; line ;;
+(bind-key*      (kbd "C-a")       #'beginning-of-line)
 ;; <Fn>
 (global-set-key (kbd "<f5>")      #'recompile)
 (global-set-key (kbd "<f6>")      'compile)
@@ -104,8 +111,6 @@
 (global-set-key (kbd "C-<home>")  #'switch-to-prev-buffer)
 (global-set-key (kbd "C-<next>")  #'tab-bar-switch-to-next-tab)
 (global-set-key (kbd "C-<prior>") #'tab-bar-switch-to-prev-tab)
-(global-set-key (kbd "M-n")       #'switch-to-next-buffer)
-(global-set-key (kbd "M-p")       #'switch-to-prev-buffer)
 ;; dired
 (global-set-key (kbd "C-x C-i")   #'image-dired)
 ;; split window
@@ -264,9 +269,6 @@
   (evil-define-key '(normal insert) 'global
     (kbd "M-.") 'xref-find-definitions
     (kbd "M-,") 'xref-go-back
-    (kbd "C-n") 'tab-next
-    (kbd "C-p") 'tab-previous
-    (kbd "C-e") #'end-of-line
     (kbd "C-d") 'evil-delete
     (kbd "C-o") 'new-empty-line
     )
@@ -276,7 +278,6 @@
   (evil-define-key 'insert 'global
     (kbd "C-w") 'delete-selected-or-word
     (kbd "C-k") #'kill-line
-    (kbd "C-a") #'beginning-of-line
     (kbd "C-y") #'yank
     )
   (evil-define-key 'normal 'global
