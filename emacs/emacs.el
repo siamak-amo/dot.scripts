@@ -93,13 +93,11 @@
 ;; custom shortcuts ;;
 ;;;;;;;;;;;;;;;;;;;;;;
 
-;; universal bindings
+;; universal bindings (they do not affect evil-mode for some reason!)
 (bind-key*      (kbd "M-n")       #'switch-to-next-buffer)   ;; tabs ;;
 (bind-key*      (kbd "M-p")       #'switch-to-prev-buffer)
-(bind-key*      (kbd "C-n")       #'tab-next)
-(bind-key*      (kbd "C-p")       #'tab-previous)
-(bind-key*      (kbd "C-e")       #'end-of-line)             ;; line ;;
-(bind-key*      (kbd "C-a")       #'beginning-of-line)
+(bind-key*      (kbd "C-n")       #'tab-bar-switch-to-next-tab)
+(bind-key*      (kbd "C-p")       #'tab-bar-switch-to-prev-tab)
 ;; <Fn>
 (global-set-key (kbd "<f5>")      #'recompile)
 (global-set-key (kbd "<f6>")      'compile)
@@ -111,6 +109,8 @@
 (global-set-key (kbd "C-<home>")  #'switch-to-prev-buffer)
 (global-set-key (kbd "C-<next>")  #'tab-bar-switch-to-next-tab)
 (global-set-key (kbd "C-<prior>") #'tab-bar-switch-to-prev-tab)
+(global-set-key (kbd "M-n")       #'switch-to-next-buffer)
+(global-set-key (kbd "M-p")       #'switch-to-prev-buffer)
 ;; dired
 (global-set-key (kbd "C-x C-i")   #'image-dired)
 ;; split window
@@ -271,6 +271,9 @@
     (kbd "M-,") 'xref-go-back
     (kbd "C-d") 'evil-delete
     (kbd "C-o") 'new-empty-line
+    (kbd "C-n") 'tab-next
+    (kbd "C-p") 'tab-previous
+    (kbd "C-e") #'end-of-line
     )
   (evil-define-key 'visual 'global
     (kbd "C-w") 'evil-delete
@@ -279,6 +282,7 @@
     (kbd "C-w") 'delete-selected-or-word
     (kbd "C-k") #'kill-line
     (kbd "C-y") #'yank
+    (kbd "C-a") #'beginning-of-line
     )
   (evil-define-key 'normal 'global
     (kbd "C-w") 'evil-delete
