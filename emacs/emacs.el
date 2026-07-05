@@ -31,6 +31,15 @@
          (grep-command (format "%s -- '%s' ."
                                grep-cmd-comm search-string)))
     (compilation-start grep-command)))
+(defun do-find-reg ()
+  (interactive)
+  (let* ((directory (read-directory-name "Directory: "))
+         (search-string (read-string "Name regex: "))
+         (comint-add-to-input-history search-string)
+         (directory (file-relative-name directory default-directory))
+         (find-command (format "find '%s' -type f -name '%s' -exec echo {}':1:' \\;"
+                                directory search-string)))
+    (compilation-start find-command)))
 ;; windmove improvement
 (defun windmove-right2 ()
   (interactive)
@@ -333,6 +342,8 @@
     "gr"  '(:ignore t :wk "Grep")
     "grr" '(do-grep-in-dir :wk "Grep in Directory")
     "grc" '(do-grep :wk "Grep in the current dir")
+    "gf"  '(:ignore t :wk "Find file")
+    "gff" '(do-find-reg :wk "Find file with regex")
     ;; revert / reload
     "r"  '(:ignore t :wk "Reload")
     "rr" 'revert-buffer
@@ -407,6 +418,22 @@
   (setq ac-auto-start t
         ac-auto-show-menu nil)
   (global-auto-complete-mode t)
+  )
+;; env vars loader
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (setq exec-path-from-shell-arguments '("-l"))
+  (setq exec-path-from-shell-variables '
+        ("PATH"
+         "GOPATH" ;; Golang
+         "RUSTUP_HOME" "CARGO_HOME" ;; Rust
+         "TEXLIVE_ROOT" ;; LaTex
+         ))
+  ;; Cache to a file
+  (setq exec-path-from-shell-cache-enabled t)
+  (setq exec-path-from-shell-cache-file (expand-file-name "~/.emacs.d/shell-env-cache"))
+  (exec-path-from-shell-initialize)
   )
 ;; gxref
 (use-package gxref
