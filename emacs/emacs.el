@@ -260,7 +260,22 @@
                   :box (:color "yellow" :line-width 2 :style nil)))))
    )
   )
-
+(use-package minibuffer
+  :ensure nil
+  :config
+  (setq completion-show-help t
+        completion-auto-help t
+        completion-auto-select nil
+        compilation-eager-display t
+        compilation-eager-update t
+        completion-show-inline-help t
+        completion-detailed nil
+        completions-format 'one-column
+        completions-max-height 12
+        completions-sort 'historical
+        minibuffer-visible-completions t
+        )
+  )
 ;;; evil mode (vi mode)
 (use-package evil
   :ensure t
