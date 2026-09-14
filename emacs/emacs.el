@@ -446,18 +446,14 @@
   )
 ;; env vars loader
 (use-package exec-path-from-shell
-  :ensure t
   :config
-  (setq exec-path-from-shell-arguments '("-l"))
-  (setq exec-path-from-shell-variables '
-        ("PATH"
-         "GOPATH" ;; Golang
-         "RUSTUP_HOME" "CARGO_HOME" ;; Rust
-         "TEXLIVE_ROOT" ;; LaTex
-         ))
-  ;; Cache to a file
-  (setq exec-path-from-shell-cache-enabled t)
-  (setq exec-path-from-shell-cache-file (expand-file-name "~/.emacs.d/shell-env-cache"))
+  (dolist (var '(
+            "PATH"
+            "GOPATH" ;; GOLANG
+            "RUSTUP_HOME" "CARGO_HOME" ;; Rust
+            "TEXLIVE_ROOT" ;; LaTex
+            ))
+    (add-to-list 'exec-path-from-shell-variables var))
   (exec-path-from-shell-initialize)
   )
 ;; gxref
