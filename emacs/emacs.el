@@ -15,6 +15,16 @@
   (load-file "~/.emacs.d/proxy.el"))
 ;; grep command support
 (setq grep-cmd-comm "grep -rn -I --exclude-dir=.git --exclude=TAGS")
+(defun toggle-proxy ()
+  (interactive)
+  (if url-proxy-services
+      (setq url-proxy-services nil)
+    (setq url-proxy-services
+          '(("http" . "localhost:10809")
+            ("https" . "localhost:10809")))
+    )
+  (message "Proxy is: %s" (if url-proxy-services "ON" "OFF"))
+  )
 (defun do-grep-in-dir ()
   (interactive)
   (let* ((directory (read-directory-name "Directory: "))
