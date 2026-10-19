@@ -1,6 +1,10 @@
 ;; copy this file to ~/.emacs
 ;; Tested on: GNU Emacs 30.2 (x86_64-pc-linux-gnu)
 
+;; speedup Emacs startup
+(setq gc-cons-threshold most-positive-fixnum)
+(setq gc-cons-percentage 0.6)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;; elementary configs ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;
@@ -797,3 +801,9 @@
 
 ;; Don't install anything. Defer execution of BODY
 (use-package emacs :ensure nil :config (setq ring-bell-function #'ignore))
+
+;; restore the garbage collector
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-threshold 800000)   ; ~800 KB, tune as you like
+            (setq gc-cons-percentage 0.1)))
