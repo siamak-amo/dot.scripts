@@ -218,6 +218,11 @@
                          (dired-find-alternate-file)
                        (find-file-other-window file)))))
      ))
+;; evil-mode integration with xref
+(with-eval-after-load 'xref
+  (evil-define-key 'normal xref--xref-buffer-mode-map
+    (kbd "RET") 'xref-goto-xref
+    (kbd "o") 'xref-goto-xref-other-window))
 
 
 ;;;;;;;;;;;;
