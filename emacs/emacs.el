@@ -494,6 +494,9 @@
   (global-set-key (kbd "<menu>") 'smex)
   (global-set-key (kbd "M-x") 'smex)
   )
+;;; helm
+(use-package helm
+  :ensure t)
 ;;; ivy mode  --Not Enabled--
 (use-package ivy
   :ensure t
